@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8342d6e0-62b0-42c9-8637-b84261e41b94">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="480"/>
+	<parameter name="pruebas" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:\\imagnesqr\\ok.jpg"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IDDocumento" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ticket" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 'D:\\imagnesqr\\QR'||dc.id_ticket||'-'||id_datos_deudor||'.jpg' codigoQR,
+'QR'||dc.id_ticket||'-'||id_datos_deudor codigo,
+ id_datos_deudor,d.nombres_completo,
+replace(ld.saludo,'[Nombre Cliente]',d.nombres_completo ) saludo,
+fnc_remplaza_text(fnc_remplaza_text((fnc_remplaza_text(ld.cuerpo,'[Cliente]',(select d.razon_social from lc_clientes d where id_cliente=t.id_cliente))),'[valor_total]','$'||to_char(t.total_vencidos,'99999D99')),'[dias_mora]', to_char(t.dias_mora,'99999') ) cuerpo,
+ld.despedida despedida,
+fnc_remplaza_text(ld.firma,'[nombre_empresa]',(select d.razon_social from lc_clientes d where id_cliente=t.id_cliente))  firma,
+(select d.razon_social from lc_clientes d where id_cliente=t.id_cliente) cliente
+from lc_datos_deudores d, lc_transacciones t, lc_deudores_documentos dc, lc_documentos ld
+where t.id_deudor=d.id_datos_deudor
+and t.id_deudor=dc.id_deudores
+and dc.id_deudores=d.id_datos_deudor
+and dc.id_ticket=$P{ticket}
+and ld.id_documento=$P{IDDocumento}]]>
+	</queryString>
+	<field name="codigoqr" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="id_datos_deudor" class="java.lang.Integer"/>
+	<field name="nombres_completo" class="java.lang.String"/>
+	<field name="saludo" class="java.lang.String"/>
+	<field name="cuerpo" class="java.lang.String"/>
+	<field name="despedida" class="java.lang.String"/>
+	<field name="firma" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="9" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="121" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="0" width="166" height="20" forecolor="#990000" uuid="421fdb11-b537-4c3f-ba9b-6410dc8ba6fa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Black" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LATICOBSA S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="12" width="166" height="20" uuid="554b3948-a8b7-4105-8c83-4347f253eb3b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC:0992381604001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="23" width="232" height="20" uuid="2600c5f9-001a-4a53-8468-bc587b684c96"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[AGENCIA CENTRO - LUZURIAGA 200 y PANAMA]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="413" y="90" width="132" height="20" uuid="1baccd46-b783-4ffb-b34d-43d399b807d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="313" y="90" width="100" height="20" uuid="e878a0b9-e193-4167-9bc8-d08a5d498157"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Guayaquil, ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="568" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="86" width="530" height="115" uuid="463b655d-b92d-432b-8c8b-c81ab512a151"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuerpo}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="478" y="483" width="70" height="70" uuid="29c10553-3ecb-4987-b0e7-8679c5944fd4"/>
+				<imageExpression><![CDATA[$F{codigoqr}.toString()]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="5" y="475" width="545" height="1" uuid="18d89fc3-22e2-4297-bd0e-adcd9bc956aa"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="15" y="16" width="281" height="20" uuid="42f374d6-e518-472a-a2e8-e25ca85f925a"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saludo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="233" width="530" height="56" uuid="bca2e119-5b9b-4d93-9f40-20877b39476a"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{despedida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="329" width="258" height="72" uuid="c0fcd4f5-f9c9-43bb-90bb-978f41766d06"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{firma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="483" width="65" height="20" uuid="1f132983-9e83-4ba7-93c5-c1477fa29561"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="503" width="65" height="20" uuid="b1725728-ec10-4689-9885-df10f0b15f75"/>
+				<text><![CDATA[Direcciones:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="523" width="65" height="20" uuid="3227ec6d-f437-4211-9b8d-aeb4623992f7"/>
+				<text><![CDATA[Remitente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="75" y="483" width="323" height="20" uuid="883dedc3-a28c-48c1-8206-d9e42102a977"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres_completo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="523" width="238" height="20" uuid="b4bf153f-bfe3-4e52-b66d-29e5ef748c39"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="365" y="553" width="100" height="1" uuid="30b51e93-7647-4301-afb2-1534b0785c1c"/>
+			</line>
+			<staticText>
+				<reportElement x="381" y="553" width="69" height="13" uuid="a8c0b3f2-ea12-4f7e-b511-c69e6ba28c52"/>
+				<text><![CDATA[Recibido Por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="551" width="100" height="15" uuid="2273f335-f0c1-4871-a9ba-b96f7f1cdc3d"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="5" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

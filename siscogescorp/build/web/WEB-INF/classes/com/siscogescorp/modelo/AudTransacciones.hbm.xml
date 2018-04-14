@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.AudTransacciones" optimistic-lock="version" schema="public" table="aud_transacciones">
+    <id name="idTransacciones" type="int">
+      <column name="id_transacciones"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="usuario" type="string">
+      <column length="20" name="usuario"/>
+    </property>
+    <property name="ip" type="serializable">
+      <column name="ip"/>
+    </property>
+    <property name="proceso" type="string">
+      <column length="100" name="proceso"/>
+    </property>
+    <property name="datos" type="string">
+      <column name="datos"/>
+    </property>
+    <property name="fechaRegistro" type="timestamp">
+      <column length="29" name="fecha_registro"/>
+    </property>
+    <property name="estado" type="java.lang.Character">
+      <column length="1" name="estado"/>
+    </property>
+  </class>
+</hibernate-mapping>

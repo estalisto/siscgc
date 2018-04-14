@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcCargos" optimistic-lock="version" schema="public" table="lc_cargos">
+    <comment>Registros de los cargos del sistema</comment>
+    <id name="idCargo" type="int">
+      <column name="id_cargo"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
+      <column name="id_empresa"/>
+    </many-to-one>
+    <property name="cargo" type="string">
+      <column length="100" name="cargo"/>
+    </property>
+    <property name="observacion" type="string">
+      <column length="1000" name="observacion"/>
+    </property>
+    <property name="fechaCreacion" type="timestamp">
+      <column length="29" name="fecha_creacion"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="lcEmpleadoses" table="lc_empleados">
+      <key>
+        <column name="id_cargo"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcEmpleados"/>
+    </set>
+  </class>
+</hibernate-mapping>

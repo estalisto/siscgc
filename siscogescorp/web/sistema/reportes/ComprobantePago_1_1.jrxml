@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="900" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="638b086d-c13e-444a-8350-6b4d1e0e2e9b">
+	<property name="ireport.zoom" value="0.8264462809917354"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="8"/>
+	<parameter name="rutaimg" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nom_cliente" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="identificacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_trx" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idRecaudacion" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombre_sesion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cantidadletra" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pagoefectivo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pagocheque" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numerocheque" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombrebanco" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="numerocuenta" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombrebanco1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.referencia referencia,a.nombre_articulo articulo,r.id_cuota,r.valor_recaudado from lc_det_recaudaciones r, lc_articulo a
+where r.id_articulo=a.id_articulo
+and r.id_recaudacion=$P{idRecaudacion}]]>
+	</queryString>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="articulo" class="java.lang.String"/>
+	<field name="id_cuota" class="java.lang.Integer"/>
+	<field name="valor_recaudado" class="java.math.BigDecimal"/>
+	<variable name="suman" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_recaudado}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="831" splitType="Stretch">
+			<rectangle>
+				<reportElement x="430" y="13" width="122" height="19" uuid="d0f1d787-32aa-41db-bfe3-729daba7310c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="430" y="557" width="122" height="19" uuid="972cae00-a9cd-45a7-a10b-61ae77fe3d93"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="429" y="287" width="122" height="19" uuid="0bc175ee-fe97-47c1-a937-45e1bc87cfe8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="11" y="188" width="537" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="c022f723-c479-4dfd-aa15-ba015da8bcb4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="11" y="732" width="537" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="73edea17-3a3a-4a4b-933d-78665b18ee3b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="175" y="434" width="51" height="20" forecolor="#666666" uuid="fdeeda08-678b-41ef-91f5-0214765cea50"/>
+				<text><![CDATA[Cheque #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="157" y="160" width="14" height="20" uuid="0400fa04-065f-4182-8255-283aef55a597"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pagocheque}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="131" y="188" width="171" height="20" uuid="8b753906-ad34-45fb-9e9e-8d128c569c17"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[POR LO SIGUIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="343" width="55" height="19" uuid="b390bc2b-b0fa-42f9-862f-0fc7128f57c0"/>
+				<textElement>
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por US $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="732" width="73" height="20" uuid="6d9534c9-26aa-4288-b0d8-085ae2185471"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="287" width="68" height="20" uuid="3216c7b1-e927-4f30-9250-5a32f85ae58e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº# 000 -]]></text>
+			</staticText>
+			<line>
+				<reportElement x="306" y="527" width="136" height="1" uuid="75ae5933-e0bd-40cb-8bed-c418a08670e7"/>
+			</line>
+			<staticText>
+				<reportElement x="110" y="704" width="51" height="20" forecolor="#666666" uuid="b06a1128-d57a-4cc6-9242-f91955dbd850"/>
+				<text><![CDATA[Efectivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="99" width="77" height="20" forecolor="#666666" uuid="4767ff68-1c21-4bee-8eec-8ead68b528f6"/>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="99" width="158" height="19" uuid="de3a3d2c-6e30-4347-a0d3-56690a6ff96e"/>
+				<textElement>
+					<font fontName="Arial Black" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ BG - LATICOBSA S.A.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="413" width="446" height="20" uuid="a8770d0e-d735-4a55-9322-29af4642a536"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidadletra}.toString()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="5" y="287" width="197" height="69" uuid="560e09e4-d2b9-4165-b79c-084eff837508"/>
+				<imageExpression><![CDATA[$P{rutaimg}.toString()]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="224" y="449" width="59" height="1" uuid="4079a63f-bf78-4edf-8d6e-1ebb364c082e"/>
+			</line>
+			<staticText>
+				<reportElement x="283" y="704" width="51" height="20" forecolor="#666666" uuid="45963227-cf23-477c-9f8b-90dd0848492f"/>
+				<text><![CDATA[Cta. Cte:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="373" width="158" height="19" uuid="0e0ef9e1-0eb4-45b4-b9a5-df27dbc16215"/>
+				<textElement>
+					<font fontName="Arial Black" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ BG - LATICOBSA S.A.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="683" width="446" height="20" uuid="7dd5cf2d-a4c5-4c25-b8e3-8d360c8031a7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidadletra}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="131" y="732" width="171" height="20" uuid="0be50fca-33e6-44ae-b509-c935683a45d0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[POR LO SIGUIENTE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="227" y="157" width="54" height="20" uuid="21caa655-6831-4f4f-abc1-9901ad560d8f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numerocheque}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="434" width="14" height="20" uuid="a8a5f06e-3e48-47a0-8287-2042eede1830"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pagocheque}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="84" y="430" width="466" height="1" uuid="b28ceb8a-523f-4aae-a5b5-56124378d5a6"/>
+			</line>
+			<rectangle>
+				<reportElement x="153" y="160" width="21" height="20" uuid="873d765d-796a-4a3c-965a-e3510322aa21"/>
+			</rectangle>
+			<textField>
+				<reportElement x="23" y="506" width="192" height="20" uuid="8674d605-ee20-4b04-a00c-32afbbf3335d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre_sesion}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="504" y="557" width="51" height="20" uuid="f6b4a27d-9ed3-4e0d-b13b-1fd1ca48300d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idRecaudacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="317" y="119" width="69" height="20" forecolor="#666666" uuid="ec9df575-057a-4551-bc3a-06fe1d4b9050"/>
+				<text><![CDATA[N°Cuenta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="704" width="51" height="20" forecolor="#666666" uuid="235ea88b-18d5-4156-ade7-04e748ad815f"/>
+				<text><![CDATA[Cheque #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="425" y="431" width="131" height="20" uuid="fdbdeab8-c91d-440d-b350-8968265f940f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombrebanco}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="213" y="302" width="88" height="20" uuid="cbf06bac-cd3e-4fe4-b08a-f1befead5a9e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC:0992381604001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="462" width="88" height="20" uuid="438f17bf-4941-4c0a-b56b-fc964e8297f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="208" width="75" height="20" uuid="7e0275b5-7d34-42cc-95e5-6b2814689e9d"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="822" width="550" height="1" uuid="074587ee-5760-4e78-86ad-9eb69480b975"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="101" y="662" width="192" height="20" uuid="16570107-d27b-46e8-9137-6e599ad8c24e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom_cliente}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="458" width="535" height="1" uuid="b1bac2b0-1c3d-467d-9bf9-c15da042de8f"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="100" width="93" height="20" forecolor="#666666" uuid="636d9480-12a4-4d4c-94c5-2e9ea0e5b37c"/>
+				<text><![CDATA[Identificación::]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="643" width="192" height="20" uuid="faef9328-3b61-45fb-ba21-0fa0ef53d433"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{identificacion}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="307" y="253" width="136" height="1" uuid="f4cf46cc-ab06-4efe-b8c4-d098c88704f8"/>
+			</line>
+			<staticText>
+				<reportElement x="140" y="282" width="280" height="20" uuid="2ad6d731-6f1e-4edd-8373-3f1da0f892a9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LATINOAMERICANA DE COBRANZAS LATICOBSA S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="704" width="92" height="20" forecolor="#666666" uuid="aca9dc96-0013-4d84-b03c-0bb82bad1421"/>
+				<text><![CDATA[Forma de Pago:]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="6" y="557" width="197" height="69" uuid="9044f7ab-499f-443a-b929-25d5b247199c"/>
+				<imageExpression><![CDATA[$P{rutaimg}.toString()]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="316" y="393" width="69" height="20" forecolor="#666666" uuid="65659c23-abed-48ce-8a8e-8c358848ba72"/>
+				<text><![CDATA[N°Cuenta:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="462" width="537" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="21562848-af4a-451f-9c1e-2b044b1cff5e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="501" y="12" width="51" height="20" uuid="89beb5e4-add9-40ab-852f-60a877974ac0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idRecaudacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="136" y="563" width="280" height="20" uuid="2cb30a8c-50f9-464a-9c45-16a0a8a2277c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MANUEL LUZURIAGA #200 Y PANAMÁ EDIFCIO PANAMÁ 2do PISO OFICINA 202]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="462" width="171" height="20" uuid="28c219e8-87e7-4f4b-ae75-8336b01dbf83"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[POR LO SIGUIENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="425" y="175" width="128" height="1" uuid="7c0ac2d6-7233-43d8-a310-a1969f1f21ca"/>
+			</line>
+			<line>
+				<reportElement x="4" y="278" width="550" height="1" uuid="67a4726c-5e11-4a8b-9326-aa216050fb24"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="7" y="414" width="92" height="20" forecolor="#666666" uuid="e8720bf2-5d61-491b-a8ea-29182411d287"/>
+				<text><![CDATA[La Cantidad de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="80" width="192" height="20" uuid="2c661b86-0d6b-4049-b071-7135701724e5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_trx}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="160" width="92" height="20" forecolor="#666666" uuid="ef815029-5c8f-4725-9da9-c3aa2539fc53"/>
+				<text><![CDATA[Forma de Pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="140" width="92" height="20" forecolor="#666666" uuid="8d063de0-d6ca-47fb-a438-a4f859d56720"/>
+				<text><![CDATA[La Cantidad de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="354" width="192" height="20" uuid="c8139666-cc79-4579-8e30-ea838794925f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_trx}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="503" y="287" width="51" height="20" uuid="cdb2e414-dc0d-4d6f-9b9b-fcf530b56a51"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idRecaudacion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="11" y="728" width="535" height="1" uuid="bb86176a-8b42-469b-b980-651f6a0137ad"/>
+			</line>
+			<staticText>
+				<reportElement x="458" y="188" width="88" height="20" uuid="74adeed8-c79d-4a49-aa5f-765c7af8c200"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="592" width="177" height="19" uuid="fbab91b8-4fc5-4e8b-b9f8-6823d603ca59"/>
+				<textElement>
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE DE PAGO]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="6" y="13" width="197" height="69" uuid="76de2716-3e74-4884-b194-ae8dc1b07035"/>
+				<imageExpression><![CDATA[$P{rutaimg}.toString()]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="426" y="701" width="131" height="20" uuid="366dd3b0-bd51-4bac-9ce4-fbf8f4bd0a10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombrebanco}.toString()]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="86" y="703" width="21" height="20" uuid="8fb2e156-ce07-4520-8d1d-f52e9ec3357e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="374" width="93" height="20" forecolor="#666666" uuid="5697ae20-1237-4335-9e97-a450a3640731"/>
+				<text><![CDATA[Identificación::]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="434" width="51" height="20" forecolor="#666666" uuid="df7a99eb-0f30-4600-9623-6c934ac880c9"/>
+				<text><![CDATA[Cta. Cte:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="752" width="75" height="20" uuid="d818ed42-c5c7-40a7-9c53-eb9454740c00"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="400" y="629" width="82" height="1" uuid="11159f7f-5e40-41fa-acfc-c8d12bcd6ce4"/>
+			</line>
+			<staticText>
+				<reportElement x="214" y="28" width="88" height="20" uuid="db49fee9-872a-4474-bb2e-2de0add1b3e3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC:0992381604001]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="160" width="14" height="20" uuid="a2195593-ff27-42f1-b3bb-7d55120ba98f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pagoefectivo}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="624" width="93" height="20" forecolor="#666666" uuid="60258ca9-8802-4e16-822a-62a2b574c2cd"/>
+				<text><![CDATA[Fecha y hora :]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="463" y="751" width="85" height="20" uuid="1dd79719-36d6-4c05-a099-7b54786d9699"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suman}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="11" y="184" width="535" height="1" uuid="61675c53-3fc6-44e0-9d0b-55a511e9ca82"/>
+			</line>
+			<textField>
+				<reportElement x="102" y="139" width="446" height="20" uuid="328eb029-a96b-4f6c-907b-54dee00b69e4"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidadletra}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="384" y="462" width="73" height="20" uuid="7d0fec1c-6fbd-4763-972e-882900382a79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARCIAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="329" y="719" width="61" height="1" uuid="b95abbe4-5ada-4f11-a365-f592f0a73eb3"/>
+			</line>
+			<staticText>
+				<reportElement x="433" y="13" width="68" height="20" uuid="1904f4d0-628e-4d60-abf8-45224d29dc7a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº# 000 -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="394" width="93" height="20" forecolor="#666666" uuid="47bb2468-1bef-4f9f-80f2-7c81856382c4"/>
+				<text><![CDATA[Nombre Completo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="322" width="177" height="19" uuid="4b41c1ec-1783-46bd-85aa-1eba8ae18e70"/>
+				<textElement>
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE DE PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="528" width="86" height="20" uuid="2fbf7d02-3324-4d10-86e5-633799bfcc25"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma del cliente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="99" width="192" height="20" uuid="67efe862-ec82-43d4-ba88-0212d573d728"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{identificacion}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="463" y="207" width="85" height="20" uuid="0fa0d6b4-8183-40df-ad63-1b9dea07ede5"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suman}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="120" width="93" height="20" forecolor="#666666" uuid="0c3c0c1a-45c0-4752-9aae-7c648127b2ce"/>
+				<text><![CDATA[Nombre Completo:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="400" y="85" width="82" height="1" uuid="1917425d-c54b-4cb1-8f24-b289408abd0c"/>
+			</line>
+			<staticText>
+				<reportElement x="136" y="19" width="280" height="20" uuid="98af5935-af48-4b25-a3ab-3749d4c2af3b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MANUEL LUZURIAGA #200 Y PANAMÁ EDIFCIO PANAMÁ 2do PISO OFICINA 202]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="293" width="280" height="20" uuid="0475f11f-1d28-44fe-9f9f-f8b5fddcb562"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MANUEL LUZURIAGA #200 Y PANAMÁ EDIFCIO PANAMÁ 2do PISO OFICINA 202]]></text>
+			</staticText>
+			<line>
+				<reportElement x="328" y="449" width="61" height="1" uuid="3775d898-779c-409f-9789-78667a7b6187"/>
+			</line>
+			<staticText>
+				<reportElement x="317" y="643" width="77" height="20" forecolor="#666666" uuid="965ba380-d795-48c8-a5f3-685eb44adf53"/>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="48" width="177" height="19" uuid="e0c566a7-d98e-4498-8238-ed95b0db7ebe"/>
+				<textElement>
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE DE PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="731" width="70" height="20" uuid="6576f432-8a8d-4d75-9358-639b332a5439"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="385" y="340" width="85" height="20" uuid="6e6eb33c-d6bb-4472-9e84-8b17cd27e0f7"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suman}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="373" y="751" width="85" height="20" uuid="a4a1fc59-e9ac-402f-9a49-bf49e512602a"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_recaudado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="53" y="797" width="136" height="1" uuid="3c623028-0b50-4143-8597-65f6a2f1e613"/>
+			</line>
+			<textField>
+				<reportElement x="426" y="157" width="131" height="20" uuid="373115fa-3183-4f56-9497-fdff9054e46f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombrebanco}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="462" y="481" width="85" height="20" uuid="2ddbb907-1490-4425-90b3-d7e6d7c2e865"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suman}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="65" y="798" width="108" height="20" uuid="c32aed19-f416-4ec8-b1ef-762ff5991926"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma del recaudador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="684" width="92" height="20" forecolor="#666666" uuid="49c0ea5f-4638-4459-9238-f58facb7597a"/>
+				<text><![CDATA[La Cantidad de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="118" width="192" height="20" uuid="4d25abcc-a911-4c65-86ba-edcbfcc25568"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom_cliente}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="390" y="435" width="51" height="20" forecolor="#666666" uuid="b5bbb059-47a3-4478-8127-b555749229d0"/>
+				<text><![CDATA[Banco:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="391" y="677" width="99" height="1" uuid="91841a40-ee28-419f-9f38-9494f11e1003"/>
+			</line>
+			<line>
+				<reportElement x="390" y="407" width="99" height="1" uuid="e78d176b-6355-47db-8332-99b494a403c2"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="461" width="70" height="20" uuid="631dbe6f-689a-4e98-a681-c8592940c2f9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="324" y="432" width="70" height="20" uuid="4c1e2062-b68d-4a5d-92e6-7682c1f0c5b6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numerocuenta}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="434" width="14" height="20" uuid="1ec7c315-74dd-4f4c-9ada-7ac7bd17ff53"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pagoefectivo}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="454" y="258" width="100" height="20" uuid="68d6ecc4-8902-4b7f-8bf5-8e5e5545cf51"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ORIGINAL-CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="663" width="69" height="20" forecolor="#666666" uuid="f65ac47c-02c4-421c-8896-64d25cd9c5ae"/>
+				<text><![CDATA[N°Cuenta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="434" width="51" height="20" forecolor="#666666" uuid="39539f6d-7f24-430b-8bfe-e92bc515b6d2"/>
+				<text><![CDATA[Efectivo:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="52" y="527" width="136" height="1" uuid="5cde3f12-eda1-4447-9bbc-84df5aa909aa"/>
+			</line>
+			<staticText>
+				<reportElement x="352" y="613" width="55" height="19" uuid="ec9a8acb-cd91-447a-a22a-0a5c69f1dc14"/>
+				<textElement>
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por US $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="227" y="701" width="54" height="20" uuid="1a56f361-bb2b-4350-9640-035b0a758849"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numerocheque}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="388" y="610" width="85" height="20" uuid="969c1ef5-938e-422c-a967-3db56bf252e8"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suman}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="214" y="572" width="88" height="20" uuid="e5318f8d-8601-482a-b520-44ddc5bd289d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC:0992381604001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="10" width="280" height="20" uuid="d5bd9072-5ed1-4795-b23d-055fec8e2ad9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LATINOAMERICANA DE COBRANZAS LATICOBSA S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="254" width="86" height="20" uuid="f1c7c2bf-28fd-4056-80cc-4b1802a0f639"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma del cliente]]></text>
+			</staticText>
+			<line>
+				<reportElement x="399" y="359" width="82" height="1" uuid="059ba6fa-de0d-4d6d-9e17-d79ba3503a98"/>
+			</line>
+			<staticText>
+				<reportElement x="176" y="160" width="51" height="20" forecolor="#666666" uuid="3acdfa67-e620-4a0e-981f-d874b9b5e941"/>
+				<text><![CDATA[Cheque #:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="225" y="719" width="59" height="1" uuid="5199ba16-0e0d-4b4f-9e59-ca5e8f2c2113"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="187" width="70" height="20" uuid="8300ca7d-8033-49c9-8660-1ba2b3232ea2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="157" y="704" width="14" height="20" uuid="333fba1c-69b4-4c64-9c54-df77c9c6621e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pagocheque}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="644" width="93" height="20" forecolor="#666666" uuid="e070a1e1-b435-4603-915a-39942e65934c"/>
+				<text><![CDATA[Identificación::]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="86" y="159" width="21" height="20" uuid="97fb8a41-e369-466f-b27f-7f977cf6d7e0"/>
+			</rectangle>
+			<textField>
+				<reportElement x="14" y="482" width="75" height="20" uuid="30e753df-868d-4def-9806-23f133fd8404"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="188" width="73" height="20" uuid="03838c39-e662-4c76-96c4-6e278a1f5a48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARCIAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="153" y="704" width="21" height="20" uuid="d377e4a7-3e69-4729-9c59-991080fde318"/>
+			</rectangle>
+			<textField>
+				<reportElement x="95" y="482" width="238" height="20" uuid="a26d81e5-4433-4de5-8e26-35aeea63c4e7"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{articulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="160" width="51" height="20" forecolor="#666666" uuid="9db726f2-36e9-4648-879f-d372a5e615e5"/>
+				<text><![CDATA[Efectivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="161" width="51" height="20" forecolor="#666666" uuid="4112a3ff-2831-4472-98c1-3c5305143e09"/>
+				<text><![CDATA[Banco:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="732" width="88" height="20" uuid="e2751b72-50ed-4586-bbcc-788e89576509"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="776" width="192" height="20" uuid="3dedde4f-d363-41c7-b32b-9040debcda56"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre_sesion}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="434" y="557" width="68" height="20" uuid="aa2e86c4-2c46-45bd-8be5-5fdcf821c107"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº# 000 -]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="386" y="66" width="85" height="20" uuid="41c1eded-d859-459a-a5db-6376820cd281"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{suman}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="664" width="93" height="20" forecolor="#666666" uuid="9e8e277e-3b6d-4eb6-b973-8ec15a70ffa9"/>
+				<text><![CDATA[Nombre Completo:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="552" width="550" height="1" uuid="851167b4-9f3b-42bb-a980-b9a803d1574f"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="24" y="232" width="192" height="20" uuid="64534458-19ef-4a02-91e0-dafd48379663"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre_sesion}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="391" y="133" width="99" height="1" uuid="2335ec61-3a5c-4f3c-85de-9f65b015e76f"/>
+			</line>
+			<rectangle>
+				<reportElement x="85" y="433" width="21" height="20" uuid="2b904885-b802-49ad-a475-9db70c371a2d"/>
+			</rectangle>
+			<textField>
+				<reportElement x="90" y="704" width="14" height="20" uuid="c88e694e-d122-492b-8339-f35aef5adeb8"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pagoefectivo}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="316" y="373" width="77" height="20" forecolor="#666666" uuid="85b5b439-76a7-4ed2-bdbb-586399b2d26c"/>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="553" width="280" height="20" uuid="64542181-d3ba-47ba-bbe7-1b4c7111a525"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LATINOAMERICANA DE COBRANZAS LATICOBSA S.A.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="329" y="175" width="61" height="1" uuid="2baaf85c-bc99-4edb-8dbb-ba9e19ad63b1"/>
+			</line>
+			<staticText>
+				<reportElement x="65" y="254" width="108" height="20" uuid="7fa465b1-0e0b-4978-9140-2001c16f9836"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma del recaudador]]></text>
+			</staticText>
+			<line>
+				<reportElement x="225" y="175" width="59" height="1" uuid="bf622595-3b9b-46e6-ae03-4bd96c2da17d"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="80" width="93" height="20" forecolor="#666666" uuid="822343d0-f3a4-4fd7-a756-ed1c64fce191"/>
+				<text><![CDATA[Fecha y hora :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="705" width="51" height="20" forecolor="#666666" uuid="997f636a-cfa8-4bef-8b8f-13972030518e"/>
+				<text><![CDATA[Banco:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="96" y="752" width="238" height="20" uuid="3d8571d6-d216-4947-b257-04573e2169f3"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{articulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="643" width="158" height="19" uuid="7ac3d2a6-09b4-4ba5-b627-f055e03c68c8"/>
+				<textElement>
+					<font fontName="Arial Black" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ BG - LATICOBSA S.A.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="373" width="192" height="20" uuid="e9992932-d41d-4ba9-8210-f680704ee950"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{identificacion}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="433" y="557" width="68" height="20" uuid="3edc8536-12da-4109-9ad9-33dbbd802a1f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº# 000 -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="354" width="93" height="20" forecolor="#666666" uuid="cd48f637-417a-4e10-aad9-1e06f23b66e7"/>
+				<text><![CDATA[Fecha y hora :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="434" width="92" height="20" forecolor="#666666" uuid="f25c3132-0e8f-471e-8dab-3ba6a3c9cea5"/>
+				<text><![CDATA[Forma de Pago:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="801" width="100" height="20" uuid="1d084b73-649a-4c33-9280-e29d4f98433e"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[COPIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="226" y="431" width="54" height="20" uuid="167af660-0aca-489f-9b0b-1536a493dda9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numerocheque}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="702" width="70" height="20" uuid="7d446280-27d1-4776-bccb-7fd60dec59b2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numerocuenta}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="424" y="449" width="128" height="1" uuid="e2f87636-8bf7-4811-8bf3-608ca1539993"/>
+			</line>
+			<textField>
+				<reportElement x="100" y="392" width="192" height="20" uuid="56680652-4b4c-43a6-8f40-31cf8e0be45b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom_cliente}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="208" width="238" height="20" uuid="60c5d40e-7de1-493e-ac66-86c07ac0c00f"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{articulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="64" y="528" width="108" height="20" uuid="e79f27f4-4552-4c22-a45e-a6c74db950a0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma del recaudador]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="152" y="434" width="21" height="20" uuid="ab2a8e9f-8408-40e5-8e13-07e5dcb3c440"/>
+			</rectangle>
+			<textField>
+				<reportElement x="325" y="158" width="70" height="20" uuid="4a71b9aa-1dca-4d56-bc74-44e74b9d8767"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numerocuenta}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="85" y="700" width="466" height="1" uuid="ca787c09-cf33-4fda-be03-31a37ce6be64"/>
+			</line>
+			<textField>
+				<reportElement x="101" y="624" width="192" height="20" uuid="b0cf4cdd-4fd4-43b5-b02d-cfd42f95138b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha_trx}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="373" y="207" width="85" height="20" uuid="7d5c42c5-2b5b-4eb1-a1d3-c8b253b09deb"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_recaudado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="53" y="253" width="136" height="1" uuid="b3cde327-a4af-471d-bc7e-40d42f778fdb"/>
+			</line>
+			<line>
+				<reportElement x="307" y="797" width="136" height="1" uuid="0a84b22e-8d49-4776-9518-54f21219702b"/>
+			</line>
+			<textField pattern="###0.00">
+				<reportElement x="372" y="481" width="85" height="20" uuid="939a6bbc-e24a-46c7-9536-07dfbc9047fc"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_recaudado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="352" y="69" width="55" height="19" uuid="e60408c1-452f-4d01-9a4b-35fd14b57430"/>
+				<textElement>
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por US $]]></text>
+			</staticText>
+			<line>
+				<reportElement x="85" y="156" width="466" height="1" uuid="e65fac37-5f26-4626-85fe-3cbf0983ada6"/>
+			</line>
+			<line>
+				<reportElement x="425" y="719" width="128" height="1" uuid="bed773f6-5c90-43e7-9396-6f6fe5daa270"/>
+			</line>
+			<staticText>
+				<reportElement x="453" y="532" width="100" height="20" uuid="50ae930f-6252-46d4-b490-e59b75ed7afa"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[ARCHIVO -LATICOBSA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="797" width="86" height="20" uuid="74525bcc-2f2f-4186-bcb0-68cab77b7558"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma del cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="160" width="51" height="20" forecolor="#666666" uuid="916bd071-4138-458d-ae7c-4fefd4ac609c"/>
+				<text><![CDATA[Cta. Cte:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

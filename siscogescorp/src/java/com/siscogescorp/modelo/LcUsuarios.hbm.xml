@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcUsuarios" optimistic-lock="version" schema="public" table="lc_usuarios">
+    <comment>Registro de usuarios que existen en el sistema ARGUS</comment>
+    <id name="idUsuario" type="int">
+      <column name="id_usuario"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpleados" fetch="select" name="lcEmpleados">
+      <column name="id_empleado">
+        <comment>Id de la Persona</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
+      <column name="id_empresa"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcRoles" fetch="select" name="lcRoles">
+      <column name="id_rol">
+        <comment>Rol del usuario</comment>
+      </column>
+    </many-to-one>
+    <property name="usuario" type="string">
+      <column length="20" name="usuario">
+        <comment>Nombre de Usuario</comment>
+      </column>
+    </property>
+    <property name="contrasenia" type="string">
+      <column length="100" name="contrasenia"/>
+    </property>
+    <property name="observacion" type="string">
+      <column length="1000" name="observacion">
+        <comment>Observación del usuario</comment>
+      </column>
+    </property>
+    <property name="fechaCreacion" type="timestamp">
+      <column length="29" name="fecha_creacion">
+        <comment>Fecha de creación del registro</comment>
+      </column>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado">
+        <comment>"A" Activo, "I" Inactivo</comment>
+      </column>
+    </property>
+    <property name="expiracionTmp" type="timestamp">
+      <column length="29" name="expiracion_tmp"/>
+    </property>
+  </class>
+</hibernate-mapping>

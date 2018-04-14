@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcTipoGestion" optimistic-lock="version" schema="public" table="lc_tipo_gestion">
+    <id name="idTipoGestion" type="int">
+      <column name="id_tipo_gestion"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombreTipoGestion" type="string">
+      <column length="20" name="nombre_tipo_gestion"/>
+    </property>
+    <property name="idCliente" type="java.lang.Integer">
+      <column name="id_cliente"/>
+    </property>
+    <property name="observacion" type="string">
+      <column name="observacion"/>
+    </property>
+    <property name="fechaRegistro" type="timestamp">
+      <column length="29" name="fecha_registro"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="lcGestioneses" table="lc_gestiones">
+      <key>
+        <column name="id_tipo_gestion"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcGestiones"/>
+    </set>
+  </class>
+</hibernate-mapping>

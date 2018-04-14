@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcGestiones" optimistic-lock="version" schema="public" table="lc_gestiones">
+    <id name="idGestion" type="int">
+      <column name="id_gestion"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcClientes" fetch="select" name="lcClientes">
+      <column name="id_cliente"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
+      <column name="id_deudor"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpleados" fetch="select" name="lcEmpleados">
+      <column name="id_empleado"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcTipoGestion" fetch="select" name="lcTipoGestion">
+      <column name="id_tipo_gestion"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcTipoResultado" fetch="select" name="lcTipoResultado">
+      <column name="id_tipo_resultado"/>
+    </many-to-one>
+    <property name="observacion" type="string">
+      <column name="observacion"/>
+    </property>
+    <property name="fechaTransaccion" type="timestamp">
+      <column length="29" name="fecha_transaccion"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+  </class>
+</hibernate-mapping>

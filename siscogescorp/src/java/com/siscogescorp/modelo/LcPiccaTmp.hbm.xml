@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcPiccaTmp" optimistic-lock="version" schema="public" table="lc_picca_tmp">
+    <composite-id class="com.siscogescorp.modelo.LcPiccaTmpId" name="id">
+      <key-property name="nombre" type="string">
+        <column length="100" name="nombre"/>
+      </key-property>
+      <key-property name="apellido" type="string">
+        <column length="100" name="apellido"/>
+      </key-property>
+      <key-property name="cuenta" type="big_decimal">
+        <column name="cuenta" precision="20" scale="0"/>
+      </key-property>
+      <key-property name="negociador" type="java.lang.Integer">
+        <column name="negociador" precision="6" scale="0"/>
+      </key-property>
+      <key-property name="cedula" type="string">
+        <column length="13" name="cedula"/>
+      </key-property>
+      <key-property name="direccion" type="string">
+        <column name="direccion"/>
+      </key-property>
+      <key-property name="tel1" type="string">
+        <column length="20" name="tel1"/>
+      </key-property>
+      <key-property name="tel2" type="string">
+        <column length="20" name="tel2"/>
+      </key-property>
+      <key-property name="tarjeta" type="big_decimal">
+        <column name="tarjeta" precision="20" scale="0"/>
+      </key-property>
+      <key-property name="cupo" type="big_decimal">
+        <column name="cupo" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="deudatotal" type="big_decimal">
+        <column name="deudatotal" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="condonacion" type="big_decimal">
+        <column name="condonacion" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="deudanvencida" type="big_decimal">
+        <column name="deudanvencida" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="deudaVencida" type="big_decimal">
+        <column name="deuda_vencida" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="apertura" type="timestamp">
+        <column length="29" name="apertura"/>
+      </key-property>
+      <key-property name="iniciovenc" type="timestamp">
+        <column length="29" name="iniciovenc"/>
+      </key-property>
+      <key-property name="pc30dias" type="big_decimal">
+        <column name="pc30dias" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc60dias" type="big_decimal">
+        <column name="pc60dias" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc90dias" type="big_decimal">
+        <column name="pc90dias" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc120dias" type="big_decimal">
+        <column name="pc120dias" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc120mdias" type="big_decimal">
+        <column name="pc120mdias" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="numeroVenc" type="java.lang.Integer">
+        <column name="numero_venc" precision="6" scale="0"/>
+      </key-property>
+      <key-property name="diasvencidos" type="java.lang.Integer">
+        <column name="diasvencidos" precision="6" scale="0"/>
+      </key-property>
+      <key-property name="estados" type="string">
+        <column length="13" name="estados"/>
+      </key-property>
+      <key-property name="region" type="string">
+        <column length="60" name="region"/>
+      </key-property>
+      <key-property name="direccionDom" type="string">
+        <column name="direccion_dom"/>
+      </key-property>
+      <key-property name="direccionLab" type="string">
+        <column name="direccion_lab"/>
+      </key-property>
+      <key-property name="referencia" type="string">
+        <column length="100" name="referencia"/>
+      </key-property>
+      <key-property name="telRef1" type="string">
+        <column length="10" name="tel_ref1"/>
+      </key-property>
+      <key-property name="referencia2" type="string">
+        <column length="100" name="referencia2"/>
+      </key-property>
+      <key-property name="telRef2" type="string">
+        <column length="10" name="tel_ref2"/>
+      </key-property>
+      <key-property name="fechUltimoPago" type="timestamp">
+        <column length="29" name="fech_ultimo_pago"/>
+      </key-property>
+      <key-property name="pgoMinimo" type="big_decimal">
+        <column name="pgo_minimo" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="empleado" type="big_decimal">
+        <column name="empleado" precision="6"/>
+      </key-property>
+      <key-property name="telefono3" type="string">
+        <column length="10" name="telefono3"/>
+      </key-property>
+      <key-property name="telefono4" type="string">
+        <column length="10" name="telefono4"/>
+      </key-property>
+      <key-property name="tapeNombre" type="string">
+        <column length="60" name="tape_nombre"/>
+      </key-property>
+      <key-property name="pc12meses" type="big_decimal">
+        <column name="pc12meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc11meses" type="big_decimal">
+        <column name="pc11meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc10meses" type="big_decimal">
+        <column name="pc10meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc9meses" type="big_decimal">
+        <column name="pc9meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc8meses" type="big_decimal">
+        <column name="pc8meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc7meses" type="big_decimal">
+        <column name="pc7meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc6meses" type="big_decimal">
+        <column name="pc6meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc5meses" type="big_decimal">
+        <column name="pc5meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc4meses" type="big_decimal">
+        <column name="pc4meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc3meses" type="big_decimal">
+        <column name="pc3meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc2meses" type="big_decimal">
+        <column name="pc2meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="pc1meses" type="big_decimal">
+        <column name="pc1meses" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="vecesVenc" type="big_decimal">
+        <column name="veces_venc" precision="6"/>
+      </key-property>
+      <key-property name="veces1vez" type="big_decimal">
+        <column name="veces1vez" precision="6"/>
+      </key-property>
+      <key-property name="pjsdvpp" type="big_decimal">
+        <column name="pjsdvpp" precision="10" scale="7"/>
+      </key-property>
+      <key-property name="pjvecesven" type="big_decimal">
+        <column name="pjvecesven" precision="6"/>
+      </key-property>
+      <key-property name="pjpagomin" type="big_decimal">
+        <column name="pjpagomin" precision="6"/>
+      </key-property>
+      <key-property name="puntaje" type="big_decimal">
+        <column name="puntaje" precision="6"/>
+      </key-property>
+      <key-property name="email" type="string">
+        <column length="60" name="email"/>
+      </key-property>
+      <key-property name="supercredito" type="string">
+        <column length="3" name="supercredito"/>
+      </key-property>
+      <key-property name="idCiudad" type="java.lang.Integer">
+        <column name="id_ciudad"/>
+      </key-property>
+    </composite-id>
+  </class>
+</hibernate-mapping>

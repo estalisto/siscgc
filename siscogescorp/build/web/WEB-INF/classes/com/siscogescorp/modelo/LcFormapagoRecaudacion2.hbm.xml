@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcFormapagoRecaudacion2" optimistic-lock="version" schema="public" table="lc_formapago_recaudacion2">
+    <composite-id class="com.siscogescorp.modelo.LcFormapagoRecaudacion2Id" name="id">
+      <key-property name="idFormpago" type="java.lang.Integer">
+        <column name="id_formpago"/>
+      </key-property>
+      <key-property name="idRecaudacion" type="java.lang.Integer">
+        <column name="id_recaudacion"/>
+      </key-property>
+      <key-property name="tipoFormaPago" type="java.lang.Integer">
+        <column name="tipo_forma_pago"/>
+      </key-property>
+      <key-property name="totalRecaudado" type="big_decimal">
+        <column name="total_recaudado" precision="10" scale="3"/>
+      </key-property>
+      <key-property name="idEntidadFinanciera" type="java.lang.Integer">
+        <column name="id_entidad_financiera"/>
+      </key-property>
+      <key-property name="numCheque" type="string">
+        <column length="30" name="num_cheque"/>
+      </key-property>
+      <key-property name="numTarjetaCred" type="string">
+        <column length="30" name="num_tarjeta_cred"/>
+      </key-property>
+      <key-property name="fechaCobro" type="timestamp">
+        <column length="29" name="fecha_cobro"/>
+      </key-property>
+      <key-property name="fechaRegistro" type="timestamp">
+        <column length="29" name="fecha_registro"/>
+      </key-property>
+      <key-property name="fechaActualizado" type="timestamp">
+        <column length="29" name="fecha_actualizado"/>
+      </key-property>
+      <key-property name="estado" type="string">
+        <column length="1" name="estado"/>
+      </key-property>
+    </composite-id>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,1105 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-sep-2016, 18:50:20
+    Author     : eduar
+*/
+
+@media (max-width: 1920px) and (min-width: 1370px) {
+
+    .b-blog__posts-one_1{
+        padding-bottom: 180px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 45px;
+    }
+    .nav-fixet-donw{
+        background-color: rgba(26, 73, 150, 0.78) !important;
+        padding: 0px !important;
+        border-bottom: #FFF 3px solid;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+   } 
+
+    .img-no-float{
+        margin-top: 0px !important;
+    }
+    
+    .float-rigth-bread {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .img-float{
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 50px;
+    }
+
+    #dropdow {
+        margin-left: -800px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 1400px; 
+         background: #b9c2cc;
+    }
+    
+    #dropdow_camiones {
+        margin-left: -900px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 1400px; 
+         background: #b9c2cc;
+    }
+    
+      .row-acordion{
+            margin-right: 0px !important; 
+            margin-left: 0px !important; 
+        }
+    
+    #bx-pager > a > img{
+        border-radius: 50%;
+        margin-left: 10px;
+        border: solid 5px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    .bx-wrapper-new{
+        max-width: 100% !important;
+    }
+
+    .bx-viewport-new {
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        height: 445px !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+    }
+    
+    /*Boton de agendamineto*/
+.conten-agendamiento{
+    background: transparent;
+    right:  10px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    border-radius: 3px;
+}
+
+.conten-agendamiento2{
+    padding: 2px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: #013C9E;
+    border: solid 2px #fff;
+}
+.ribbon {
+    width: 160px;
+    height: 0px;
+    border-top: 20px solid #c59534;
+    border-left: 35px solid transparent;
+    border-bottom: 20px solid #c59534;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    box-shadow: 40px 2px 80px #fff;
+    right:  0px;
+}
+    
+}
+
+@media (max-width: 1750px) and (min-width: 1367px) {
+
+    /*/////////////////////////////////////////////////////////////*/
+    /*             Administracion                                  */
+    /*/////////////////////////////////////////////////////////////*/
+    .b-blog__posts-one_1{
+        padding-bottom: 120px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 45px;
+    }
+
+    .b-login{
+           padding: 0px 0 0 0 !important; 
+    }
+    
+    /*/////////////////////////////////////////////////////////////*/
+    /*             Administracion                                  */
+    /*/////////////////////////////////////////////////////////////*/
+    
+    
+    
+    .nav-fixet-donw{
+        background-color: rgba(26, 73, 150, 0.78) !important;
+        padding: 0px !important;
+        border-bottom: #FFF 3px solid;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+   } 
+    
+    .img-no-float{
+        margin-top: 0px !important;
+    }
+    
+    .float-rigth-bread {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .b-featured__item {
+        width: inherit !important;
+    }
+
+    .img-float{
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 50px;
+    }
+
+    #dropdow {
+        margin-left: -630px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 1200px;
+        background: #b9c2cc;
+    }
+    
+    #dropdow_camiones {
+        margin-left: -750px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 1200px; 
+         background: #b9c2cc;
+    }
+    
+    .b-nav__list ul li a {
+        font: 700 11px 'Open Sans',sans-serif !important;
+    }
+    
+    .row-acordion{
+        margin-right: 0px !important; 
+        margin-left: 0px !important; 
+    }
+    
+    #bx-pager > a > img{
+        border-radius: 50%;
+        margin-left: 10px;
+        border: solid 5px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    .bx-wrapper-new{
+        max-width: 100% !important;
+    }
+
+    .bx-viewport-new {
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        height: 445px !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+    }
+    
+    /*Boton de agendamineto*/
+.conten-agendamiento{
+    background: transparent;
+    right:  10px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    border-radius: 3px;
+}
+
+.conten-agendamiento2{
+    padding: 2px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: #013C9E;
+    border: solid 2px #fff;
+}
+.ribbon {
+    width: 160px;
+    height: 0px;
+    border-top: 20px solid #c59534;
+    border-left: 35px solid transparent;
+    border-bottom: 20px solid #c59534;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    box-shadow: 40px 2px 80px #fff;
+    right:  0px;
+}
+}
+
+@media (max-width: 1366px) and (min-width: 1224px) {
+    .b-blog__posts-one_1{
+        padding-bottom: 180px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 45px;
+    }
+
+    /*/////////////////////////////////////////////////////////////*/
+    /*             Administracion                                  */
+    /*/////////////////////////////////////////////////////////////*/
+
+    .b-login{
+           padding: 0px 0 0 0 !important; 
+    }
+    
+    /*/////////////////////////////////////////////////////////////*/
+    /*             Administracion                                  */
+    /*/////////////////////////////////////////////////////////////*/
+    
+    
+    
+    .nav-fixet-donw{
+        background-color: rgba(26, 73, 150, 0.78) !important;
+        padding: 0px !important;
+        border-bottom: #FFF 3px solid;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+   } 
+    
+    .img-no-float{
+        margin-top: 0px !important;
+    }
+    
+    .float-rigth-bread {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .b-featured__item {
+        width: inherit !important;
+    }
+
+    .img-float{
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 50px;
+    }
+
+    #dropdow {
+        margin-left: -420px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 1000px;
+        background: #b9c2cc;
+    }
+    
+    #dropdow_camiones {
+        margin-left: -550px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 1000px; 
+         background: #b9c2cc;
+    }
+    
+    .b-nav__list ul li a {
+        font: 700 11px 'Open Sans',sans-serif !important;
+    }
+    
+    .row-acordion{
+        margin-right: 0px !important; 
+        margin-left: 0px !important; 
+    }
+    
+    #bx-pager > a > img{
+        border-radius: 50%;
+        margin-left: 10px;
+        border: solid 5px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    .bx-wrapper-new{
+        max-width: 100% !important;
+    }
+
+    .bx-viewport-new {
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        height: 445px !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+    }
+    
+    /*Boton de agendamineto*/
+.conten-agendamiento{
+    background: transparent;
+    right:  10px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    border-radius: 3px;
+}
+
+.conten-agendamiento2{
+    padding: 2px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: #013C9E;
+    border: solid 2px #fff;
+}
+.ribbon {
+    width: 160px;
+    height: 0px;
+    border-top: 20px solid #c59534;
+    border-left: 35px solid transparent;
+    border-bottom: 20px solid #c59534;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    box-shadow: 40px 2px 80px #fff;
+    right:  0px;
+}
+}
+
+@media(max-width: 1224px) and (min-width: 1001px){
+    .b-blog__posts-one_1{
+        padding-bottom: 120px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 45px;
+    }
+    .nav-fixet-donw{
+        background-color: rgba(26, 73, 150, 0.78) !important;
+        padding: 0px !important;
+        border-bottom: #FFF 3px solid;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+   } 
+    
+    .img-no-float{
+        margin-top: 0px !important;
+    }
+    
+    .float-rigth-bread {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .b-featured__item {
+        width: inherit !important;
+    }
+
+    .img-float{
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 50px;
+    }
+
+    #dropdow {
+        margin-left: -300px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 900px;
+        background: #b9c2cc;
+    }
+    
+    #dropdow_camiones {
+        margin-left: -390px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 900px; 
+         background: #b9c2cc;
+    }
+    
+    .b-nav__list ul li a {
+        font: 700 11px 'Open Sans',sans-serif !important;
+    }
+    
+    .row-acordion{
+        margin-right: 0px !important; 
+        margin-left: 0px !important; 
+    }
+    
+    #bx-pager > a > img{
+        border-radius: 50%;
+        margin-left: 10px;
+        border: solid 5px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    .bx-wrapper-new{
+        max-width: 100% !important;
+    }
+
+    .bx-viewport-new {
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+    }
+    
+    /*Boton de agendamineto*/
+.conten-agendamiento{
+    background: transparent;
+    right:  10px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    border-radius: 3px;
+}
+
+.conten-agendamiento2{
+    padding: 2px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: #013C9E;
+    border: solid 2px #fff;
+}
+.ribbon {
+    width: 160px;
+    height: 0px;
+    border-top: 20px solid #c59534;
+    border-left: 35px solid transparent;
+    border-bottom: 20px solid #c59534;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    box-shadow: 40px 2px 80px #fff;
+    right:  0px;
+}
+}
+
+/*@media (max-width: 600px) and (min-width: 500px) {
+    .nav-fixet-donw{
+        background-color: rgba(26, 73, 150, 0.78) !important;
+        padding: 0px !important;
+        border-bottom: #FFF 3px solid;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+   } 
+    
+    .img-no-float{
+        margin-top: 0px !important;
+    }
+    
+    .float-rigth-bread {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .b-featured__item {
+        width: inherit !important;
+    }
+
+    .img-float{
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 50px;
+    }
+
+    #dropdow {
+        margin-left: -200px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 800px;
+        background: #b9c2cc;
+    }
+    
+    #dropdow_camiones {
+        margin-left: -300px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 800px; 
+         background: #b9c2cc;
+    }
+    
+    .b-nav__list ul li a {
+        font: 700 11px 'Open Sans',sans-serif !important;
+    }
+    
+    .row-acordion{
+        margin-right: 0px !important; 
+        margin-left: 0px !important; 
+    }
+    
+    #bx-pager > a > img{
+        border-radius: 50%;
+        margin-left: 10px;
+        border: solid 5px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    .bx-wrapper-new{
+        max-width: 100% !important;
+    }
+
+    .bx-viewport-new {
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+    }
+}*/
+
+@media(max-width: 999px) and (min-width: 768px){
+    .b-blog__posts-one_1{
+        padding-bottom: 450px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 45px;
+    }
+
+    .b-nav__list ul li a {
+            width: inherit !important;
+        }
+    
+    .b-topBar__nav img{
+         display: none;
+    }
+    
+    .navbar-brand{
+        display: none;
+    }
+    .nav-fixet-donw{
+        background-color: rgba(26, 73, 150, 0.78) !important;
+        padding: 0px !important;
+        border-bottom: #FFF 3px solid;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+   } 
+    
+    .img-no-float{
+        margin-top: 0px !important;
+    }
+    
+    .float-rigth-bread {
+        float: right;
+        padding-top: 10px;
+    }
+    
+    .b-featured__item {
+        width: inherit !important;
+    }
+
+    .img-float{
+        position: absolute;
+        margin-top: -20px;
+        /* margin-left: 50px; */
+    }
+
+    #dropdow {
+        margin-left: -200px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 700px;
+        background: #b9c2cc;
+    }
+    
+    #dropdow_camiones {
+        margin-left: -300px;
+        margin-top: 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 700px; 
+         background: #b9c2cc;
+    }
+    
+    .b-nav__list ul li a {
+            font: 700 9px 'Open Sans',sans-serif !important;
+    }
+    
+    .row-acordion{
+        margin-right: 0px !important; 
+        margin-left: 0px !important; 
+    }
+    
+    #bx-pager > a > img{
+        border-radius: 50%;
+        margin-left: 10px;
+        border: solid 5px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    .bx-wrapper-new{
+        max-width: 100% !important;
+    }
+
+    .bx-viewport-new {
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+    }
+    
+    /*Boton de agendamineto*/
+    .conten-agendamiento{
+        background: transparent;
+        right:  10px;
+        padding: 15px;
+        position: fixed;
+        bottom: 0px;
+        z-index: 9999;
+        border-radius: 3px;
+    }
+
+    .conten-agendamiento2{
+        padding: 2px;
+        position: fixed;
+        bottom: 20px;
+        z-index: 9999;
+        background-color: #013C9E;
+        border: solid 2px #fff;
+    }
+    .ribbon {
+        width: 160px;
+        height: 0px;
+        border-top: 20px solid #c59534;
+        border-left: 35px solid transparent;
+        border-bottom: 20px solid #c59534;
+        position: fixed;
+        bottom: 20px;
+        z-index: 9999;
+        box-shadow: 40px 2px 80px #fff;
+        right:  0px;
+    }
+}
+
+@media (max-width: 767px) and (min-width: 200px) {
+    .b-blog__posts-one_1{
+        padding-bottom: 260px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 45px;
+    }
+
+    .nav-fixet-donw {
+        background-color: transparent !important;
+        padding: 0px !important;
+        position: fixed !important;
+        z-index: 9999 !important;
+        width: 100% !important;
+        top: -15px;
+    }
+/*    .row-rigth {
+        margin-right: 0px !important;
+    }*/
+    
+        
+    
+    .img-hidden-logo{
+        display: none !important;
+    }
+    
+    .j-more{
+        visibility: hidden;
+    }
+    
+    .dropdown-backdrop {
+       position: static !important;
+    }
+    
+    .b-nav {
+       /* padding: 0px 0 25px 0 !important;*/
+    }
+    
+      .b-featured__item  #name_auto {
+          padding-bottom: 0px !important;
+          margin: 0px 0 0px 0px !important;
+          padding-left: 0px !important;
+          clear: none  !important;
+            /* text-align: left; */
+          border-bottom: none !important;
+          position: static !important;
+        }
+      
+      
+     .b-nav__list ul li a {
+         font: 700 10px 'Open Sans',sans-serif !important;
+     }
+     
+     .h-nav{
+/*        position: absolute !important;
+        left: 160px !important;*/
+     }
+     
+     .bx-wrapper-new{
+        
+        width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        -moz-box-shadow: 0 0 0px #ccc !important;
+        -webkit-box-shadow: 0 0 0px #ccc !important; 
+        box-shadow: 0 0 0px #ccc !important;
+        border: 0px  #fff !important; 
+        margin: 0 auto 0px !important;  
+     }
+
+    
+    #bx-pager > a > img{
+        margin-left: 2px;
+        border: solid 3px #656e7b;
+        box-shadow: #fbf8f8 0px 0px 20px;
+        cursor: pointer;
+    }
+    
+    /*Boton de agendamineto*/
+.conten-agendamiento{
+    background: transparent;
+    right:  10px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    border-radius: 3px;
+}
+
+.conten-agendamiento2{
+    padding: 2px;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    background-color: #013C9E;
+    border: solid 2px #fff;
+}
+.ribbon {
+    width: 160px;
+    height: 0px;
+    border-top: 20px solid #c59534;
+    border-left: 35px solid transparent;
+    border-bottom: 20px solid #c59534;
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    box-shadow: 40px 2px 80px #fff;
+    right:  0px;
+}
+   
+}
+
+/*----------------------------------------------------------------------------*/
+/*Css general para todas las resoluciones de pantalla*/
+/*----------------------------------------------------------------------------*/
+.b-blog-citas{
+    padding: 25px 0 135px 0 !important;
+}
+
+.b-blog__posts-one-body-head-citas{
+    padding: 0px 0 0px 0 !important;
+}
+
+.b-blog__posts-one-body-head-citas h2 {
+    font-size: 15px !important;;
+}
+.b-blog__posts-one-citas{
+       padding-bottom: 0px !important;
+}
+
+
+
+
+
+
+
+
+.new-header-page h1{
+    width: 100%
+}
+
+.float-rigth{
+    float: right;
+    padding-top: 10px;
+}
+
+.b-nav {
+    /*padding: 5px 0 5px 0 !important; */
+}
+
+.s-list{
+     margin-bottom: 0px !important; 
+}
+
+.menu_autos img{
+  transition: all 0.2s linear;
+}
+
+.menu_autos:hover{
+    border-bottom: 3px #f76d2b !important;
+    background-color: rgba(1, 60, 158, 0.62);
+    transition: all 0.3s ease-in-out;
+    -webkit-box-shadow: inset 0 0 0 1px red;
+    -moz-box-shadow: inset 0 0 0 1px red;
+    box-shadow: inset 0 0 0 2px #013C9E;
+}
+
+.menu_autos:hover img {
+    transform: scale(1.1);/*Damos un ligero zoom a la imagen*/
+    opacity: 0.5;
+}
+
+.b-detail__main-info-characteristics-one-top {
+    border-top: 1px solid #f5f5f5 !important; 
+}
+
+.b-detail__main-info-characteristics {
+    border-top: 1px #eeeeee !important;
+    border-bottom: 1px #eeeeee !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.new-header-page {
+    padding: 10px 0  !important;
+}
+
+.auto_valor_menu:hover {
+    border-bottom: none !important;
+}
+
+.navbar-nav-menu_li_a{
+    color: #FFF  !important;
+}
+
+
+.enable-bx-slider-new{
+    padding: 0px;
+    width: auto;
+    position: relative;
+}
+
+.img-bolck {
+    float: none;
+    list-style: none;
+    position: absolute;
+    z-index: 50;
+    display: block;
+}
+
+.img-none {
+    float: none;
+    list-style: none;
+    position: absolute;
+    z-index: 0;
+    display: none;
+}
+
+#bx-pager > a{
+    cursor: pointer;
+}
+
+.b-article {
+    padding: 0px 0 0px 0 !important;
+}
+
+
+
+
+
+
+
+/* Slide in animation */
+  @-moz-keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+  @-webkit-keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+  @keyframes slidein {
+    0% {
+      left: -300px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+  
+  @-moz-keyframes slideintop {
+    0% {
+      top: -150px;
+    }
+    100% {
+      top: 0px;
+    }
+  }
+  @-webkit-keyframes slideintop {
+    0% {
+      top: -150px;
+    }
+    100% {
+      top: 0px;
+    }
+  }
+  @keyframes slideintop {
+    0% {
+      top: -150px;
+    }
+    100% {
+      top: 0px;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  @-moz-keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  @-webkit-keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  @keyframes slideout {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -300px;
+    }
+  }
+  
+  
+  @-moz-keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @-webkit-keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @keyframes bodyslidein {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: 120px;
+    }
+  }
+  @-moz-keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @-webkit-keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  @keyframes bodyslideout {
+    0% {
+      left: 300px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+  
+  
+  
+  
+  /*/////////////////////////////////////////////////////////////*/
+  /*             Administracion                         */
+   /*/////////////////////////////////////////////////////////////*/
+   
+   .b-blog__aside-search  input[type='password']{
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 15px 20px;
+        font: 400 10px 'Open Sans',sans-serif;
+        border: 2px solid #013C9E;
+        border-radius: 30px;
+    }
+    
+    .b-blog__aside-search  input[type='password']:focus, .b-blog__aside-search  input[type='text']:focus {
+        outline-color: transparent;
+        border: 2px solid #4cae4c !important; 
+    }
+    
+    .b-blog__aside-search  input[type='text']{
+        border: 2px solid #013C9E !important; 
+        margin-bottom: 10px;
+    }
+    
+    
+    .b-blog__aside-search button {
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1) !important; 
+        transform: scale(1, 1) !important; 
+    }

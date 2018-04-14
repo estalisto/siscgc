@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcDatosDeudores" optimistic-lock="version" schema="public" table="lc_datos_deudores">
+    <id name="idDatosDeudor" type="int">
+      <column name="id_datos_deudor"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcAgencia" fetch="select" name="lcAgencia">
+      <column name="id_agencia"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcCiudad" fetch="select" name="lcCiudad">
+      <column name="id_ciudad"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
+      <column name="id_empresa"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcEstatus" fetch="select" name="lcEstatus">
+      <column name="status"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcTipoCredito" fetch="select" name="lcTipoCredito">
+      <column name="tipo_credito"/>
+    </many-to-one>
+    <property name="tipoIdentificacion" type="java.lang.Integer">
+      <column name="tipo_identificacion"/>
+    </property>
+    <property name="identificacion" type="string">
+      <column length="13" name="identificacion"/>
+    </property>
+    <property name="nombres" type="string">
+      <column length="60" name="nombres"/>
+    </property>
+    <property name="apellidos" type="string">
+      <column length="60" name="apellidos"/>
+    </property>
+    <property name="nombresCompleto" type="string">
+      <column length="120" name="nombres_completo"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email"/>
+    </property>
+    <property name="fechaCreacion" type="timestamp">
+      <column length="29" name="fecha_creacion"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <property name="idParroquia" type="java.lang.Integer">
+      <column name="id_parroquia"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="lcDetCampaniases" table="lc_det_campanias">
+      <key>
+        <column name="id_datos_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcDetCampanias"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcGestioneses" table="lc_gestiones">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcGestiones"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcArticulos" table="lc_articulo">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcArticulo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcRecaudacioneses" table="lc_recaudaciones">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcRecaudaciones"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcRecordatorioses" table="lc_recordatorios">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcRecordatorios"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcTransaccioneses" table="lc_transacciones">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcTransacciones"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCuotases" table="lc_cuotas">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcCuotas"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcDeudoresDocumentoses" table="lc_deudores_documentos">
+      <key>
+        <column name="id_deudores"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcDeudoresDocumentos"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCompromisosPagos" table="lc_compromisos_pago">
+      <key>
+        <column name="id_deudor"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcCompromisosPago"/>
+    </set>
+  </class>
+</hibernate-mapping>

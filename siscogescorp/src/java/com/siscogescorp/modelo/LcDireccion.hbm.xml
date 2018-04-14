@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcDireccion" optimistic-lock="version" schema="public" table="lc_direccion">
+    <id name="idDireccion" type="int">
+      <column name="id_direccion"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcTiposDireccion" fetch="select" name="lcTiposDireccion">
+      <column name="tipo_direccion"/>
+    </many-to-one>
+    <property name="identificacionDeudor" type="string">
+      <column length="50" name="identificacion_deudor"/>
+    </property>
+    <property name="direccionCompleta" type="string">
+      <column name="direccion_completa"/>
+    </property>
+    <property name="fechaCreacion" type="timestamp">
+      <column length="29" name="fecha_creacion"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <property name="descripcionCarga" type="string">
+      <column length="500" name="descripcion_carga"/>
+    </property>
+  </class>
+</hibernate-mapping>

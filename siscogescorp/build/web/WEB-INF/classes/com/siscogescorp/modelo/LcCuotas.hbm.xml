@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcCuotas" optimistic-lock="version" schema="public" table="lc_cuotas">
+    <id name="idCuota" type="int">
+      <column name="id_cuota"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcArticulo" fetch="select" name="lcArticulo">
+      <column name="id_articulo"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
+      <column name="id_deudor"/>
+    </many-to-one>
+    <property name="idCliente" type="java.lang.Integer">
+      <column name="id_cliente"/>
+    </property>
+    <property name="numCuotas" type="java.lang.Integer">
+      <column name="num_cuotas"/>
+    </property>
+    <property name="valorCuota" type="big_decimal">
+      <column name="valor_cuota" precision="10"/>
+    </property>
+    <property name="interesCuota" type="big_decimal">
+      <column name="interes_cuota" precision="10"/>
+    </property>
+    <property name="valorMora" type="big_decimal">
+      <column name="valor_mora" precision="10"/>
+    </property>
+    <property name="gastosCobranzas" type="big_decimal">
+      <column name="gastos_cobranzas" precision="10"/>
+    </property>
+    <property name="gastosAdicional" type="big_decimal">
+      <column name="gastos_adicional" precision="10"/>
+    </property>
+    <property name="otrosValores" type="big_decimal">
+      <column name="otros_valores" precision="10"/>
+    </property>
+    <property name="totalCuotas" type="big_decimal">
+      <column name="total_cuotas" precision="10"/>
+    </property>
+    <property name="fechaPago" type="timestamp">
+      <column length="29" name="fecha_pago"/>
+    </property>
+    <property name="fechaMaxPago" type="timestamp">
+      <column length="29" name="fecha_max_pago"/>
+    </property>
+    <property name="fechaRegistro" type="timestamp">
+      <column length="29" name="fecha_registro"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <property name="descripcionCarga" type="string">
+      <column length="500" name="descripcion_carga"/>
+    </property>
+  </class>
+</hibernate-mapping>

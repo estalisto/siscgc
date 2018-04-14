@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcDocumentosGenerados" optimistic-lock="version" schema="public" table="lc_documentos_generados">
+    <id name="idDocGenerado" type="int">
+      <column name="id_doc_generado"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="codigo" type="string">
+      <column name="codigo"/>
+    </property>
+    <property name="idEmpresa" type="java.lang.Integer">
+      <column name="id_empresa"/>
+    </property>
+    <property name="idTicket" type="java.lang.Integer">
+      <column name="id_ticket"/>
+    </property>
+    <property name="idDeudor" type="java.lang.Integer">
+      <column name="id_deudor"/>
+    </property>
+    <property name="idCliente" type="java.lang.Integer">
+      <column name="id_cliente"/>
+    </property>
+    <property name="idDocumento" type="java.lang.Integer">
+      <column name="id_documento"/>
+    </property>
+    <property name="rutaDocumento" type="string">
+      <column name="ruta_documento"/>
+    </property>
+    <property name="recepcion" type="string">
+      <column name="recepcion"/>
+    </property>
+    <property name="valorRecaudado" type="big_decimal">
+      <column name="valor_recaudado" precision="10"/>
+    </property>
+    <property name="identificacionRecibe" type="string">
+      <column length="13" name="identificacion_recibe"/>
+    </property>
+    <property name="personaRecibe" type="string">
+      <column length="50" name="persona_recibe"/>
+    </property>
+    <property name="observacion" type="string">
+      <column length="100" name="observacion"/>
+    </property>
+    <property name="fechaRecepcion" type="timestamp">
+      <column length="29" name="fecha_recepcion"/>
+    </property>
+    <property name="fechaRegistro" type="timestamp">
+      <column length="29" name="fecha_registro"/>
+    </property>
+    <property name="fechaActualizado" type="timestamp">
+      <column length="29" name="fecha_actualizado"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+  </class>
+</hibernate-mapping>

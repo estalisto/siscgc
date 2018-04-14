@@ -1,0 +1,409 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-oct-2016, 17:23:35
+    Author     : Proyecto4
+*/
+
+body{
+        background-color: #12426b !important;
+}
+
+.b-nav {
+    padding: 0px 0 0px 0 !important;
+}
+
+.b-error h2 {
+    padding: 0 30px 0px 30px !important;
+}
+
+
+
+.session-user{
+    width: 25px !important;
+    height: 25px !important;
+    float: left;
+    border: 2px solid #efefef;
+    border-radius: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.session-user span.fa {
+    font-size: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+}
+
+b-nav__list ul li a:hover 
+{
+    border-bottom: solid 0px;
+}
+
+
+.main-sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    min-height: 100%;
+    width: 307px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+    background-color: #12426b;
+}
+
+
+.b-nav-admin{
+    z-index: 1030 !important;
+    position: relative !important;
+    background: white !important;
+}
+.b-blog__aside-search-admin{
+    padding: 10px !important;
+}
+
+.b-blog__aside-search-admin input[type='text'] {
+    background: #838483;
+    border: solid 0px #efefef !important;
+}
+
+.b-blog__aside-search-admin button > span{
+    color: #efefef !important;
+}
+
+.b-blog__aside-search-admin input[type='text']:focus {
+    background: #FFF;
+    border: solid 0px #efefef !important;
+}
+
+.b-blog__aside-categories-list-admin li {
+    border-bottom: 1px solid #12426b;
+    /*border-left: 4px solid #163651;*/
+    margin-bottom: 0px;
+    background: #163651;
+    color: #FFF;
+    padding-bottom: 0px;
+}
+
+.b-blog__aside-categories-list-admin li:hover a{
+    color:#FFF;
+}
+
+.b-blog__aside-categories-list-admin li a {
+    border-left: 4px solid #163651;
+    color: #FFF;
+    padding: 13px;
+    width: 100%;
+}
+
+/*.b-blog__aside-categories-list-admin li:hover, 
+.b-blog__aside-categories-list-admin li:focus, 
+.b-blog__aside-categories-list-admin li:active, 
+.b-blog__aside-categories-list-admin li.m-active  {
+    border-left: 4px solid #FFF;
+    background: #10273a;
+}*/
+
+.b-blog__aside-categories-list-admin li a:hover{
+    color: #FFF;
+    border-left: 4px solid #FFF;
+}
+
+.navbar-toggle-admin{
+    display: block;
+}
+
+.container-admin{
+    background: #e7e7e7;
+    min-height: 950px;
+    z-index: 800;
+}
+
+.container-admin, .right-side, .main-footer {
+    -webkit-transition: -webkit-transform .3s ease-in-out,margin .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,margin .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,margin .3s ease-in-out;
+    transition: transform .3s ease-in-out,margin .3s ease-in-out;
+    margin-left: 307px;
+    z-index: 820;
+}
+
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.content-header {
+    position: relative;
+    padding: 15px 15px 0 15px;
+}
+
+.pading-conten{
+    padding: 0px 15px 0px 15px;
+}
+
+.b-breadCumbs-conten{
+    float: right;
+}
+
+.b-breadCumbs-admin{
+    padding: 8px 0px;
+    background: transparent !important;
+}
+
+.b-blog__posts-one-body-head-admin{
+    padding-bottom: 0px !important;
+}
+
+.b-blog__posts-one-body-head-admin h2 {
+    margin: 1px 0 0 0 !important;
+}
+
+.b-breadCumbs__page-admin{
+    color: #000;
+    font: 700 12px 'Open Sans',sans-serif;
+}
+
+.b-breadCumbs__page-admin.m-active, .b-breadCumbs-admin span.fa{
+    color: #013c9e;
+}
+
+.b-blog__aside-categories-list-admin li ul{
+    display: none;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.b-blog__aside-categories-list-admin .icono-derecha{
+    float: right;
+    margin-left: 10px;
+}
+
+.b-blog__aside-categories-list-admin li ul li{
+        border-bottom: 0px solid #12426b;
+        /*background: #12426b;*/
+}
+
+.b-blog__aside-categories-list-admin li ul li, .b-blog__aside-categories-list-admin li ul li a{
+        border-left: 0px solid;
+        background: #12426b; 
+}
+
+.b-blog__aside-categories-list-admin li ul li:hover a{
+        border-left: 0px solid;  
+        color: #e7e7e7;
+}
+
+.b-blog__aside-categories-list-admin li ul li a:hover{
+       color: #00b200;
+}
+
+.b-blog__aside-categories-list-admin li.m-active a{
+    border-color: #FFF;
+    color: #FFF;
+}
+
+.b-blog__aside-categories-list-admin li.m-active>a>.pull-right-container>.fa-angle-left {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.b-items-admin{
+    padding: 0px;
+}
+
+b-blog-admin{
+  padding: 20px 0 135px 0;
+}
+
+.tooltipp {
+    background: #FFF;
+    border-radius: 3px;
+    border: solid 7px #013c9e;
+    /* padding: 7px; */
+    position: absolute;
+    z-index: 999;
+    width: 200px;
+}
+
+.tooltipp:before {
+  border: 7px solid transparent;
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.top:before {
+    border-top: 10px solid #013c9e;
+    bottom: -22px;
+}
+
+.bottom:before {
+  border-bottom: 7px solid #16a085;
+  top: -14px;
+}
+
+.right:before { right: 5px; }
+
+.hastooltip{
+    color: #337ab7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 767px){
+    .main-sidebar, .left-side {
+        -webkit-transform: translate(-307px, 0);
+        -ms-transform: translate(-307px, 0);
+        -o-transform: translate(-307px, 0);
+        transform: translate(-307px, 0);
+        padding-top: 120px;
+    }
+    .container-admin, .right-side, .main-footer {
+        margin-left: 0px;
+    }
+    
+    .sidebar-open .main-sidebar, .sidebar-open .left-side {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    
+    .sidebar-open .container-admin, .sidebar-open .right-side, .sidebar-open .main-footer {
+        -webkit-transform: translate(307px, 0);
+        -ms-transform: translate(307px, 0);
+        -o-transform: translate(307px, 0);
+        transform: translate(307px, 0);
+    }
+}
+
+
+
+/*19/10/2016*/
+.b-items__cars-one-info-admin{
+    margin: 0px 15px 0 0px !important;
+}
+
+input[type=file] {
+    position: absolute !important;
+    opacity: 0 !important;
+    z-index: -1000 !important;
+}
+
+.b-submit__main-file label.btn.m-btn + label{
+    margin-left: 0px !important;
+    margin-top: 10px !important;
+}
+
+
+.info-progress{
+    position: absolute;
+    width: 300px;
+}
+
+.cargando{
+    margin-right: 50px;
+    color: #337ab7;
+    font: 700 20px 'Open Sans',sans-serif;
+}
+
+.nav-tabs-custom {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+
+.nav-tabs-custom>.nav-tabs {
+    margin: 0;
+    border-bottom-color: #f4f4f4;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.nav-tabs-custom>.nav-tabs>li:first-of-type {
+    margin-left: 0;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #163c9e;
+}
+
+.nav-tabs-custom>.nav-tabs>li {
+    border-top: 3px solid transparent;
+    margin-bottom: -2px;
+    margin-right: 5px;
+}
+
+.nav-tabs-custom>.nav-tabs>li:first-of-type.active>a {
+    border-left-color: transparent;
+}
+.nav-tabs-custom>.nav-tabs>li.active>a {
+    border-top-color: transparent;
+    border-left-color: #f4f4f4;
+    border-right-color: #f4f4f4;
+}
+.nav-tabs-custom>.nav-tabs>li.active>a, .nav-tabs-custom>.nav-tabs>li.active:hover>a {
+    background-color: #fff;
+    color: #444;
+}
+.nav-tabs-custom>.nav-tabs>li>a, .nav-tabs-custom>.nav-tabs>li>a:hover {
+    background: transparent;
+    margin: 0;
+}
+.nav-tabs-custom>.nav-tabs>li>a {
+    color: #444;
+    border-radius: 0;
+}
+
+.nav-tabs-custom>.tab-content {
+    background: #fff;
+    padding: 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.b-submit__main-contacts-price-input-usd {
+    font: 600 8px 'Open Sans',sans-serif !important;
+    left: 8px !important;
+    right: initial !important;
+}
+
+.s-submit input[type='text'] {
+  border: #e7e7e7 solid 3px;
+}
+
+.b-submit__main-contacts-price-input input[type='text'] {
+    padding-left: 110px;
+}
+
+.m-btn-admin{
+    margin-right: 5px;
+   padding: 8px 8px 8px 8px !important;
+}
+
+.m-btn-admin span.fa{
+    margin-left: 0px !important;
+}

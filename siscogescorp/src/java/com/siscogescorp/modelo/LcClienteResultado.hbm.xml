@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcClienteResultado" optimistic-lock="version" schema="public" table="lc_cliente_resultado">
+    <id name="idClienteResultado" type="int">
+      <column name="id_cliente_resultado"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcClientes" fetch="select" name="lcClientes">
+      <column name="id_cliente"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcTipoResultado" fetch="select" name="lcTipoResultado">
+      <column name="id_tipo_resultado"/>
+    </many-to-one>
+    <property name="fechaRegistro" type="timestamp">
+      <column length="29" name="fecha_registro"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <property name="perfiles" type="string">
+      <column length="30" name="perfiles"/>
+    </property>
+  </class>
+</hibernate-mapping>

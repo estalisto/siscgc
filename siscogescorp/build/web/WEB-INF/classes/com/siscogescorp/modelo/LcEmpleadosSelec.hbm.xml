@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcEmpleadosSelec" optimistic-lock="version" schema="public" table="lc_empleados_selec">
+    <id name="idEmpSelec" type="int">
+      <column name="id_emp_selec"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="secuencial" type="java.lang.Integer">
+      <column name="secuencial"/>
+    </property>
+    <property name="idEmpleado" type="java.lang.Integer">
+      <column name="id_empleado"/>
+    </property>
+    <property name="despachado" type="string">
+      <column length="1" name="despachado"/>
+    </property>
+    <property name="asignado" type="string">
+      <column length="1" name="asignado"/>
+    </property>
+  </class>
+</hibernate-mapping>

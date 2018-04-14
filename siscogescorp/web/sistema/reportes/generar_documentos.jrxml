@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="generar_documentos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3e2cf21-e167-423a-b979-2028beebbf9f">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="390"/>
+	<parameter name="pn_iddocumento" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_cliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_ticket" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select id_datos_deudor,d.nombres_completo,
+replace(ld.saludo,'[Nombre Cliente]',d.nombres_completo ) saludo,
+fnc_remplaza_text(fnc_remplaza_text((fnc_remplaza_text(ld.cuerpo,'[Cliente]',(select d.razon_social from lc_clientes d where id_cliente=t.id_cliente))),'[valor_total]','$'||to_char(t.total_vencidos,'99999D99')),'[dias_mora]', to_char(t.dias_mora,'99999') ) cuerpo,
+ld.despedida despedida,
+fnc_remplaza_text(ld.firma,'[nombre_empresa]',(select d.razon_social from lc_clientes d where id_cliente=t.id_cliente))  firma
+from lc_datos_deudores d, lc_transacciones t, lc_deudores_documentos dc, lc_documentos ld
+where t.id_deudor=d.id_datos_deudor
+and t.id_deudor=dc.id_deudores
+and dc.id_deudores=d.id_datos_deudor
+and t.id_cliente=$P{id_cliente}
+and dc.id_ticket=$P{id_ticket}
+and ld.id_documento=$P{pn_iddocumento}
+]]>
+	</queryString>
+	<field name="id_datos_deudor" class="java.lang.Integer"/>
+	<field name="nombres_completo" class="java.lang.String"/>
+	<field name="saludo" class="java.lang.String"/>
+	<field name="cuerpo" class="java.lang.String"/>
+	<field name="despedida" class="java.lang.String"/>
+	<field name="firma" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="6" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="744" splitType="Stretch">
+			<textField>
+				<reportElement x="8" y="165" width="355" height="36" uuid="bec7fba0-b0ee-4fd6-a473-07f319fe0166"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{saludo}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="258" width="537" height="48" uuid="ab20dba4-a8d8-4b86-8ceb-b28056d68353"/>
+				<textFieldExpression><![CDATA[$F{cuerpo}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="369" width="537" height="40" uuid="813aac67-6cd3-4f11-8301-b7fbea3f2601"/>
+				<textFieldExpression><![CDATA[$F{despedida}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="508" width="170" height="41" uuid="aa66f980-f024-49db-a264-f75c3a763429"/>
+				<textFieldExpression><![CDATA[$F{firma}.toString()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="351" y="646" width="200" height="37" uuid="953e2e6e-0f1a-469c-b0b0-6dfca4a07de3"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="USPS" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{id_datos_deudor}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<line>
+				<reportElement x="4" y="635" width="537" height="1" uuid="9cff335a-800b-4113-83cc-142e86705d3d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="7" y="646" width="94" height="20" uuid="be527d1e-e4d3-4328-9a10-b621726aa154"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre de Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="646" width="220" height="20" uuid="2122ed73-524c-43f3-b84f-52ce8caa67a7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres_completo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="666" width="100" height="20" uuid="e9c417be-181e-4f07-9efe-11e214555887"/>
+				<text><![CDATA[Fecha de Emisión:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="101" y="666" width="100" height="20" uuid="ced9ef52-950a-4bae-9284-612286dd48f4"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="14" y="719" width="148" height="1" uuid="2f8441da-9bb4-4fae-a677-d996b8f7fd91"/>
+			</line>
+			<staticText>
+				<reportElement x="32" y="719" width="100" height="20" uuid="63363f7d-0da2-4268-8538-dc2995f12fe3"/>
+				<text><![CDATA[Recibido por:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="432" y="87" width="119" height="20" uuid="ecf6a2ad-b795-4c86-8080-b03cb80b0183"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="332" y="87" width="100" height="20" uuid="79e0dcd7-0f33-4d32-86dc-3f10c77479fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Guayaquil,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="35" width="199" height="20" uuid="cc25492c-44cc-468c-ba1b-b351ba29ec2e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[AGENCIA CENTRO - PANAMA Y ROCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="10" width="166" height="20" forecolor="#990000" uuid="f5dae08d-938b-4881-b82f-1f52628c3847"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Black" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LATICOBSA S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="24" width="166" height="20" uuid="501be0f8-09a0-4831-889a-f81f4dc414c6"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUC:0921243064001]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

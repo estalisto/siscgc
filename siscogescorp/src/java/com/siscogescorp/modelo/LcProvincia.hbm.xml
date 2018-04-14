@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcProvincia" optimistic-lock="version" schema="public" table="lc_provincia">
+    <id name="idProvincia" type="int">
+      <column name="id_provincia"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcPais" fetch="select" name="lcPais">
+      <column name="id_pais"/>
+    </many-to-one>
+    <property name="provincia" type="string">
+      <column length="100" name="provincia"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="lcEmpresas" table="lc_empresa">
+      <key>
+        <column name="id_provincia">
+          <comment>Identificador único de Provincia</comment>
+        </column>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcEmpresa"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcZonases" table="lc_zonas">
+      <key>
+        <column name="id_provincia"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcZonas"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcClienteses" table="lc_clientes">
+      <key>
+        <column name="provincia"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcClientes"/>
+    </set>
+  </class>
+</hibernate-mapping>

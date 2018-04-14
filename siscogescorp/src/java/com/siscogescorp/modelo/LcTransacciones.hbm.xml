@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcTransacciones" optimistic-lock="version" schema="public" table="lc_transacciones">
+    <id name="idTransaccion" type="int">
+      <column name="id_transaccion"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcClientes" fetch="select" name="lcClientes">
+      <column name="id_cliente"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
+      <column name="id_deudor"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpleados" fetch="select" name="lcEmpleados">
+      <column name="id_empleado"/>
+    </many-to-one>
+    <property name="idEmpresa" type="java.lang.Integer">
+      <column name="id_empresa"/>
+    </property>
+    <property name="idAgencia" type="java.lang.Integer">
+      <column name="id_agencia"/>
+    </property>
+    <property name="idCartera" type="java.lang.Integer">
+      <column name="id_cartera"/>
+    </property>
+    <property name="idSubCartera" type="java.lang.Integer">
+      <column name="id_sub_cartera"/>
+    </property>
+    <property name="idSegmento" type="java.lang.Integer">
+      <column name="id_segmento"/>
+    </property>
+    <property name="idSubSegmento" type="java.lang.Integer">
+      <column name="id_sub_segmento"/>
+    </property>
+    <property name="idTipoIdentificacion" type="java.lang.Integer">
+      <column name="id_tipo_identificacion"/>
+    </property>
+    <property name="identificacion" type="string">
+      <column length="50" name="identificacion"/>
+    </property>
+    <property name="numCuenta" type="string">
+      <column length="30" name="num_cuenta"/>
+    </property>
+    <property name="numCuenta2" type="string">
+      <column length="30" name="num_cuenta2"/>
+    </property>
+    <property name="montoAsignado" type="big_decimal">
+      <column name="monto_asignado" precision="10"/>
+    </property>
+    <property name="ultimoPago" type="big_decimal">
+      <column name="ultimo_pago" precision="10"/>
+    </property>
+    <property name="numeroPagos" type="java.lang.Integer">
+      <column name="numero_pagos"/>
+    </property>
+    <property name="valorCuota" type="big_decimal">
+      <column name="valor_cuota" precision="10"/>
+    </property>
+    <property name="diasMora" type="java.lang.Integer">
+      <column name="dias_mora"/>
+    </property>
+    <property name="interesMora" type="big_decimal">
+      <column name="interes_mora" precision="10"/>
+    </property>
+    <property name="interesCapital" type="big_decimal">
+      <column name="interes_capital" precision="10"/>
+    </property>
+    <property name="interesAdicional" type="big_decimal">
+      <column name="interes_adicional" precision="10"/>
+    </property>
+    <property name="interesOtros" type="big_decimal">
+      <column name="interes_otros" precision="10"/>
+    </property>
+    <property name="diasVencidos" type="java.lang.Integer">
+      <column name="dias_vencidos"/>
+    </property>
+    <property name="totalVencidos" type="big_decimal">
+      <column name="total_vencidos" precision="10"/>
+    </property>
+    <property name="descripcionCarga" type="string">
+      <column length="500" name="descripcion_carga"/>
+    </property>
+    <property name="fechaTransaccion" type="timestamp">
+      <column length="29" name="fecha_transaccion"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+  </class>
+</hibernate-mapping>

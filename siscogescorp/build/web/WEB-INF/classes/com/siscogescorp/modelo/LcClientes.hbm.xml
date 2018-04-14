@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.siscogescorp.modelo.LcClientes" optimistic-lock="version" schema="public" table="lc_clientes">
+    <id name="idCliente" type="int">
+      <column name="id_cliente"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.siscogescorp.modelo.LcCiudad" fetch="select" name="lcCiudad">
+      <column name="ciudad"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
+      <column name="id_empresa"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcPais" fetch="select" name="lcPais">
+      <column name="pais"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcProvincia" fetch="select" name="lcProvincia">
+      <column name="provincia"/>
+    </many-to-one>
+    <many-to-one class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select" name="lcTiposIdentificacion">
+      <column name="tipo_identificacion"/>
+    </many-to-one>
+    <property name="identificacion" type="string">
+      <column length="100" name="identificacion"/>
+    </property>
+    <property name="razonSocial" type="string">
+      <column length="100" name="razon_social"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="100" name="direccion"/>
+    </property>
+    <property name="contacto" type="string">
+      <column length="100" name="contacto"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="100" name="telefono"/>
+    </property>
+    <property name="extensioon" type="string">
+      <column length="10" name="extensioon"/>
+    </property>
+    <property name="celular" type="string">
+      <column length="50" name="celular"/>
+    </property>
+    <property name="fechaCreacion" type="timestamp">
+      <column length="29" name="fecha_creacion"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="1" name="estado"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="lcTransaccioneses" table="lc_transacciones">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcTransacciones"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcRecordatorioses" table="lc_recordatorios">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcRecordatorios"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcDetCampaniases" table="lc_det_campanias">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcDetCampanias"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcDeudors" table="lc_deudor">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcDeudor"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcClienteResultados" table="lc_cliente_resultado">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcClienteResultado"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcCarteras" table="lc_cartera">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcCartera"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="lcGestioneses" table="lc_gestiones">
+      <key>
+        <column name="id_cliente"/>
+      </key>
+      <one-to-many class="com.siscogescorp.modelo.LcGestiones"/>
+    </set>
+  </class>
+</hibernate-mapping>
