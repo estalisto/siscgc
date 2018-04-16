@@ -166,6 +166,29 @@ function obtenerResultado() {
     
     
 }
+function obtenerResultado3() {
+    var idcliente = $("#idcliente").val();
+     var gestion = $("#gestion").val();
+    
+     document.getElementById("resultado2").innerHTML="";
+     $("#resultado2").append($("<option>",{value:"0",text:"Seleccione Tipo Resultado"}));  
+   //  alert(gestion);
+     if(gestion === 0 || gestion === "0" ) {  
+         return;
+     }
+    //if(gestion !== 0 || gestion !== "0" ) {   
+        $.getJSON("consultacartera", {"accion" : "TiposResulatdos","idcliente":idcliente}, function(result){
+             //console.log(result);
+            // console.log('size: '+result.tipos_resultado.tipos_resultado);
+              $.each(result.tipos_resultado, function(key, val){             
+               $("#resultado").append($("<option>",{value:val.idTipoResultado,text:val.nombreTipoResultado}));
+              });
+        });
+    //}
+    
+    
+    
+}
 
 function GuardarRecordatorio()
 {
@@ -677,6 +700,79 @@ $('#resultado').change(function(e){
                     var B = document.getElementById("monto_compromiso");
                     B.value = "";
                     var c = document.getElementById("datepicker2");
+                    c.value = "";
+                    var j = document.getElementById("hora");
+                    j.value = ""; 
+                    var tip = document.getElementById("tiporesultado");
+                    tip.value = "";
+                } 
+        }
+    });
+});
+
+$('#resultado2').change(function(e){
+   e.preventDefault();
+   var resultado = $('#resultado2').val();
+   var accion="ResulParametro";
+  
+   var parametros = {
+        "accion": accion,
+        "resultado": resultado
+    };
+    $.ajax({
+        data: parametros,
+        url: 'cobranzas',
+        type: 'GET',
+        beforeSend: function () {
+        },
+        success: function (response) {
+            if (response) {
+//               alert(response);
+               var separo = response.split("|"); 
+               var id_reconoce= separo[0];
+               var tipo = separo[1];
+                var z = document.getElementById("tiporesultado");
+                z.value = "";
+                z.value = id_reconoce;
+                 console.log("tipo resultado: "+parseInt(id_reconoce));
+                if(resultado!==parseInt(id_reconoce)){
+                    if(parseInt(tipo)==1){
+                        console.log("tipo  resultado: "+parseInt(tipo));
+                        document.getElementById("monto_compromiso").disabled = false;
+                        document.getElementById("datepickerCompromiso").disabled = false;
+                        document.getElementById("datepickerRecordatorio").disabled = true;
+                        document.getElementById("hora").disabled = true;
+                        var c = document.getElementById("datepickerRecordatorio");
+                        c.value = "";
+                        var j = document.getElementById("hora");
+                        j.value = "";
+//                        var tip = document.getElementById("tiporesultado");
+//                    tip.value = "";
+                    }
+                    if(parseInt(tipo)==2){
+                    document.getElementById("datepickerRecordatorio").disabled = false;
+                    document.getElementById("hora").disabled = false;
+                    document.getElementById("monto_compromiso").disabled = true;
+                    document.getElementById("datepickerCompromiso").disabled = true;
+                    var A = document.getElementById("datepickerCompromiso");//monto_compromiso
+                    A.value = "";
+                    var B = document.getElementById("monto_compromiso");
+                    B.value = "";
+//                    var tip = document.getElementById("tiporesultado");
+//                    tip.value = "";
+                    }
+                }
+                
+            }else{
+                    document.getElementById("monto_compromiso").disabled = true;
+                    document.getElementById("datepickerCompromiso").disabled = true;
+                    document.getElementById("datepickerRecordatorio").disabled = true;
+                    document.getElementById("hora").disabled = true;
+                    var A = document.getElementById("datepickerCompromiso");//monto_compromiso
+                    A.value = "";
+                    var B = document.getElementById("monto_compromiso");
+                    B.value = "";
+                    var c = document.getElementById("datepickerRecordatorio");
                     c.value = "";
                     var j = document.getElementById("hora");
                     j.value = ""; 
@@ -1464,7 +1560,7 @@ document.getElementById("anterior").disabled = false;
               document.getElementById("id_deudor").value=val.IdDeudor;
               document.getElementById("idcliente").value=val.IdCliente;
               console.log('NombresCompletos: '+val.NombresCompletos);            
-             document.getElementById("identificacion").value = val.Identificacion; 
+             document.getElementById("identificacion").innerHTML =val.Identificacion; 
              document.getElementById("deudor").innerHTML  = val.NombresCompletos; 
              document.getElementById("cliente").innerHTML = val.RazonSocialCliente; 
              document.getElementById("cuenta").value = val.NumCuenta; 
@@ -1499,7 +1595,7 @@ MuestraDatosReferencias(idCliente,idDeudor);
 }
 function DireccionesJson(idCliente, idDeudor){
   
-    var StringTablaCabecera="<table id='idAllDireccions' class=' table-striped table-bordered dt-responsive table-condensed table-hover' ><thead><tr  bgcolor='#FBF5EF' width='100%'><th >Tipo</th><th class='sorting_asc' tabindex='0' aria-controls='idAllDireccions' rowspan='1' colspan='1' style='width: 767px;' aria-label='Dirección: activate to sort column descending' aria-sort='ascending'>Dirección</th></tr></thead><tbody></tbody></table>";
+    var StringTablaCabecera="<table id='idAllDireccions' class=' table-striped table-bordered dt-responsive table-condensed table-hover' ><thead><tr  bgcolor='#B5EE8E' width='100%'><th >Tipo</th><th class='sorting_asc' tabindex='0' aria-controls='idAllDireccions' rowspan='1' colspan='1' style='width: 767px;' aria-label='Dirección: activate to sort column descending' aria-sort='ascending'>Dirección</th></tr></thead><tbody></tbody></table>";
     var accion="listar_direccion";
     document.getElementById("TablaDirecciones").innerHTML  =""; 
     document.getElementById("TablaDirecciones").innerHTML  =StringTablaCabecera;
@@ -1536,7 +1632,7 @@ function DireccionesJson(idCliente, idDeudor){
 
 function TelefonosJson(idCliente, idDeudor){
     
-    var TablaTelefonos="<table id='idAllTelefonos' class='table table-striped table-bordered dt-responsive   table-condensed  table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FBF5EF'><th class='col-sm-2'>Tipo</th><th class='col-sm-8'>Télefonos</th><th class='col-sm-2'>Llamar</th></tr></thead><tbody></tbody></table>";
+    var TablaTelefonos="<table id='idAllTelefonos' class='table table-striped table-bordered dt-responsive   table-condensed  table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#B5EE8E'><th class='col-sm-2'>Tipo</th><th class='col-sm-8'>Télefonos</th><th class='col-sm-2'>Llamar</th></tr></thead><tbody></tbody></table>";
     document.getElementById("table_telefono").innerHTML  =""; 
     document.getElementById("table_telefono").innerHTML  =TablaTelefonos;
       $(document).ready(function() {	
@@ -1597,7 +1693,7 @@ function TelefonosJson(idCliente, idDeudor){
 
 
 function GestionesJson(idCliente, idDeudor){
-    var TablaTelefonos="<table id='allTrxGestiones' class='table table-striped table-bordered table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FBF5EF'><th class='col-lg-1'>Tipo Gestión</th><th class='col-lg-1'>Gestión</th><th class='col-lg-5'>Descripción</th><th class='col-lg-1'>Oficial</th><th class='col-lg-1'>Fecha</th></tr></thead><tbody></tbody> </table>";
+    var TablaTelefonos="<table id='allTrxGestiones' class='table table-striped table-bordered table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#B5EE8E'><th class='col-lg-1'>Gestión</th><th class='col-lg-1'>Respuesta</th><th class='col-lg-5'>Explicación</th><th class='col-lg-1'>Asesor</th><th class='col-lg-1'>Fecha</th></tr></thead><tbody></tbody> </table>";
     document.getElementById("transaccion_table").innerHTML  =""; 
     document.getElementById("transaccion_table").innerHTML  =TablaTelefonos;
         $(document).ready(function() {	
@@ -1725,7 +1821,7 @@ function ComprasJson(){
     var idDeudor = document.getElementById("id_deudor").value;
     var idCliente = document.getElementById("idcliente").value;
    // console.log("ComprasJson Cliente ini: "+idCliente+" Id_deudor: "+idDeudor );
-    var TablaCompras2="<table id='detalle_articulos' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'> <thead><tr bgcolor='#FBF5EF'><th>Referencia de Compras/Artículos</th><th>Descripción de la Compra</th><th>Valor Compra</th><th>Fecha de Compra</th></tr></thead><tbody>";
+    var TablaCompras2="<table id='detalle_articulos' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'> <thead><tr bgcolor='#B5EE8E'><th>Referencia de Compras/Artículos</th><th>Descripción de la Compra</th><th>Valor Compra</th><th>Fecha de Compra</th></tr></thead><tbody>";
     document.getElementById("TablaCompras").innerHTML  =""; 
     
     var parametros = {
@@ -1778,7 +1874,7 @@ function ComprasJson(){
 
 function DetalleCuotasJson(idCliente, idDeudor){
    // ComprasJson(idCliente, idDeudor);
-    var TablaCompras="<table id='detalle_cuotas' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'> <thead><tr bgcolor='#FBF5EF'><th>Artículo</th><th>NºCuota</th><th>Interés</th><th>Mora</th><th>Gastos Cobranzas</th><th>Gastos Adicionales</th><th>Otros Gastos</th><th>Valor Cuota</th><th>Total</th><th>Fecha max Pago</th><th>Fecha Registro</th><th>Pagos Realizados</th><th>Fecha Pagos Realizados</th></tr></thead><tbody></tbody><tfoot></tfoot></table>";
+    var TablaCompras="<table id='detalle_cuotas' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'> <thead><tr bgcolor='#B5EE8E'><th>Artículo</th><th>NºCuota</th><th>Interés</th><th>Mora</th><th>Gastos Cobranzas</th><th>Gastos Adicionales</th><th>Otros Gastos</th><th>Valor Cuota</th><th>Total</th><th>Fecha max Pago</th><th>Fecha Registro</th><th>Pagos Realizados</th><th>Fecha Pagos Realizados</th></tr></thead><tbody></tbody><tfoot></tfoot></table>";
     document.getElementById("TablaDetalleCuotas").innerHTML  =""; 
     document.getElementById("TablaDetalleCuotas").innerHTML  =TablaCompras;
         $(document).ready(function() {	
@@ -1889,7 +1985,19 @@ function hidden_cartera_cliente(valor){
         document.getElementById("gestion_cliente").style.display = 'none'; 
    }
 }
-
+function hidden_cartera_cliente2(valor){
+   
+   if(valor==="true"){
+       document.getElementById("cliente_cartera").style.display = 'none';
+        document.getElementById("cliente_cartera2").style.display = 'none';
+        document.getElementById("gestion_cliente").style.display = 'block';
+   }
+   if(valor==="false"){
+         document.getElementById("cliente_cartera").style.display = 'block';
+         document.getElementById("cliente_cartera2").style.display = 'block';
+        document.getElementById("gestion_cliente").style.display = 'none'; 
+   }
+}
 function ConsultasMisCarteras(){
 document.getElementById("idcartera").innerHTML="";
   $("#idcartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
@@ -1907,7 +2015,7 @@ document.getElementById("idcartera").innerHTML="";
 function consulta_historial(){
     var idDeudor = document.getElementById("id_deudor").value;
     var idCliente = document.getElementById("idcliente").value;
-     var TablaCompras="<table id='TablaHistorialPagos' class='table table-striped table-bordered table-hover' cellspacing='0'> <thead><tr bgcolor='#FBF5EF'><th align='right' class='col-sm-1 text-right'>Monto</th><th align='right' class='col-sm-1 text-right'>Fecha Pago</th></tr></thead><tbody></tbody></table>";
+     var TablaCompras="<table id='TablaHistorialPagos' class='table table-striped table-bordered table-hover' cellspacing='0'> <thead><tr bgcolor='#B5EE8E'><th align='left' class='col-sm-1 text-left'>Monto</th><th align='left' class='col-sm-1 text-left'>Fecha Pago</th></tr></thead><tbody></tbody></table>";
     document.getElementById("TablaHistorial").innerHTML  =""; 
     document.getElementById("TablaHistorial").innerHTML  =TablaCompras;
      sum_histrial(idDeudor,idCliente);
@@ -1969,7 +2077,7 @@ function GestionClienteCompromisos(stridCliente, stride){
 var idCliente = stridCliente;
 var idDeudor= stride;
 var accion="GestionCliente";
-hidden_cartera_cliente('true');
+hidden_cartera_cliente2('true');
 document.getElementById("siguiente").disabled = false; 
 document.getElementById("anterior").disabled = false; 
 
@@ -1988,7 +2096,7 @@ document.getElementById("anterior").disabled = false;
               document.getElementById("id_deudor").value=val.IdDeudor;
               document.getElementById("idcliente").value=val.IdCliente;
               console.log('NombresCompletos: '+val.NombresCompletos);            
-             document.getElementById("identificacion").value = val.Identificacion; 
+             document.getElementById("identificacion").innerHTML = val.Identificacion; 
              document.getElementById("deudor").innerHTML  = val.NombresCompletos; 
              document.getElementById("cliente").innerHTML = val.RazonSocialCliente; 
              document.getElementById("cuenta").value = val.NumCuenta; 
@@ -2009,8 +2117,6 @@ document.getElementById("anterior").disabled = false;
 
 
 document.getElementById("gestion").innerHTML="";
-document.getElementById("resultado2").innerHTML="";
- $("#resultado2").append($("<option>",{value:"0",text:"Seleccione Tipo Resultado"}));
  //document.getElementById("idNotas").value="0";
 
 DireccionesJson(idCliente, idDeudor);
@@ -2024,14 +2130,13 @@ MuestraDatosReferencias(idCliente,idDeudor);
 // *******************
 
 document.getElementById("gestion").innerHTML="";
+document.getElementById("resultado2").innerHTML="";
+ $("#resultado2").append($("<option>",{value:"0",text:"Seleccione Tipo Resultado"}));
 
 $("#gestion").append($("<option>",{value:"0",text:"Seleccione Tipo Gestión"}));
     $.getJSON("consultacartera", {"accion" : "TiposGestiones"}, function(result){
           $.each(result.tipo_gestion, function(key, val){             
-          // $("#tgestion").append('<option id="' + val.idTipoGestion + '">' + val.nombreTipoGestion +'</option>');
-           $("#tgestion").append($("<option>",{value:val.idTipoGestion,text:val.nombreTipoGestion}));
            var valor_select = val.nombreTipoGestion;
-          // alert(valor_select);
            if(valor_select === "LLAMADA CLIENTE"){
                
                $("#gestion").append($("<option>",{value:val.idTipoGestion,text:val.nombreTipoGestion}));
@@ -2078,19 +2183,19 @@ function GuardarTransaccnormalCompromisos() {
     var accion = "transaccion";
     var descripcion = $('#descripcion').val();
     var resultado = $('#resultado2').val();
-    var tipo_resultado = $('#resultado2').val();
+    var tipo_resultado = $('#tiporesultado').val();
     var gestion = $('#gestion').val();
     var cliente = $('#idcliente').val();
     //JG ini
     var monto_compromiso = $('#monto_compromiso').val();
-    var comp_pago = $('#datepicker4').val();
+    var comp_pago = $('#datepickerCompromiso').val();
     var idTransaccion = $('#idTransaccion').val();
     var hora = $('#hora').val();
-    var Fechacompromiso_pago = $('#datepicker3').val();
-    var xdisabled = document.getElementById("datepicker3").disabled;
+    var Fechacompromiso_pago = $('#datepickerRecordatorio').val();
+    var xdisabled = document.getElementById("datepickerRecordatorio").disabled;
     var adisabled = document.getElementById("hora").disabled;
     var bdisabled = document.getElementById("monto_compromiso").disabled;
-    var cdisabled = document.getElementById("datepicker").disabled;
+    var cdisabled = document.getElementById("datepickerCompromiso").disabled;
      //JG fin
 
      
@@ -2104,12 +2209,12 @@ function GuardarTransaccnormalCompromisos() {
             
             if ((bdisabled === false) && (cdisabled === false)) {
         if (comp_pago !== "") {
-            if (verificaFecha3('datepicker4') !== 2) {
-                    if (verificaFecha3('datepicker4') === 1) {
+            if (verificaFecha3('datepickerCompromiso') !== 2) {
+                    if (verificaFecha3('datepickerCompromiso') === 1) {
                         MsgSalidaModalA("La Fecha de Compromisos de Pago tiene que se igual o mayor a la fecha actual");
-                    } else if (verificaFecha3('datepicker4') === 3) {
+                    } else if (verificaFecha3('datepickerCompromiso') === 3) {
                         MsgSalidaModalA("La Fecha de Compromiso de Pago no existe.");
-                    } else if (verificaFecha3('datepicker4') === 4) {
+                    } else if (verificaFecha3('datepickerCompromiso') === 4) {
                         MsgSalidaModalA("El Formato de la fecha es incorrecto.");
                     }
                     return true;
@@ -2145,22 +2250,22 @@ function GuardarTransaccnormalCompromisos() {
                             MsgSalidaModalM(response);
                             var x = document.getElementById("descripcion");
                             x.value = "";
-                            var y = document.getElementById("resultado");
+                            var y = document.getElementById("resultado2");
                             y.value = "";
                             var z = document.getElementById("gestion");
                             z.value = "";
-                            var A = document.getElementById("datepicker");//monto_compromiso
+                            var A = document.getElementById("datepickerCompromiso");//monto_compromiso
                             A.value = "";
                             var B = document.getElementById("monto_compromiso");
                             B.value = "";
-                                    var c = document.getElementById("datepicker3");
+                                    var c = document.getElementById("datepickerRecordatorio");
                                     c.value = "";
                                     var j = document.getElementById("hora");
                                     j.value = "";
                                     GestionesJson(cliente,id); 
                                     //transacciones_pendientes(cliente, id);
                                     document.getElementById("monto_compromiso").disabled = true;
-                                    document.getElementById("datepicker").disabled = true;
+                                    document.getElementById("datepickerCompromiso").disabled = true;
                                     var tip = document.getElementById("tiporesultado");
                                     tip.value = "";
                                // alert("Paso");    
@@ -2182,12 +2287,12 @@ function GuardarTransaccnormalCompromisos() {
             if ((xdisabled === false) && (adisabled === false)) {
                 
                 if (Fechacompromiso_pago !== "") {
-                    if (verificaFecha3('datepicker3') !== 2) {
-                        if (verificaFecha3('datepicker3') === 1) {
+                    if (verificaFecha3('datepickerRecordatorio') !== 2) {
+                        if (verificaFecha3('datepickerRecordatorio') === 1) {
                             MsgSalidaModalA("La Fecha de Compromisos de Pago tiene que se igual o mayor a la fecha actual");
-                        } else if (verificaFecha3('datepicker3') === 3) {
+                        } else if (verificaFecha3('datepickerRecordatorio') === 3) {
                             MsgSalidaModalA("La Fecha de Compromiso de Pago no existe.");
-                        } else if (verificaFecha3('datepicker3') === 4) {
+                        } else if (verificaFecha3('datepickerRecordatorio') === 4) {
                             MsgSalidaModalA("El Formato de la fecha es incorrecto.");
                         }
                         return true;
@@ -2224,17 +2329,17 @@ function GuardarTransaccnormalCompromisos() {
                                     y.value = "";
                                     var z = document.getElementById("gestion");
                                     z.value = "";
-                                    var A = document.getElementById("datepicker4");//monto_compromiso
+                                    var A = document.getElementById("datepickerCompromiso");//monto_compromiso
                                     A.value = "";
                                     var B = document.getElementById("monto_compromiso");
                                     B.value = "";
-                                    var c = document.getElementById("datepicker3");
+                                    var c = document.getElementById("datepickerRecordatorio");
                                     c.value = "";
                                     var j = document.getElementById("hora");
                                     j.value = "";
                                     GestionesJson(cliente,id); 
                                     //transacciones_pendientes(cliente, id);
-                                    document.getElementById("datepicker3").disabled = true;
+                                    document.getElementById("datepickerRecordatorio").disabled = true;
                                     document.getElementById("hora").disabled = true;
                                     var tip = document.getElementById("tiporesultado");
                                     tip.value = "";
@@ -2288,11 +2393,11 @@ function GuardarTransaccnormalCompromisos() {
                         y.value = "";
                         var z = document.getElementById("gestion");
                         z.value = "";
-                        var A = document.getElementById("datepicker4");//monto_compromiso
+                        var A = document.getElementById("datepickerCompromiso");//monto_compromiso
                         A.value = "";
                         var B = document.getElementById("monto_compromiso");
                         B.value = "";
-                        var c = document.getElementById("datepicker3");
+                        var c = document.getElementById("datepickerRecordatorio");
                         c.value = "";
                         var j = document.getElementById("hora");
                         j.value = "";    

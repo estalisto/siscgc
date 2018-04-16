@@ -68,7 +68,7 @@ margin-top:30px;
                 <div class="panel-body">
                     <form class="form-horizontal">
                        
-                    <div class="form-group">
+                    <div class="form-group" hidden>
                         <label for="inputEmail3" class="col-sm-3 control-label">
                             Empresa:</label>
                         <div class="col-sm-9">

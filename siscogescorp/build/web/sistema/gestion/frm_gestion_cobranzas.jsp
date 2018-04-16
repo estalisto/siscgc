@@ -85,7 +85,7 @@ border: 2px solid #CB8B07;
                             <form class="form-horizontal">
                                
                                 <div class="form-group">
-                                    <label class="col-sm-1 control-label" style="color: #F66C27">     Total Deuda: </label> 
+                                    <label class="col-sm-1 control-label" style="color: #F66C27">     Total Deuda2: </label> 
                                     <label class="col-sm-1 control-label" style="color: #030303" id="labelTotalDeuda"><u>$ 00</u></label>
                                     <label class="col-sm-2 control-label" style="color: #F66C27">Total Vencido: </label> 
                                     <label class="col-sm-1 control-label" style="color: #030303" id="labelTotalVencido"><u>$ 0</u></label>

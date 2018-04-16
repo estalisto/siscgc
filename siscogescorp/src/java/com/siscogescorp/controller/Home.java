@@ -86,7 +86,10 @@ public class Home extends HttpServlet {
                     request.setAttribute("Grafica1", Grafica1);                   
             }
             //request.setAttribute("mensaje", "Respuesta Exitosa"); 
-            request.getRequestDispatcher("sistema/index2.jsp").forward(request, response);
+           // request.getRequestDispatcher("sistema/index2.jsp").forward(request, response);
+                        request.getRequestDispatcher("sistema/index_final.jsp").forward(request, response);
+
+            
         }
         if (accion.equals("consulta")){
             

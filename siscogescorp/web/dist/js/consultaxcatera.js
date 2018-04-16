@@ -1576,7 +1576,7 @@ function BuscarCliente(){
     
     document.getElementById("mensaje_error").innerHTML="";
     if(idcartera==="0"){       
-        document.getElementById("mensaje_error").innerHTML="Debe seleccionar la Cartera";
+        document.getElementById("mensaje_error").innerHTML="Debe escoger el CEDENTE";
         document.getElementById("mensaje_error").style.color="red"; 
         return;        
     }
@@ -1616,7 +1616,7 @@ function BuscarCliente(){
         "accion": accion
     };
      document.getElementById("tabla_div").innerHTML = "";
-    var htmlTable="<table id='consul_cartera' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr bgcolor='#FBF5EF'><th class='col-sm-1 text-left ' style='color: #3c8dbc'>ID</th><th align='left' class='col-sm-1 text-left'><a id='IdentificacionID' >Identificación</a></th><th class='col-sm-2 text-left'><a id='NombresID' >Nombres</a></th>  <th class='col-sm-1 text-left'><a id='DiasMoraID'  >Días Mora</a></th> <th class='col-sm-1 text-right'><a id='TotalID'  >Total Vnc</a></th> <th align='center' class='col-sm-1 text-right'><a id='PagosID' >Pagos</a></th><th align='center' class='col-sm-1 text-right'><a id='FecUltPagosID' >Fecha Ult. Pagos</a></th><th align='rigth' class='col-sm-1 text-right'><a id='SaldosID' >Saldo</a></th> <th align='center' class='col-sm-1 text-right'><a id='ValorCompID' >Valor Comp.</a></th> <th align='center' class='col-sm-2 text-center'><a id='FechaCompID' >Fecha Comp.</a></th><th align='center' class='col-sm-3'><a id='FechaID' >Fecha Ult. Gestión</a></th> <th align='center' class='col-sm-3'><a id='UltimaID' >Ult. Gestión</a></th> <th align='center' class='col-sm-2'><a id='ResultadoID' >Resultado Gestión</a></th></tr> </thead><tbody></tbody></table>";
+    var htmlTable="<table id='consul_cartera' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr bgcolor='#B5EE8E'><th class='col-sm-1 text-left ' style='color: #3c8dbc'>ID</th><th align='left' class='col-sm-1 text-left'><a id='IdentificacionID' >Identificación</a></th><th class='col-sm-2 text-left'><a id='NombresID' >Nombres</a></th>  <th class='col-sm-1 text-left'><a id='DiasMoraID'  >Días Mora</a></th> <th class='col-sm-1 text-right'><a id='TotalID'  >Total Vnc</a></th> <th align='center' class='col-sm-1 text-right'><a id='PagosID' >Pagos</a></th><th align='center' class='col-sm-1 text-right'><a id='FecUltPagosID' >Fecha Ult. Pagos</a></th><th align='rigth' class='col-sm-1 text-right'><a id='SaldosID' >Saldo</a></th> <th align='center' class='col-sm-1 text-right'><a id='ValorCompID' >Valor Comp.</a></th> <th align='center' class='col-sm-2 text-center'><a id='FechaCompID' >Fecha Comp.</a></th><th align='center' class='col-sm-3'><a id='FechaID' >Fecha Ult. Gestión</a></th> <th align='center' class='col-sm-3'><a id='UltimaID' >Ult. Gestión</a></th> <th align='center' class='col-sm-2'><a id='ResultadoID' >Resultado Gestión</a></th></tr> </thead><tbody></tbody></table>";
     document.getElementById("tabla_div").innerHTML = htmlTable;
     
     $('#consul_cartera').DataTable( {

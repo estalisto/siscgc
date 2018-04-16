@@ -104,15 +104,39 @@ border: 0px groove #000000;
     <div  id="mensajeSalida"></div>
 <div class="wrapper" id="midashboard">
 
-  <header class="main-header">
+  <header class="main-header" >
 
     <!-- Logo -->
+    
     <a href="home" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
+      
+        
       <span class="logo-mini"><b><%=nom_empresa.substring(0, 1)%></b><%=nom_empresa.substring(1, 4)%> </span>
+       <span class="logo-lg"><b></b> <%=nom_empresa%></span>
       <!-- logo for regular state and mobile devices  str.substring(0, 3) -->
-      <span class="logo-lg"><b></b><%=nom_empresa%></span>
+      
     </a>
+    <span class="logo-mini"><div class="user-panel" hidden>
+        <div class="pull-left image">
+            <% if(SstrSexo.toUpperCase().equals("MASCULINO")){
+                %>
+            <img src="dist/img/operadorM2.png" class="img-circle" alt="User Image">
+            <%
+            }else{
+             %>
+            <img src="dist/img/operadorf.png" class="img-circle" alt="User Image">
+            <%
+            }
+            %>
+          <!--img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"-->
+        </div>
+        <div class="pull-left info">
+            <p class="text-uppercase"><%=USER_SESION%></p>
+          <a href="#"><i class="fa fa-circle text-green"></i> <%=RolEmpleado.toUpperCase()%></a>
+        </div>
+      </div></span>
+    
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -124,6 +148,87 @@ border: 0px groove #000000;
       
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+            <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle success" data-toggle="dropdown">
+                <i class="fa fa-navicon text-yellow"></i><span> CONFIGURACIÓN</span>             
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-th text-aqua"></i> EMPRESA
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-th text-aqua"></i> SUCURSAL
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-th text-yellow"></i> FUNCIONES
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-red"></i> EMPLEADOS
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user-plus text-green"></i> GESTIÓN USUARIO                      
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user-plus text-green"></i> MIS CEDENTES                      
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!--li class="footer"><a href="#">View all</a></li-->
+            </ul>
+          </li>
+           
+           <% 
+               Integer nivelPadre2=0,contador2=0;
+           ModulosRoles mroles = new ModulosRoles();
+            List<LcModuloRol> datos_modulos = mroles.getLcModulosRoles(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
+            List<LcModuloRol> datos_modulos2 = mroles.getLcModulosRolesROL(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
+           
+           for(int k=0; k< datos_modulos.size(); k++) {
+                if(datos_modulos.get(k).getNivelModulo().equals(nivelPadre2))
+                {
+                    %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle success" data-toggle="dropdown">
+                <i class="fa fa-navicon text-yellow"></i><span> <%=datos_modulos.get(k).getLcModulos().getMenuOpciones() %></span>             
+            </a>
+            <ul class="dropdown-menu">
+                  <%
+                            for(int l=0; l< datos_modulos2.size(); l++) {
+                             if(datos_modulos2.get(l).getNivelModulo().equals(datos_modulos.get(k).getGrupoMod()))
+                                {
+                                %>
+                  <li>
+                    <a href="#" onclick="<%=datos_modulos2.get(l).getLcModulos().getFunciones() %>">
+                      <i class="fa fa-th text-aqua"></i> <%=datos_modulos2.get(l).getLcModulos().getMenuOpciones() %>
+                    </a>
+                  </li>
+                 <% 
+                                }
+                            }
+                            %>
+            </ul>
+          </li>
+            <%
+                }
+             contador2++;  
+           }
+           %>
           <!-- Messages: style can be found in dropdown.less-->
           <!--li class="header" style="color:#ffffff; size: A4"><strong>Empresa:</strong></li-->
          <!-- Tasks: style can be found in dropdown.less -->
@@ -151,14 +256,14 @@ border: 0px groove #000000;
           
           %>
           <li class="dropdown user user-menu hidden" hidden="true">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle " data-toggle="dropdown">
               <!-- <img src="dist/img/operadorM.png" class="user-image" alt="User Image">-->
               <!-- <img src="dist/img/operadorf.png" class="user-image" alt="User Image">-->
               <span class="hidden-xs text-black"><strong>  <%=NomEmpleados%> <%=ApellidosEmpleados%> </strong></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
-              <li class="user-header" hidden>
+              <li class="user-header " hidden>
                    <input value="<%=Sidentificacion%>" id="IDUserRol" hidden>
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
@@ -178,7 +283,7 @@ border: 0px groove #000000;
                 </div>
               </li>
             </ul>
-                              <li hidden="true"><a href="#"><span class="glyphicon glyphicon-user"></span> <%=NomEmpleados%> <%=ApellidosEmpleados%> </a></li>
+                              <li hidden="true"><a href="#"><span class="glyphicon glyphicon-user text-green"></span> <%=NomEmpleados%> <%=ApellidosEmpleados%> </a></li>
 
                 <li><a href="#" onclick="ConfiemaSalidaSistema();"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
           </li>
@@ -193,7 +298,7 @@ border: 0px groove #000000;
 
     </nav>
   </header>
- <aside class="main-sidebar">
+ <aside class="main-sidebar" >
     <!-- sidebar: style can be found in sidebar.less -->
     <!-- /.sidebar -->
     <input type="text" value="N" id="bandera_consulta_ascy" hidden/>

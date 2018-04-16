@@ -43,38 +43,37 @@ table tr {
                     <div class="btn-group btn-breadcrumb">
                         <a href="home" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
                         <a href="#" class="active btn btn-default" onclick="compropago();">COMPROMISOS DE PAGO</a>
-                        <a href="#" class="btn btn-default" onclick="consulcarteras();">CONSULTA CARTERA</a>
+                        <a href="#" class="btn btn-default" onclick="consulcarteras();">CARTERA ASIGNADA</a>
                     </div>                    
                 </ol>
   
 
   <div> <!-- div inicio  -->
-      
-    <div class="col-lg-12" id="cliente_cartera"> 
-        <br>
-        <div class="box box-default">
+     <div id="cliente_cartera2" class="col-lg-3 box box-default">
+        <form class="form">            
+                    <div class="form-group has-feedback">
+                        <label class="control-label"> Desde:</label>
+                        <input type="text" class="form-control input-sm" placeholder="DD-MM-YYYY" data-date-format="dd-mm-yyyy" id="datepicker"/>
+                        <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+                    </div> 
+                       <div class="form-group "></div> 
+                    <div class="form-group has-feedback ">
+                        <label class="control-label">Hasta: </label>
+                        <input type="text" class="form-control input-sm" placeholder="DD-MM-YYYY" data-date-format="dd-mm-yyyy" id="datepicker2"/>
+                        <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+                    </div> 
+                       <div class="form-group has-feedback"></div> 
+                       <button type="button" class="btn btn-success btn-sm " id="buscarCompromisos">
+                         <span class="glyphicon glyphicon-cog"></span> <strong> Consultar </strong>
+                      </button>
+                        <div id="example_wrapper" class="form-group"></div> 
+                  </form>
+    </div> 
+    <div class="col-lg-9" id="cliente_cartera"> 
+
+        <div >
             
-      <div class="panel panel-default well-lg margin"> 
-           <form class="form-inline">            
-            <div class="form-group has-feedback">
-                <label class="control-label"> Fecha Desde:</label>
-                <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-date-format="dd-mm-yyyy" id="datepicker"/>
-                <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
-            </div> 
-               <div class="form-group has-feedback"></div> 
-            <div class="form-group has-feedback">
-                <label class="control-label">Fecha Hasta: </label>
-                <input type="text" class="form-control" placeholder="DD-MM-YYYY" data-date-format="dd-mm-yyyy" id="datepicker2"/>
-                <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
-            </div> 
-               <div class="form-group has-feedback"></div> 
-               <button type="button" class="btn btn-primary " id="buscarCompromisos">
-                 <span class="glyphicon glyphicon-search"></span> <strong> Consultar </strong>
-              </button>
-                <div id="example_wrapper" class="form-group has-feedback"></div> 
-          </form>
-          <br>
-          
+      <div class="margin">           
             <div class="row">
                 <div  class="box">
                      <div  class="box-body table-responsive" style="overflow-x: auto" >
@@ -84,7 +83,7 @@ table tr {
                             <tr bgcolor='#A0F070'>
                               <th class="col-sm-1 text-center" >N°</th>
                               <th class="col-sm-1  text-center">Fecha llamada</th>
-                              <th class="col-sm-3">Deudor</th>
+                              <th class="col-sm-3">Acreedor</th>
                               <th class="col-sm-1 text-center">Fech. Compromiso</th>
                               <th class="col-sm-1">Monto Compromiso</th>
                               <th class="col-sm-3">Observación</th>
@@ -101,14 +100,64 @@ table tr {
             </div>
       </div>
     </div>
+                                    
       
     </div> 
+      
                                         
 
 <div id="gestion_cliente" hidden>
-                <div class="panel panel-success  margin">
-                        <div class="row">
-                            <div class="col-lg-4">
+               
+      <div class="panel panel-success  margin">
+                    <div class="row">
+                        <div class="col-lg-6 text-center">
+                             <h3><label id="deudor"> NOMBRE COMPLETO DEL DEUDOR </label></h3>
+                        </div>
+                        <div class="col-lg-1 text-right" >
+                            <img id="img_cargando" src="resources/dist/img/loader.gif" class="img-circle" alt="User Image" width="20" style="display: none">
+                        </div>
+                        <div class="col-lg-5 text-right">                            
+                            <ol class="Breadcrumb default">
+                                <div class="btn-group btn-breadcrumb">
+                                    <a href="#referencia" onclick="listo();" id="listoModal" data-toggle="modal" class="active btn btn-warning btn-sm" >Referencia</a>
+                                     <a href="#det_articulo" onclick="ComprasJson();" data-toggle="modal" class="active btn btn-warning btn-sm" >Detalles Artículo</a>
+                                    <a href="#det_cuotas"  data-toggle="modal" class="active btn btn-warning btn-sm" >Detalles Cuotas</a>
+                                    <a href="#historial_pagos"  data-toggle="modal" onclick="consulta_historial();" class="active btn btn-warning btn-sm" >Historial Pagos</a>
+                                    <!--a id="anterior"  onclick="Antdeudor2()" class="btn btn-success btn-sm "><i class="fa fa-fast-backward"></i> Siguiente</a>
+                                    <a id="siguiente"  onclick="Sgtedeudor2()" class="btn btn-success btn-sm ">Anterior <i class="fa fa-fast-forward"></i> </a-->                        
+                           
+                                </div>                    
+                            </ol>                            
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 text-left">
+                            <label class="col-sm-4 " style="color: #F66C27">CED./RUC:</label> <label class="col-sm-6 " id="identificacion">Cliente: 0999999999 </label><br>
+                            <label class="col-sm-4 " style="color: #F66C27">CEDENTE: </label> <label   id="cliente" class="col-sm-6  text-primary"> RAZON SOCIAL DEL CEDENTE</label>
+                        </div>
+                        <div class="col-lg-3 text-left">
+                            <label class="col-sm-6 " style="color: #F66C27">Total Deuda:   </label><label class="col-sm-2 " style="color: #030303" id="labelTotalDeuda"><u>$ 00</u></label><br>
+                            <label class="col-sm-6 "style="color: #F66C27">Total Vencido: </label><label class="col-sm-2 " style="color: #030303" id="labelTotalVencido"><u>$ 0</u></label>
+                            
+                                     
+                        </div>
+                        <div class="col-lg-3 text-left">
+                            <label class="col-sm-6 " style="color: #F66C27">Pagos:         </label><label class="col-sm-2 " style="color: #030303" id="labelPagos"><u>$ 00</u></label><br>
+                            <label class="col-sm-6 " style="color: #F66C27">Saldo:      </label><label class="col-sm-2 " style="color: #030303" id="labelSaldos"><u>$ 00</u></label> <br>
+                            
+                                 
+                        </div>
+                        <div class="col-lg-2 text-left">
+                            <label  class="col-sm-6" style="color: #F66C27">Días Mora: </label><label class="col-sm-1 " style="color: #030303" id="labelDiasMora"><u>00 Dias</u></label>
+                                 
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                        <div class="row" hidden="true">
+                            <div class="col-lg-3">
                                 <form class="form-horizontal">
                                     <div class="col-xs-3 " style="display:none" >
                                         <div class="form-group">
@@ -117,7 +166,7 @@ table tr {
                                         </div> 
                                     </div>
                                                      
-                                    <div class="col-xs-3 " style="display:none" >
+                                    <div class="col-xs-3 " style="display:none">
                                         <div class="form-group">
                                             <label>Cliente:</label>
                                             <input type="text" class="form-control" id="idcliente" name="idcliente">
@@ -136,26 +185,27 @@ table tr {
                                 </form>
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-4">
                                 <strong>  <center><h2 id="deudor">Nombre</h2></center></strong>
                                 <center><h4 id="cliente" style="color: #0063dc"><b>cliente</b></h4></center>   
                             </div>
 
                             <div class="col-lg-2"> 
-                                <button id="anterior" type="button" onclick="Antdeudor2()" class="btn btn-primary btn-sm glyphicon glyphicon-arrow-left"></button>
-                                <button id="siguiente" type="button" onclick="Sgtedeudor2()" class="btn btn-primary btn-sm glyphicon glyphicon-arrow-right"> </button>
+                                <button id="anterior" type="button" onclick="Antdeudor2()" class="btn btn-success btn-sm glyphicon glyphicon-arrow-left"></button>
+                                <button id="siguiente" type="button" onclick="Sgtedeudor2()" class="btn btn-success btn-sm glyphicon glyphicon-arrow-right"> </button>
+                                <center><img id="img_cargando" src="resources/dist/img/loader.gif" class="img-circle" alt="User Image" width="20" style="display: none"></center>
                             </div>  
-                            <div class="col-lg-1">
+                            <div class="col-lg-1" >
                             <center><img id="img_cargando" src="resources/dist/img/loader.gif" class="img-circle" alt="User Image" width="50" style="display: none"></center>
                             </div>  
                         </div>
                           
-                        <div class="row">                           
+                        <div class="row" hidden="true">                           
                           
                             <form class="form-horizontal">
                                
-                                <div class="form-group">
-                                    <label class="col-sm-1 control-label" style="color: #F66C27">     Total Deuda: </label> 
+                                <div class="form-group well-sm">
+                                    <label  class="col-sm-1 control-label" style="color: #F66C27">     Total Deuda: </label> 
                                     <label class="col-sm-1 control-label" style="color: #030303" id="labelTotalDeuda"><u>$ 00</u></label>
                                     <label class="col-sm-2 control-label" style="color: #F66C27">Total Vencido: </label> 
                                     <label class="col-sm-1 control-label" style="color: #030303" id="labelTotalVencido"><u>$ 0</u></label>
@@ -177,14 +227,7 @@ table tr {
                                     
                         <div class="btn-toolbar" role="toolbar">                    
                             
-                                    <a href="#referencia" onclick="listo();" id="listoModal" data-toggle="modal" class="btn btn-success btn-sm">Referencia</a>
-                                    <!--<a href="#agrega_datos"  data-toggle="modal" class="btn btn-primary">Agregar Datos</a>-->
-                                    <a onclick="AddDirModal();" class="btn btn-success btn-sm">Agregar Dirección</a>
-                                    <a onclick="AddTelModal();" class="btn btn-success btn-sm">Agregar Teléfono</a>
                                     
-                                    <a href="#det_articulo" onclick="ComprasJson();" data-toggle="modal" class="btn btn-success btn-sm">Detalles Artículo</a>
-                                    <a href="#det_cuotas"  data-toggle="modal" class="btn btn-success btn-sm">Detalles Cuotas</a>
-                                    <a href="#historial_pagos"  data-toggle="modal" onclick="consulta_historial();" class="btn btn-success btn-sm">Historial Pagos</a>
                                     <div id="modalADDTel"></div>
                                      <div id="modalDireccion"></div>
                                     <div id="agrega_datos" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -381,13 +424,13 @@ table tr {
                             <div id="pagedireccion">  
                             <div class="col-lg-5">
                                 <div id="table_direccion" class="form-group">                                
-                                    <dt>Dirección: </dt>
+                                    <dt><a href="#" class="text-green" onclick="AddDirModal();"> Agregar <i class="fa fa-plus"></i></a> </dt>
                                     <div id="TablaDirecciones" class="box table-responsive" >
                                         <table id="idAllDireccions" class=" table-striped table-bordered dt-responsive table-condensed nowrap table-hover" cellspacing="0" width="100%">                                           
                                             <thead>
-                                                <tr  bgcolor="#FBF5EF" width="100%">
+                                                <tr  bgcolor="#B5EE8E" width="100%">
                                                     <th class="col-sm-2">Tipo</th>
-                                                    <th class="col-sm-6">Dirección</th>
+                                                    <th class="col-sm-6">Direcciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>                                                
@@ -399,11 +442,11 @@ table tr {
                             </div>
                             <div id="pagetelefono">  
                             <div  class="col-lg-3">        
-                                <dt>Telefonos: </dt>
+                                <dt><a href="#" class="text-green " onclick="AddTelModal();"> Agregar <i class="fa fa-plus"></i> </a></dt>
                                 <div id="table_telefono" class="box table-responsive">  
                                     <table id="idAllTelefonos" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
                                         <thead>
-                                            <tr  bgcolor="#FBF5EF">
+                                            <tr  bgcolor="#B5EE8E">
                                                 <th class="col-sm-2">Tipo</th>
                                                 <th class="col-sm-8">Télefonos</th>
                                                 <th class="col-sm-2">Llamar</th>
@@ -417,20 +460,20 @@ table tr {
                             </div>    
                             <div class="form-group col-lg-4">
                                 <div class="row">
-                                    <div class="col-lg-7">                                 
-                                    <dt>Ciudad [Parroquia]: </dt>
+                                    <div class="col-lg-5">                                 
+                                    <dt>Localidad: </dt>
                                     <select class="input-sm form-control" id="Ciudad" name="Ciudad" required="required" disabled="true">
                                         
                                     </select>
                                     </div>
                                             
-                                    <div class="col-lg-5">
-                                        <dt>Volver a Llamar: </dt>     
+                                    <div class="col-lg-7">
+                                        <dt>Recordatorio: </dt>     
                                     <form class="form-inline">
                                         <div class="input-group date">
-                                            <input size="15" type="text" class="form-control input-sm" id="datepicker3" onkeyup="verificaFecha();" name="recordatorio" placeholder="YYYY-MM-DD">
+                                            <input size="8" type="text" class="form-control input-sm datepicker" data-date-format="yyyy-mm-dd hh:mi:ss" id="datepickerRecordatorio" onkeyup="verificaFecha();" name="datepickerRecordatorio" placeholder="YYYY-MM-DD" disabled="true">
                                         </div> 
-                                            <input size="4" type="text"  class="form-control input-sm" id="hora" onkeyup="validaHora();" name="hora"  placeholder="23:59"  >
+                                            <input size="4" type="text" class="form-control input-sm" id="hora" name="hora" placeholder="23:59" onkeyup="validaHora();" disabled="true">
                                     </form>     
 
 
@@ -442,14 +485,14 @@ table tr {
                                 </div>    
                                         <div class="row">
                                             <div class="col-sm-10">
-                                                <dt>NOTAS</dt>                                
+                                                <dt>Mensaje:</dt>                                
                                             </div>
                                             <div class="col-sm-1">
-                                                <dt style="color:#F5A9A9" id="contador_notas">500</dt>
+                                                <dt style="color:#F66C27" id="contador_notas">400</dt>
                                             </div>                            
                                         </div>
-						<textarea maxlength="500" id="txtnota" class="form-control input-sm " rows="2" onkeyup="ValidarNota2()"  placeholder="NOTAS" style="overflow-y:scroll; background-color:#FDF9DB;  font-size:14px; font-type:Arial" value="0"></textarea>
-						<textarea maxlength="500" id="txtnotaAdmin" class="form-control input-sm " rows="1" onkeyup="ValidarNota2()"  placeholder="NOTAS ADMINISTRADOR" style="overflow-y:scroll; background-color:#FDF9DB;  font-size:14px; font-type:Arial" value="0" readonly></textarea>
+						<textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="2" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FDF9DB;  font-size:14px; font-type:Arial" value="0"></textarea>
+						<!--textarea maxlength="500" id="txtnotaAdmin" class="form-control input-sm " rows="1" onkeyup="ValidarNota2()"  placeholder="NOTAS ADMINISTRADOR" style="overflow-y:scroll; background-color:#EDFAC5;  font-size:14px; font-type:Arial" value="0" readonly></textarea-->
                                         </div>
 
 
@@ -459,7 +502,7 @@ table tr {
                         <div class="row"> 
                             <form name="form" action="cobranzas" method="post"  id="data">                 
                                 <div class="col-lg-4">                                  
-                                    <dt>Tipo de Gestión: </dt>
+                                    <dt>Gestión: </dt>
                                     <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultadoCompromisos()">
                                       
                                         
@@ -472,17 +515,17 @@ table tr {
                                     </div> 
                                 </div>    
                                 <div class="col-lg-4">                                  
-                                    <dt>Resultado: </dt>
-                                    <select class="input-sm form-control" name="resultado2" onclick="selecciona_resultado();" required="required" id="resultado2">
+                                    <dt>Respuesta: </dt>
+                                    <select class="input-sm form-control" name="resultado2" required="required" id="resultado2">
                                       
 
                                     </select>                                 
                                 </div>
 
                                 <div class="col-lg-4" >
-                                    <dt> Fecha Compromiso de Pago y Monto:</dt> 
+                                    <dt> Fecha Compromiso y Monto:</dt> 
                                         <div class="form-inline ">
-                                                <input size="15" type="text" class="input-sm datepicker" onkeyup="verificaFecha2();" data-date-format="yyyy-mm-dd" id="datepicker4" name="compromiso_pago" placeholder="YYYY-MM-DD" disabled="true">                                                        
+                                                <input size="15" type="text" class="input-sm datepicker" onkeyup="verificaFecha2();" data-date-format="yyyy-mm-dd" id="datepickerCompromiso" name="datepickerCompromiso" placeholder="YYYY-MM-DD" disabled="true">                                                        
                                                 <input size="15" type="text" class="input-sm" id="monto_compromiso" name="monto_compro" onkeypress="ValidaSoloNumeros()" placeholder="$ 0.00" disabled="true">
                                                 <span id="fechaCompro" ></span>  
                                         </div>
@@ -490,22 +533,22 @@ table tr {
                         </div>            
                                 
                         <div class="row">
-                            <div class="col-sm-10">
-                                <dt>Descripción:</dt>                                
+                            <div class="col-sm-9">
+                                <dt>Explicación</dt>                                
                             </div>
-                            <div class="col-sm-1">
-                                <dt style="color:#F5A9A9" id="contador_descripcion">600</dt>
+                            <div class="col-sm-3">
+                                <dt style="color:#F66C27" id="contador_descripcion">500</dt>
                             </div>
                             
                         </div>
                             
                         
                             <div class="row"> 
-                                <div class="col-sm-11">
-                                      <textarea maxlength="600" class="form-control input-sm" id="descripcion" name="descripcion" rows="2" placeholder="Descripción" style="overflow-y:scroll; background-color:#FDF9DB; font-size:18px; font-type:Arial" ></textarea> 
+                                <div class="col-sm-10">
+                                      <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="2" placeholder="Historia" style="overflow-y:scroll; background-color:#FDF9DB; font-size:18px; font-type:Arial" ></textarea> 
                                 </div>
-                                <div class="col-sm-1">
-                                    <br><button  type="button" onclick="GuardarTransaccnormal()" class="btn btn-primary btn-lg fa fa-save"></button>
+                                <div class="col-sm-2">
+                                    <br><a   onclick="GuardarTransaccnormalCompromisos()" class="btn btn-success btn-lg"><i class="fa fa-edit"></i> REGISTRAR</a>
                                 </div>
                             </div> 
                               
@@ -516,12 +559,12 @@ table tr {
                                        
                                             <table id="allTrxGestiones" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                                 <thead>
-                                                    <tr  bgcolor="#FBF5EF">
+                                                    <tr  bgcolor="#B5EE8E">
                                                         
-                                                        <th class="col-lg-1">Tipo Gestión</th>
                                                         <th class="col-lg-1">Gestión</th>
-                                                        <th class="col-lg-5">Descripción</th>
-                                                        <th class="col-lg-3">Oficial</th>
+                                                        <th class="col-lg-1">Respuesta</th>
+                                                        <th class="col-lg-5">Historia</th>
+                                                        <th class="col-lg-3">Asesor</th>
                                                         <th class="col-lg-2">Fecha</th>
                                                        
                                                     </tr>
@@ -534,7 +577,7 @@ table tr {
                                 </div> 
                             </section>
                         </div>
-                        
+             
                 </div>
                 <br>
   </div>  <!-- fin de div de inicio  --> 
@@ -577,6 +620,8 @@ $(function() {
 $('#datepicker4').datetimepicker({   format:'Y-m-d' }); 
 $('#datepicker3').datetimepicker({   format:'Y-m-d' }); 
 //$('#datepicker3').datetimepicker({   format:'Y-m-d H:i:s' }); 
+$('#datepickerRecordatorio').datetimepicker({   format:'Y-m-d' });
+$('#datepickerCompromiso').datetimepicker({   format:'Y-m-d' });
 </script> 
 <!-- ./wrapper -->
 </body>

@@ -59,7 +59,7 @@
      <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>COGESCORP S.A.</title>
+  <title><%=nom_empresa%></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
@@ -99,10 +99,72 @@
 -webkit-border-radius: 12px 12px 12px 12px;
 border: 0px groove #000000;
      }
+
+
 </style>
-<body class="sidebar-mini wysihtml5-supported skin-red-light">
+
+<body style="background-color:#9e9998">
     <div  id="mensajeSalida"></div>
-<div class="wrapper" id="midashboard">
+  
+<nav class="topnav navbar navbar-inverse" style="background-color:#C0381A; border-color: #E7E7E7;" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+        <a class="navbar-brand" style="color:white;"  href="home"><strong ><%=nom_empresa%></strong></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+           <% 
+               Integer nivelPadre2=0,contador2=0;
+           ModulosRoles mroles = new ModulosRoles();
+            List<LcModuloRol> datos_modulos = mroles.getLcModulosRoles(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
+            List<LcModuloRol> datos_modulos2 = mroles.getLcModulosRolesROL(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
+           
+           for(int k=0; k< datos_modulos.size(); k++) {
+                if(datos_modulos.get(k).getNivelModulo().equals(nivelPadre2))
+                {
+                    %>
+        <li class="dropdown" >
+            <a class="dropdown-toggle " style="color:white;" data-toggle="dropdown" href="#"><i class="fa fa-navicon text-yellow"></i> <strong> <%=datos_modulos.get(k).getLcModulos().getMenuOpciones() %></strong><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <%
+                for(int l=0; l< datos_modulos2.size(); l++) {
+                 if(datos_modulos2.get(l).getNivelModulo().equals(datos_modulos.get(k).getGrupoMod()))
+                    {
+                    %>
+            
+                    
+                      <li><a href="#" onclick="<%=datos_modulos2.get(l).getLcModulos().getFunciones() %>" class="text-black"><i class="fa fa-th text-aqua"></i> <%=datos_modulos2.get(l).getLcModulos().getMenuOpciones() %> </a></li>
+                   
+                <% 
+                    }
+                }
+                %>
+             </ul>
+        </li>
+         <%
+                }
+             contador2++;  
+           }
+           %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" style="color:white;"><span class="glyphicon glyphicon-user text-success" ></span>  <%=NomEmpleados.toUpperCase()%> <%=ApellidosEmpleados.toUpperCase() %> </a></li>
+        <li><a href="#" onclick="ConfiemaSalidaSistema();" style="color:white;">SALIR <span class="glyphicon glyphicon-log-in text-black"></span> </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+     <div  id="mensajeSalida"></div>   
+      <div id="page-wrapper" style="background-color:#9e9998" >
+          
+      </div>
+    
+    <div class="wrapper" id="midashboard" hidden="true">
 
   <header class="main-header" >
 
@@ -193,42 +255,22 @@ border: 0px groove #000000;
             </ul>
           </li>
            
-           <% 
-               Integer nivelPadre2=0,contador2=0;
-           ModulosRoles mroles = new ModulosRoles();
-            List<LcModuloRol> datos_modulos = mroles.getLcModulosRoles(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
-            List<LcModuloRol> datos_modulos2 = mroles.getLcModulosRolesROL(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
-           
-           for(int k=0; k< datos_modulos.size(); k++) {
-                if(datos_modulos.get(k).getNivelModulo().equals(nivelPadre2))
-                {
-                    %>
+          
           <li class="dropdown">
             <a href="#" class="dropdown-toggle success" data-toggle="dropdown">
-                <i class="fa fa-navicon text-yellow"></i><span> <%=datos_modulos.get(k).getLcModulos().getMenuOpciones() %></span>             
+                <i class="fa fa-navicon text-yellow"></i><span> </span>             
             </a>
             <ul class="dropdown-menu">
-                  <%
-                            for(int l=0; l< datos_modulos2.size(); l++) {
-                             if(datos_modulos2.get(l).getNivelModulo().equals(datos_modulos.get(k).getGrupoMod()))
-                                {
-                                %>
+                
                   <li>
-                    <a href="#" onclick="<%=datos_modulos2.get(l).getLcModulos().getFunciones() %>">
-                      <i class="fa fa-th text-aqua"></i> <%=datos_modulos2.get(l).getLcModulos().getMenuOpciones() %>
+                    <a href="#" >
+                      <i class="fa fa-th text-aqua"></i> 
                     </a>
                   </li>
-                 <% 
-                                }
-                            }
-                            %>
+                
             </ul>
           </li>
-            <%
-                }
-             contador2++;  
-           }
-           %>
+           
           <!-- Messages: style can be found in dropdown.less-->
           <!--li class="header" style="color:#ffffff; size: A4"><strong>Empresa:</strong></li-->
          <!-- Tasks: style can be found in dropdown.less -->
@@ -283,14 +325,9 @@ border: 0px groove #000000;
                 </div>
               </li>
             </ul>
-                              <li hidden="true"><a href="#"><span class="glyphicon glyphicon-user text-green"></span> <%=NomEmpleados%> <%=ApellidosEmpleados%> </a></li>
-
+                <li><a href="#"><span class="glyphicon glyphicon-user text-green"></span> <%=NomEmpleados%> <%=ApellidosEmpleados%> </a></li>
                 <li><a href="#" onclick="ConfiemaSalidaSistema();"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
           </li>
-          <!-- Control Sidebar Toggle Button 
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>-->
           
         </ul>
       
@@ -390,7 +427,7 @@ border: 0px groove #000000;
 
   
   </aside>
-  <div  id="mensajeSalida"></div>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="background-color:#9e9998" >
       <div id="page-wrapper" > 
