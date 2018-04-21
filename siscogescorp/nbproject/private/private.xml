@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Proyectos/siscogescorp/web/sistema/index_final.jsp</file>
+            <file>file:/D:/Proyectos/siscogescorp/web/sistema/roles/rol.jsp</file>
             <file>file:/D:/Proyectos/siscogescorp/src/java/com/siscogescorp/controller/CobranzaController.java</file>
             <file>file:/D:/Proyectos/siscogescorp/web/sistema/gestion/frm_compromiso_pago.jsp</file>
-            <file>file:/D:/Proyectos/siscogescorp/web/dist/js/cobranzas.js</file>
             <file>file:/D:/Proyectos/siscogescorp/web/sistema/gestion/frm_consulta_por_cartera_new.jsp</file>
+            <file>file:/D:/Proyectos/siscogescorp/web/dist/js/cobranzas.js</file>
             <file>file:/D:/Proyectos/siscogescorp/web/sistema/gestion/frm_gestion_cobranzas.jsp</file>
             <file>file:/D:/Proyectos/siscogescorp/web/sistema/index2.jsp</file>
-            <file>file:/D:/Proyectos/siscogescorp/src/java/com/siscogescorp/controller/CompromisosPagos.java</file>
-            <file>file:/D:/Proyectos/siscogescorp/web/sistema/index.jsp</file>
+            <file>file:/D:/Proyectos/siscogescorp/src/java/com/siscogescorp/servicios/ModulosRoles.java</file>
             <file>file:/D:/Proyectos/siscogescorp/web/dist/js/consultaxcatera.js</file>
-            <file>file:/D:/Proyectos/siscogescorp/web/dist/js/compromiso_pagos.js</file>
-            <file>file:/D:/Proyectos/siscogescorp/src/java/com/siscogescorp/servicios/CompromisosPagosServicios.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1858,7 +1858,7 @@ String color;
              json = new JSONObject();
              json.put("TipoTelefono",mrol.getLcTiposTelefono().getNombreTipoTlf());
              json.put("Telefono",mrol.getTelefono());
-             json.put("Llamar","<a  href='#' ><span class='glyphicon glyphicon-phone-alt' aria-hidden='true'></span></a>");
+             json.put("Llamar","<a  href='#' style='color:#F98021;' ><span class='glyphicon glyphicon-earphone  aria-hidden='true'></span></a>");
              itemSelectedJson.add(json);
              
         }

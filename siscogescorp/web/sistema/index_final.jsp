@@ -50,6 +50,7 @@
 <%@page import="com.siscogescorp.modelo.LcModuloRol"%>
 <%@page import="java.util.List"%>
 <%@page import="com.siscogescorp.servicios.DashcboardOk"%>
+<%@page import="com.siscogescorp.servicios.EmpleadosServicios"%>
 
 
 
@@ -84,6 +85,7 @@
     <link rel="stylesheet" href="dist/css/jquery.datetimepicker.css">  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -92,21 +94,33 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   </head>
-  <style type="text/css">
-    input {
-        border-radius: 12px 12px 12px 12px;
--moz-border-radius: 12px 12px 12px 12px;
--webkit-border-radius: 12px 12px 12px 12px;
-border: 0px groove #000000;
-     }
 
+        <style type="text/css">
+input:enabled {
+background-color:#FDF9DB;
+border: 1px solid #FAC197;
+}
+select:enabled {
+background-color:#FDF9DB;
+border: 1px solid #FAC197;
+}
+
+ textarea {
+	resize: none;
+                } 
+ table th {
+    bgcolor: #EDFAC5;
+}
+table tr {
+    bgcolor: #E0ECF8;
+}
 
 </style>
 
 <body style="background-color:#9e9998">
     <div  id="mensajeSalida"></div>
   
-<nav class="topnav navbar navbar-inverse" style="background-color:#C0381A; border-color: #E7E7E7;" >
+<nav class="topnav navbar navbar-inverse" style="background-color:#F98021; border-color: #E7E7E7;" >
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -129,7 +143,7 @@ border: 0px groove #000000;
                 {
                     %>
         <li class="dropdown" >
-            <a class="dropdown-toggle " style="color:white;" data-toggle="dropdown" href="#"><i class="fa fa-navicon text-yellow"></i> <strong> <%=datos_modulos.get(k).getLcModulos().getMenuOpciones() %></strong><span class="caret"></span></a>
+            <a class="dropdown-toggle " style="color:white;" data-toggle="dropdown" href="#"><i class="fa fa-navicon text-black"></i> <strong> <%=datos_modulos.get(k).getLcModulos().getMenuOpciones() %></strong><span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <%
                 for(int l=0; l< datos_modulos2.size(); l++) {
@@ -138,7 +152,7 @@ border: 0px groove #000000;
                     %>
             
                     
-                      <li><a href="#" onclick="<%=datos_modulos2.get(l).getLcModulos().getFunciones() %>" class="text-black"><i class="fa fa-th text-aqua"></i> <%=datos_modulos2.get(l).getLcModulos().getMenuOpciones() %> </a></li>
+                      <li><a href="#" onclick="<%=datos_modulos2.get(l).getLcModulos().getFunciones() %>" class="text-black"><i class="fa fa-th text-orange"></i> <%=datos_modulos2.get(l).getLcModulos().getMenuOpciones() %> </a></li>
                    
                 <% 
                     }
@@ -153,7 +167,7 @@ border: 0px groove #000000;
            %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" style="color:white;"><span class="glyphicon glyphicon-user text-success" ></span>  <%=NomEmpleados.toUpperCase()%> <%=ApellidosEmpleados.toUpperCase() %> </a></li>
+        <li><a href="#" style="color:white;"><span class="glyphicon glyphicon-user text-black" ></span>   <%=NomEmpleados.toUpperCase()%> <%=ApellidosEmpleados.toUpperCase() %> </a></li>
         <li><a href="#" onclick="ConfiemaSalidaSistema();" style="color:white;">SALIR <span class="glyphicon glyphicon-log-in text-black"></span> </a></li>
       </ul>
     </div>
@@ -161,6 +175,64 @@ border: 0px groove #000000;
 </nav>
      <div  id="mensajeSalida"></div>   
       <div id="page-wrapper" style="background-color:#9e9998" >
+          
+          <div class="row well-sm">
+              <div class="col-lg-8">
+                  <select class="input-sm" id="mi_empleado">
+                                <%   EmpleadosServicios emp = new EmpleadosServicios();
+                                    String s_empleados3=""; s_empleados3= emp.misEmpleadosALL(Integer.parseInt(id_empresa), RolEmpleado, Integer.parseInt(IdEmpleado)); %>
+                                <%=s_empleados3%>
+                            </select>
+                            <select class="input-sm"  id="idcartera" >
+                            </select>
+                           
+              </div>
+          </div>
+          
+          <div class="row well-sm">
+              <div class="col-lg-4">
+                  <div class="box box-info">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Producción Diaria</h3>
+                      <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <!--button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button-->
+                      </div>
+                    </div>
+                    <div class="box-body">
+                      <div id="chart_gestiones_diarias" ></div>
+                    </div>
+                    <div class="box-footer clearfix">
+                            
+                       <input id="fecha_gestion" type="text" class="input-sm" placeholder="YYYY-MM-DD" />      
+                      <a href="#" class="btn btn-sm btn-default ">Consultar</a>
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="col-lg-8">
+                  <div class="box box-info">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Producción Mensual</h3>
+                      <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <!--button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button-->
+                      </div>
+                    </div>
+                    <div class="box-body">
+                      <div id="chart_gestiones_mensual" ></div>
+                    </div>
+                    <div class="box-footer clearfix ">
+                         <input id="fecha_gestion_ini" type="text" class="input-sm" placeholder="YYYY-MM-DD" />
+                          <input id="fecha_gestion_fin" type="text" class="input-sm" placeholder="YYYY-MM-DD" />
+                       <a href="#" class="btn btn-sm btn-default pull-right">Consultar</a>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          
+          
+          
           
       </div>
     
@@ -1058,5 +1130,82 @@ var parametros = {
 
      }
 </script>
+<script>
+	google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+         ['Meses', 'PYCCA ', 'ORIFLAME', 'DEPRATI', 'BANCO GUAYAQUIL', 'ARTEFACTA', 'CREDITOS ECONOMICOS'],
+         ['2017-DIC',  165,      938,         522,             998,           450,      614.6],
+         ['2018-ENE',  135,      1120,        599,             1268,          288,      682],
+         ['2018-FEB',  157,      1167,        587,             807,           397,      623],
+         ['2018-MAR',  139,      1110,        615,             968,           215,      609.4],
+         ['2018-ABR',  136,      691,         629,             1026,          366,      569.6]
+      ]);
+
+    var options = {
+      title : 'Producción Mensual',
+      vAxis: {title: 'Gestiones'},
+      hAxis: {title: 'Meses'},
+      seriesType: 'bars'
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_gestiones_mensual'));
+    chart.draw(data, options);
+  }
+</script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Clientes', 'eharo', 'mroldan', 'cmorales'],
+          ['PYCCA', 1000, 400, 200],
+          ['DEPRATI', 1170, 460, 250],
+          ['ORIFLAME', 660, 1120, 300],
+          ['BANCO GUAYAQUIL', 1030, 540, 350]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Mis carteras',
+			subtitle: 'Gestiones diaras',
+//            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+		   vAxis: {format: 'decimal'},
+		   //height: 300,
+		   //width: 500,
+          bars: 'vertical' //horizontal vertical Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_gestiones_diarias'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+        <script>
+        ConsultasMisCarteras();
+        function ConsultasMisCarteras(){
+document.getElementById("idcartera").innerHTML="";
+  $("#idcartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
+     $.getJSON("consultacartera", {"accion" : "AllClientes"}, function(result){
+          $.each(result.listaClientes, function(key, val){   
+           $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));
+          // var valor_select = val.razon_social;
+          // alert(valor_select);
+       
+          });
+    });  
+    
+}
+        
+    $('#fecha_gestion').datetimepicker({   format:'Y-m-d' });    
+    $('#fecha_gestion_ini').datetimepicker({   format:'Y-m-d' }); 
+    $('#fecha_gestion_fin').datetimepicker({   format:'Y-m-d' }); 
+    </script>
+	 
 </body>
 </html>

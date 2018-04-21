@@ -563,7 +563,14 @@ public class EmpleadosServicios {
         
          for(LcEmpleados mrol:lista )
         {
-           empleados+="<option value='"+mrol.getIdEmpleado()+"'>"+mrol.getNombres()+" "+mrol.getApellidos()+ "</option>";
+            if(nombre_rol.equals("SUPERADMIN")){
+                 empleados+="<option value='"+mrol.getIdEmpleado()+"'>"+mrol.getNombres()+" "+mrol.getApellidos()+ "</option>";
+
+            }
+            if(mrol.getIdEmpleado()!=1 && !nombre_rol.equals("SUPERADMIN")){
+                 empleados+="<option value='"+mrol.getIdEmpleado()+"'>"+mrol.getNombres()+" "+mrol.getApellidos()+ "</option>";
+
+            }
           //  System.out.println("ok: "+mrol.getIdEmpleado()+", "+mrol.getLcCargos().getCargo()+mrol.getNombres()+mrol.getLcCargos().getCargo()+mrol.getProfesion()+mrol.getIdJefeInmediato()+mrol.getLcEstadoCivil().getDescripcion()+mrol.getLcAgencia().getNombre());
              
         }

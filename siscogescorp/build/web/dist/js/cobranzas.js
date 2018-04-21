@@ -1568,7 +1568,7 @@ document.getElementById("anterior").disabled = false;
              document.getElementById("labelTotalVencido").innerHTML = val.TotalVencido; 
              document.getElementById("labelPagos").innerHTML = val.Pago; 
              document.getElementById("labelSaldos").innerHTML = val.Saldo; 
-             document.getElementById("labelDiasMora").innerHTML = val.DiasMora+" Días"; 
+             document.getElementById("labelDiasMora").innerHTML = val.DiasMora; 
              $("#Ciudad").append($("<option>",{value:val.IDCiudad,text:val.Ciudad}));
              document.getElementById("txtnota").value=val.Notas;
              document.getElementById("idNotas").value=val.IDNotas;
@@ -1595,7 +1595,7 @@ MuestraDatosReferencias(idCliente,idDeudor);
 }
 function DireccionesJson(idCliente, idDeudor){
   
-    var StringTablaCabecera="<table id='idAllDireccions' class=' table-striped table-bordered dt-responsive table-condensed table-hover' ><thead><tr  bgcolor='#B5EE8E' width='100%'><th >Tipo</th><th class='sorting_asc' tabindex='0' aria-controls='idAllDireccions' rowspan='1' colspan='1' style='width: 767px;' aria-label='Dirección: activate to sort column descending' aria-sort='ascending'>Dirección</th></tr></thead><tbody></tbody></table>";
+    var StringTablaCabecera="<table id='idAllDireccions' class=' table-striped table-bordered dt-responsive table-condensed table-hover' ><thead><tr  bgcolor='#FEC187' width='100%'><th >Tipo</th><th class='sorting_asc' tabindex='0' aria-controls='idAllDireccions' rowspan='1' colspan='1' style='width: 767px;' aria-label='Dirección: activate to sort column descending' aria-sort='ascending'>Dirección</th></tr></thead><tbody></tbody></table>";
     var accion="listar_direccion";
     document.getElementById("TablaDirecciones").innerHTML  =""; 
     document.getElementById("TablaDirecciones").innerHTML  =StringTablaCabecera;
@@ -1632,7 +1632,7 @@ function DireccionesJson(idCliente, idDeudor){
 
 function TelefonosJson(idCliente, idDeudor){
     
-    var TablaTelefonos="<table id='idAllTelefonos' class='table table-striped table-bordered dt-responsive   table-condensed  table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#B5EE8E'><th class='col-sm-2'>Tipo</th><th class='col-sm-8'>Télefonos</th><th class='col-sm-2'>Llamar</th></tr></thead><tbody></tbody></table>";
+    var TablaTelefonos="<table id='idAllTelefonos' class='table table-striped table-bordered dt-responsive   table-condensed  table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Tipo</th><th class='col-sm-8'>Télefonos</th><th class='col-sm-2'>Llamar</th></tr></thead><tbody></tbody></table>";
     document.getElementById("table_telefono").innerHTML  =""; 
     document.getElementById("table_telefono").innerHTML  =TablaTelefonos;
       $(document).ready(function() {	
@@ -1648,7 +1648,7 @@ function TelefonosJson(idCliente, idDeudor){
                 { "data": "Telefono" },
                 { "data": "Llamar" }
             ],
-            scrollY:        110,
+            scrollY:        80,
             scrollX:        false,
             scrollCollapse: false,
             paging:         false,
@@ -1693,7 +1693,7 @@ function TelefonosJson(idCliente, idDeudor){
 
 
 function GestionesJson(idCliente, idDeudor){
-    var TablaTelefonos="<table id='allTrxGestiones' class='table table-striped table-bordered table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#B5EE8E'><th class='col-lg-1'>Gestión</th><th class='col-lg-1'>Respuesta</th><th class='col-lg-5'>Explicación</th><th class='col-lg-1'>Asesor</th><th class='col-lg-1'>Fecha</th></tr></thead><tbody></tbody> </table>";
+    var TablaTelefonos="<table id='allTrxGestiones' class='table table-striped table-bordered table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-lg-1'>Gestión</th><th class='col-lg-1'>Respuesta</th><th class='col-lg-5'>Explicación</th><th class='col-lg-1'>Asesor</th><th class='col-lg-1'>Fecha</th></tr></thead><tbody></tbody> </table>";
     document.getElementById("transaccion_table").innerHTML  =""; 
     document.getElementById("transaccion_table").innerHTML  =TablaTelefonos;
         $(document).ready(function() {	
@@ -1948,7 +1948,7 @@ document.getElementById("anterior").disabled = false;
              document.getElementById("labelTotalVencido").innerHTML = val.TotalVencido; 
              document.getElementById("labelPagos").innerHTML = val.Pago; 
              document.getElementById("labelSaldos").innerHTML = val.Saldo; 
-             document.getElementById("labelDiasMora").innerHTML = val.DiasMora+" Días"; 
+             document.getElementById("labelDiasMora").innerHTML = val.DiasMora; 
              $("#Ciudad").append($("<option>",{value:val.IDCiudad,text:val.Ciudad}));
              document.getElementById("txtnota").value=val.Notas;
              document.getElementById("idNotas").value=val.IDNotas;
@@ -2104,7 +2104,7 @@ document.getElementById("anterior").disabled = false;
              document.getElementById("labelTotalVencido").innerHTML = val.TotalVencido; 
              document.getElementById("labelPagos").innerHTML = val.Pago; 
              document.getElementById("labelSaldos").innerHTML = val.Saldo; 
-             document.getElementById("labelDiasMora").innerHTML = val.DiasMora+" Días"; 
+             document.getElementById("labelDiasMora").innerHTML = val.DiasMora; 
              $("#Ciudad").append($("<option>",{value:val.IDCiudad,text:val.Ciudad}));
              document.getElementById("txtnota").value=val.Notas;
            //  document.getElementById("idNotas").value=val.IDNotas;
