@@ -631,6 +631,13 @@ public class ConsultaxCartera extends HttpServlet {
           NuevosDatos="{\"data\": "+cd.fnc_ConsultaCarteraEmpleados1()+"}";
           response.getWriter().println(NuevosDatos);
          }
+         //
+         if(accion.equals("consulta_subcartera_cendente")){
+         //int cartera = Integer.parseInt(request.getParameter("cartera")); 
+          String NuevosDatos="";
+          NuevosDatos="{\"data\": "+cd.fnc_ConsultaCedenteSubCaretra(EmpresaID)+"}";
+          response.getWriter().println(NuevosDatos);
+         }
         
     }
 

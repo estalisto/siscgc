@@ -563,6 +563,9 @@ public class EmpleadosServicios {
         
          for(LcEmpleados mrol:lista )
         {
+            if(mis_roles.contains(nombre_rol) && !empleados.contains("TODOS") ){
+                 empleados+="<option value='0'>TODOS</option>";
+            }
             if(nombre_rol.equals("SUPERADMIN")){
                  empleados+="<option value='"+mrol.getIdEmpleado()+"'>"+mrol.getNombres()+" "+mrol.getApellidos()+ "</option>";
 

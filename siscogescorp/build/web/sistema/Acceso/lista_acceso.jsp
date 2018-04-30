@@ -28,7 +28,7 @@
             <div class="box-body">
               <table id="example3" class="table table-bordered table-hover">
                 <thead>
-                <tr>
+                <tr bgcolor='#FEC187'>
                   <th>Empresa</th>
                   <th>Módulos</th>
                   <th>Fecha Asignada</th>

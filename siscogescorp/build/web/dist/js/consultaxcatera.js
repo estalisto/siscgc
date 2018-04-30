@@ -892,13 +892,23 @@ document.getElementById("escogecliente").innerHTML="";
     var lv_query=" vw_consulta_cartera s  ";
     var IDEmpleadoConsulta="";
     if(lv_mi_empleado===""){
-        IDEmpleadoConsulta="IDEmpleadoConsulta";
+        IDEmpleadoConsulta="and s.id_empleado=IDEmpleadoConsulta";
         
     }else{
-        IDEmpleadoConsulta=lv_mi_empleado;
+        IDEmpleadoConsulta="and s.id_empleado="+lv_mi_empleado;
     }
+     if(lv_mi_empleado==="0"){
+            var txt;
+            var r = confirm("Esta seguro que desea consultar todos los Gestores \nRecuerde que esta consulta puede detener los procesos actuales del Sistema. \nProcure utilizar los filtros");
+            if (r == false) {
+               return;
+            } 
+         
+          IDEmpleadoConsulta="";
+     }
     
-      var lv_filtros=" where s.id_cliente=IDClienteConsulta and s.id_empleado="+IDEmpleadoConsulta+" and s.estado != 'E'";
+    
+      var lv_filtros=" where s.id_cliente=IDClienteConsulta "+IDEmpleadoConsulta+" and s.estado != 'E'";
     var sqlQuery=lv_select+lv_datos+lv_from+lv_query+lv_filtros;
     
     //
@@ -1048,8 +1058,7 @@ document.getElementById("escogecliente").innerHTML="";
     					"sortDescending":	"Ordenación descendente"
     				}
     			},
-            paging: false,
-            scrollY:        500
+            paging: false
     } );
     $('#id_loader').css("display", "none");
     $('#det_filtro').modal('hide');   
@@ -1547,10 +1556,10 @@ function Totales_Suman(lv_query_sum, cartera){
         // console.log('data: '+result.data.total_vencidos);
           $.each(result.data, function(key, val){  
               console.log('data: '+val.total_vencidos);
-               document.getElementById("ttvencidos").innerHTML="<h6  style='color: #F66C27'>Total Vencido:</h6> <strong>$"+val.total_vencidos+"</strong>";
-               document.getElementById("ttpagos").innerHTML="<h6  style='color: #F66C27'>Recuperado </h6><strong>$"+val.pagos+"</strong>";
-               document.getElementById("ttsaldos").innerHTML="<h6  style='color: #F66C27'>Saldos: </h6><strong>$"+val.saldo+"</strong>";
-               document.getElementById("cant_clientes_asignados").innerHTML="<h6  style='color: #F66C27'>Clientes Asigandos: </h6><strong>N° "+val.total_clientes+"</strong>";
+               document.getElementById("ttvencidos").innerHTML=val.total_vencidos;
+               document.getElementById("ttpagos").innerHTML=val.pagos;
+               document.getElementById("ttsaldos").innerHTML=val.saldo;
+               document.getElementById("cant_clientes_asignados").innerHTML=val.total_clientes;
           // $("#tresultado_gestion").append($("<option>",{value:val.idTipoResultado,text:val.nombreTipoResultado}));
           });
     });
@@ -1651,7 +1660,7 @@ function BuscarCliente(){
     				"lengthMenu":			"Mostrar _MENU_ registros",
     				"loadingRecords":		"Cargando...",
     				"processing":			"Procesando...",
-    				"search":			"Buscar:",
+    				"search":			"Buscar Cliente:",
     				"searchPlaceholder":		"Dato para buscar",
     				"zeroRecords":			"No se han encontrado coincidencias.",
     				"paginate": {
@@ -1738,7 +1747,7 @@ function mostrar_busqueda_deudor(){
 function consulta_cartera_empleados(){
  var accion = "consultar_cliente_empleado1";
  document.getElementById("mitable_cartera_empleado").innerHTML = "";
-    var htmlTable="<table id='cartera_empleado' class='table table-striped table-bordered dt-responsive nowrap table-hover'><thead><tr bgcolor='#BFF3A0'> <th>Empleados</th><th>Cartera</th><th>Asignados</th><th>Recuperado</th></tr></thead><tbody></tbody></table>";
+    var htmlTable="<table id='cartera_empleado' class='table table-striped table-bordered dt-responsive nowrap table-hover'><thead><tr bgcolor='#FEC187'> <th>Empleados</th><th>Cartera</th><th>Asignados</th><th>Recuperado</th></tr></thead><tbody></tbody></table>";
     document.getElementById("mitable_cartera_empleado").innerHTML = htmlTable;
     
     $('#cartera_empleado').DataTable( {
@@ -1752,6 +1761,50 @@ function consulta_cartera_empleados(){
                 { "data": "razon_social" },
                 { "data": "asignados" },
                 { "data": "valor_recuperado" }
+            ],
+            paging: false,
+                  "language": {
+    				"emptyTable":			"No hay datos disponibles en la tabla.",
+    				"info":		   		"Del _START_ al _END_ de _TOTAL_ ",
+    				"infoEmpty":			"Mostrando 0 registros de un total de 0.",
+    				"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+    				"infoPostFix":			"(actualizados)",
+    				"lengthMenu":			"Mostrar _MENU_ registros",
+    				"loadingRecords":		"Cargando...",
+    				"processing":			"Procesando...",
+    				"search":			"Buscar:",
+    				"searchPlaceholder":		"Dato para buscar",
+    				"zeroRecords":			"No se han encontrado coincidencias.",
+    				"paginate": {
+    					"first":			"Primera", 
+    					"last":				"Última",
+    					"next":				"Siguiente",
+    					"previous":			"Anterior"
+    				},"aria": {
+    					"sortAscending":	"Ordenación ascendente",
+    					"sortDescending":	"Ordenación descendente"
+    				}
+    			}
+    } );
+       
+}
+
+function consulta_cedentes_subcartera(){
+ var accion = "consulta_subcartera_cendente";
+ document.getElementById("cedente_subcartera").innerHTML = "";
+    var htmlTable="<table id='subcaretras' class='table table-striped table-bordered dt-responsive nowrap table-hover'><thead><tr bgcolor='#FEC187'><th>Cendente</th><th>Sub Carteras</th><th>Total Clientes</th></tr></thead><tbody></tbody></table>";
+    document.getElementById("cedente_subcartera").innerHTML = htmlTable;
+    
+    $('#subcaretras').DataTable( {
+        "ajax": {   
+            "data": {"accion": accion},
+            "url": "consultacartera",
+            "type": "GET"
+            },
+            "columns": [
+                { "data": "cliente"},
+                { "data": "sub_cartera" },
+                { "data": "cant_clientes" }
             ],
             paging: false,
                   "language": {

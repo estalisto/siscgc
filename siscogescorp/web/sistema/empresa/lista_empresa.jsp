@@ -36,7 +36,7 @@
                  </div-->
               <table id="example1" class="table table-bordered table-hover">
                 <thead>
-                <tr>
+                <tr bgcolor='#FEC187'>
                   <th class="hidden">ID</th>
                   <th>Identificación</th>
                   <th>Nombre</th>

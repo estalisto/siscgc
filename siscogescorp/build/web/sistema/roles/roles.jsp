@@ -72,7 +72,7 @@
                           <div class="box-body">
                             <table id="example1" class="table table-bordered table-hover">
                               <thead>
-                              <tr  bgcolor='#A0F070'>
+                              <tr  bgcolor='#FEC187'>
                                 <th class="hidden">ID</th>
                                 <th>Nombre Rol</th>
                                 <th>Empresa</th>

@@ -44,6 +44,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page import="com.siscogescorp.servicios.ModulosRoles"%>
+<%@page import="com.siscogescorp.servicios.ParametrosServicios"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -82,9 +83,9 @@
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <!--link href="dist/css/bootstrap-datepicker.css" rel="stylesheet" /
   <link href="plugins/datepicker/bootstrap-datepicker.css" rel="stylesheet" /> --> 
-    <link rel="stylesheet" href="dist/css/jquery.datetimepicker.css">  
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/jquery.datetimepicker.css">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -97,11 +98,11 @@
 
         <style type="text/css">
 input:enabled {
-background-color:#FDF9DB;
+background-color:#FBE3BF;
 border: 1px solid #FAC197;
 }
 select:enabled {
-background-color:#FDF9DB;
+background-color:#FBE3BF;
 border: 1px solid #FAC197;
 }
 
@@ -117,7 +118,7 @@ table tr {
 
 </style>
 
-<body style="background-color:#9e9998">
+<body id="MisGraficas" style="background-color:#9e9998">
     <div  id="mensajeSalida"></div>
   
 <nav class="topnav navbar navbar-inverse" style="background-color:#F98021; border-color: #E7E7E7;" >
@@ -134,6 +135,7 @@ table tr {
       <ul class="nav navbar-nav">
            <% 
                Integer nivelPadre2=0,contador2=0;
+               ParametrosServicios param = new ParametrosServicios(); 
            ModulosRoles mroles = new ModulosRoles();
             List<LcModuloRol> datos_modulos = mroles.getLcModulosRoles(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
             List<LcModuloRol> datos_modulos2 = mroles.getLcModulosRolesROL(Integer.parseInt(Sidentificacion),Integer.parseInt(id_empresa));
@@ -178,22 +180,22 @@ table tr {
           
           <div class="row well-sm">
               <div class="col-lg-8">
-                  <select class="input-sm" id="mi_empleado">
+                  <select class="input-sm text-bold" id="mi_empleado">
                                 <%   EmpleadosServicios emp = new EmpleadosServicios();
                                     String s_empleados3=""; s_empleados3= emp.misEmpleadosALL(Integer.parseInt(id_empresa), RolEmpleado, Integer.parseInt(IdEmpleado)); %>
                                 <%=s_empleados3%>
                             </select>
-                            <select class="input-sm"  id="idcartera" >
+                            <select class="input-sm text-bold"  id="idcartera" >
                             </select>
                            
               </div>
           </div>
           
-          <div class="row well-sm">
-              <div class="col-lg-4">
-                  <div class="box box-info">
+          <div class="row well-sm" >
+              <div class="col-lg-4" hidden="true">
+                  <div class="box box-warning">
                     <div class="box-header with-border">
-                      <h3 class="box-title">Producción Diaria</h3>
+                      <h3 class="box-title">Producción Diaria -- </h3>
                       <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <!--button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button-->
@@ -204,16 +206,16 @@ table tr {
                     </div>
                     <div class="box-footer clearfix">
                             
-                       <input id="fecha_gestion" type="text" class="input-sm" placeholder="YYYY-MM-DD" />      
+                       <!--input id="fecha_gestion" type="text" class="input-sm text-bold" placeholder="YYYY-MM-DD" /-->      
                       <a href="#" class="btn btn-sm btn-default ">Consultar</a>
                     </div>
                   </div>
               </div>
               
-              <div class="col-lg-8">
-                  <div class="box box-info">
+              <div class="col-lg-8" >
+                  <div class="box box-warning">
                     <div class="box-header with-border">
-                      <h3 class="box-title">Producción Mensual</h3>
+                      <h3 class="box-title">Producción Diaria</h3>
                       <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <!--button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button-->
@@ -223,12 +225,41 @@ table tr {
                       <div id="chart_gestiones_mensual" ></div>
                     </div>
                     <div class="box-footer clearfix ">
-                         <input id="fecha_gestion_ini" type="text" class="input-sm" placeholder="YYYY-MM-DD" />
-                          <input id="fecha_gestion_fin" type="text" class="input-sm" placeholder="YYYY-MM-DD" />
-                       <a href="#" class="btn btn-sm btn-default pull-right">Consultar</a>
+                         <input id="fecha_gestion" type="text" class="input-sm text-bold" placeholder="YYYY-MM-DD" />
+                          <!--input id="fecha_gestion_fin" type="text" class="input-sm text-bold" placeholder="YYYY-MM-DD" /-->
+                          <a href="#" onclick="ConsultaGestionesDiariasAll();" class="btn btn-sm btn-default pull-right">Consultar</a>
                     </div>
                   </div>
               </div>
+              <div class="col-lg-4" >
+                  <div >
+                    <div class="info-box">
+                      <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Compromisos de Pagos</span>
+                        <span class="info-box-number">48</span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+                  <div >
+                    <div class="info-box">
+                      <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                      <div class="info-box-content">
+                        <span class="info-box-text">Total Recuperado</span>
+                        <span class="info-box-number">48000</span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+              </div>
+              
+              
+             
           </div>
           
           
@@ -718,7 +749,7 @@ table tr {
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Meses', 'Compromisos de Pago'],           
-              <%=gfc.ObtenerCompromisosPagos()%>
+           /*  <%=gfc.ObtenerCompromisosPagos()%>*/
            ]);
         var options = {
            title: 'Compromisos de Pagos'
@@ -744,7 +775,7 @@ table tr {
       function drawChart3() {
         var data = google.visualization.arrayToDataTable([
           ['','Gestiones'],           
-             <%=gfc.ObtenerGestiones()%> 
+            /*   <%=gfc.ObtenerGestiones()%> */
           ]);
 /*
           ['2014', 1000, 400, 200],
@@ -825,7 +856,8 @@ table tr {
     });*/
    
        
-       <%=gfc.ObtenerGestionmesesHist(IdEmpleado)%>
+      /* <%=gfc.ObtenerGestionmesesHist(IdEmpleado)%>*/
+           
 
 </script>  
 
@@ -1103,7 +1135,7 @@ function fnc_registra_datos_gestion(IdDeudor,IdClienteCartera){
        
           $.each(result.Notificaciones, function(key, val){ 
                 console.log("nombres_completo >>"+val.nombres_completo+" "+val.id_datos_deudor+" "+val.id_cliente);
-                 fnc_notificacion('VOLVER A LLAMAR','CED: '+val.identificacion+'\n'+val.nombres_completo+' \n'+val.cliente+'',val.id_datos_deudor,val.id_cliente,val.id_recordatorio);
+                fnc_notificacion('VOLVER A LLAMAR','CED: '+val.identificacion+'\n'+val.nombres_completo+' \n'+val.cliente+'',val.id_datos_deudor,val.id_cliente,val.id_recordatorio);
                 
     
             });
@@ -1131,24 +1163,42 @@ var parametros = {
      }
 </script>
 <script>
-	google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-         ['Meses', 'PYCCA ', 'ORIFLAME', 'DEPRATI', 'BANCO GUAYAQUIL', 'ARTEFACTA', 'CREDITOS ECONOMICOS'],
-         ['2017-DIC',  165,      938,         522,             998,           450,      614.6],
-         ['2018-ENE',  135,      1120,        599,             1268,          288,      682],
-         ['2018-FEB',  157,      1167,        587,             807,           397,      623],
-         ['2018-MAR',  139,      1110,        615,             968,           215,      609.4],
-         ['2018-ABR',  136,      691,         629,             1026,          366,      569.6]
+            
+          <%  String valores="";
+          if(request.getAttribute("GraficaDiaria")!=null){
+              valores=request.getAttribute("GraficaDiaria").toString();
+          %>
+      
+           <%=valores%>
+          <%
+           }else{
+                Integer mis_empleados=0;       
+                String permisos_roles= param.Consulta_Parametro("LB_FILTROS_USUARIOS");                            
+                if(!permisos_roles.contains(RolEmpleado)){
+                mis_empleados=Integer.parseInt(IdEmpleado);
+                }
+      %>
+              <%=gfc.fnc_ConsultaMisGestionesDiariasOK(Integer.parseInt(id_empresa),mis_empleados,"",0) %>
+      <%    
+      }
+      
+      %>
+     
+            
+             
+             
       ]);
 
     var options = {
-      title : 'Producción Mensual',
+      title : 'Producción Diaria',
       vAxis: {title: 'Gestiones'},
-      hAxis: {title: 'Meses'},
+      hAxis: {title: 'Clientes'},
       seriesType: 'bars'
     };
 
@@ -1162,18 +1212,16 @@ var parametros = {
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Clientes', 'eharo', 'mroldan', 'cmorales'],
-          ['PYCCA', 1000, 400, 200],
-          ['DEPRATI', 1170, 460, 250],
-          ['ORIFLAME', 660, 1120, 300],
-          ['BANCO GUAYAQUIL', 1030, 540, 350]
+            ['Clientes','eharo','jbanchon1','jbanchon2','jbanchon3','jbanchon4','jbanchon5','jbanchon6','jbanchon7',],
+            ['ALMACENES PYCCA SA',1,4,0,0,2,2,2,2,],
+            ['DEPRATI',4,0,5,7,0,0,0,0,],
         ]);
 
         var options = {
           chart: {
             title: 'Mis carteras',
 			subtitle: 'Gestiones diaras',
-//            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
           },
 		   vAxis: {format: 'decimal'},
 		   //height: 300,
@@ -1189,8 +1237,8 @@ var parametros = {
         <script>
         ConsultasMisCarteras();
         function ConsultasMisCarteras(){
-document.getElementById("idcartera").innerHTML="";
-  $("#idcartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
+     document.getElementById("idcartera").innerHTML="";
+     $("#idcartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
      $.getJSON("consultacartera", {"accion" : "AllClientes"}, function(result){
           $.each(result.listaClientes, function(key, val){   
            $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));

@@ -40,7 +40,7 @@
             <div id="tbusuarios" class="box-body" style="overflow-x:scroll;">
               <table id="example1" class="table table-bordered table-hover">
                 <thead>
-                <tr   bgcolor='#A0F070'>
+                <tr   bgcolor='#FEC187'>
                   <th class="hidden">ID</th>
                   <th>Empresa</th>
                   <th>Rol</th>

@@ -33,7 +33,7 @@
                                     <div class="box-body">
                                         <table id="example1" class="table table-bordered table-hover " >
                                             <thead>
-                                                <tr>
+                                                <tr bgcolor='#FEC187'>
                                                     <th>Empresa</th>
                                                     <th>Rol</th>
                                                     <th>Módulos</th>

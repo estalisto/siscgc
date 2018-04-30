@@ -31,7 +31,7 @@
                         <table id="orden_registro" class="table-hover table-striped " width="100%">
                         
                         <thead>
-                            <tr>                                
+                            <tr bgcolor='#FEC187'>                                
                                 <th>Nombre</th>
                                 <th>Monto</th>
                                 <th>Fecha Ingreso</th>

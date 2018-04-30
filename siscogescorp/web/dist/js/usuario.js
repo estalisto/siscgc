@@ -379,7 +379,7 @@ document.getElementById("mensajeSalida").innerHTML = modal;
 function consulta_usuarios(){
     
       document.getElementById("tbusuarios").innerHTML = "";
-    var htmlTable="<table id='example1' class='table table-bordered table-hover'><thead><tr  bgcolor='#A0F070'><th class=''>ID</th><th>Empresa</th><th>Rol</th><th>Identificacion Empleados</th> <th>Usuario </th><th>Fecha Ingreso </th><th>Estado </th><th>Acción </th></tr></thead><tbody></tbody></table>";
+    var htmlTable="<table id='example1' class='table table-bordered table-hover'><thead><tr  bgcolor='#FEC187'><th class=''>ID</th><th>Empresa</th><th>Rol</th><th>Identificacion Empleados</th> <th>Usuario </th><th>Fecha Ingreso </th><th>Estado </th><th>Acción </th></tr></thead><tbody></tbody></table>";
     document.getElementById("tbusuarios").innerHTML = htmlTable;
     
     $('#example1').DataTable( {

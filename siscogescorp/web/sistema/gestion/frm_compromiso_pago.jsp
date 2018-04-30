@@ -18,11 +18,11 @@
 <!--link rel="stylesheet" href="dist/css/jquery.datetimepicker.css"-->   
    <style type="text/css">
 input:enabled {
-background-color:#FDF9DB;
+background-color:#FBE3BF;
 border: 1px solid #FAC197;
 }
 select:enabled {
-background-color:#FDF9DB;
+background-color:#FBE3BF;
 border: 1px solid #FAC197;
 }
 
@@ -80,7 +80,7 @@ table tr {
                         <div id="busca_compromisos"> 
                           <table  id="compro_pago" class="table table-striped table-bordered table-hover " cellspacing="0" width="100%">                            
                             <thead>  
-                            <tr bgcolor='#A0F070'>
+                            <tr bgcolor='#FEC187'>
                               <th class="col-sm-1 text-center" >N°</th>
                               <th class="col-sm-1  text-center">Fecha llamada</th>
                               <th class="col-sm-3">Acreedor</th>
@@ -107,53 +107,168 @@ table tr {
                                         
 
 <div id="gestion_cliente" hidden>
-               
-      <div class="panel panel-success  margin">
-                    <div class="row">
-                        <div class="col-lg-6 text-center">
-                             <h3><label id="deudor"> NOMBRE COMPLETO DEL DEUDOR </label></h3>
+                <div class="panel panel-success  margin">
+                     
+                    <div class="row well-sm">
+                        <div class="col-lg-4 ">
+                            <h3> <span class="small" style="color: #F66C27">CLIENTE:</span> <strong><label  id="deudor" >NOMBRE COMPLETO DEL DEUDOR  </label></strong>
+                            <br><span class="small" style="color: #F66C27">CED./RUC:</span> <strong><label class="lead text-left text-blue"  id="identificacion">0922343456001 </label></strong></h3> 
+                           
+                            
                         </div>
-                        <div class="col-lg-1 text-right" >
-                            <img id="img_cargando" src="resources/dist/img/loader.gif" class="img-circle" alt="User Image" width="20" style="display: none">
+                        <div class="col-lg-2">
+                            <h4> <span class="small" style="color: #F66C27">CEDENTE:</span> <strong><label class="lead text-left text-blue"  id="cliente">RAZON SOCIAL DEL CEDENTE  </label></strong></h4> 
+                            
+                            
+                        </div>
+                        <div class="col-lg-1 text-right">
+                            <img id="img_cargando" src="resources/dist/img/loader.gif" class="img-circle text-center " alt="User Image" width="20" style="display: none">
                         </div>
                         <div class="col-lg-5 text-right">                            
                             <ol class="Breadcrumb default">
                                 <div class="btn-group btn-breadcrumb">
-                                    <a href="#referencia" onclick="listo();" id="listoModal" data-toggle="modal" class="active btn btn-warning btn-sm" >Referencia</a>
-                                     <a href="#det_articulo" onclick="ComprasJson();" data-toggle="modal" class="active btn btn-warning btn-sm" >Detalles Artículo</a>
-                                    <a href="#det_cuotas"  data-toggle="modal" class="active btn btn-warning btn-sm" >Detalles Cuotas</a>
-                                    <a href="#historial_pagos"  data-toggle="modal" onclick="consulta_historial();" class="active btn btn-warning btn-sm" >Historial Pagos</a>
-                                    <!--a id="anterior"  onclick="Antdeudor2()" class="btn btn-success btn-sm "><i class="fa fa-fast-backward"></i> Siguiente</a>
-                                    <a id="siguiente"  onclick="Sgtedeudor2()" class="btn btn-success btn-sm ">Anterior <i class="fa fa-fast-forward"></i> </a-->                        
-                           
+                                    <!-- style='color:#F98021;' -->
+                                    <a style='background-color:#F98021;' href="#referencia" onclick="listo();" id="listoModal" data-toggle="modal" class="active btn btn-warning btn-lg" >Referencia</a>
+                                    <a style='background-color:#F98021;' href="#det_articulo" onclick="ComprasJson();" data-toggle="modal" class="active btn btn-warning btn-lg " >Detalles Artículo</a>
+                                    <a style='background-color:#F98021;' href="#det_cuotas"  data-toggle="modal" class="active btn btn-warning btn-lg" >Detalles Cuotas</a>
+                                    <a style='background-color:#F98021;' href="#historial_pagos"  data-toggle="modal" onclick="consulta_historial();" class="active btn btn-warning btn-lg " >Historial Pagos</a>
+                                    
                                 </div>                    
-                            </ol>                            
+                            </ol> 
+                                <ol>
+                                    <div class="btn-group btn-breadcrumb" hidden>
+                                        <a style='background-color:#F98021;' id="anterior"  onclick="Antdeudor2()" class="btn btn-success btn-lg"><i class="fa fa-arrow-circle-left text-black"></i>  </a>
+                                         <a style='background-color:#F98021;' id="siguiente"  onclick="Sgtedeudor2()" class="btn btn-success btn-lg ">  <i class="fa fa-arrow-circle-right text-black"></i> </a>                        
+                                    </div>
+                                </ol>
                         </div>                        
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 text-left">
-                            <label class="col-sm-4 " style="color: #F66C27">CED./RUC:</label> <label class="col-sm-6 " id="identificacion">Cliente: 0999999999 </label><br>
-                            <label class="col-sm-4 " style="color: #F66C27">CEDENTE: </label> <label   id="cliente" class="col-sm-6  text-primary"> RAZON SOCIAL DEL CEDENTE</label>
+                    <div class="row well-sm">
+                        <div class="col-lg-1 text-left"><p class="col-sm-6 " style="color: #F66C27">DEUDA:</p></div>
+                        <div class="col-lg-1 text-left"><p class="col-sm-2 text-bold lead" style="color: #030303" id="labelTotalDeuda"><strong>$ 00</strong></p></div>
+                        <div class="col-lg-1 text-right"><p class="col-sm-6 "style="color: #F66C27">VENCIDO: </p></div>
+                        <div class="col-lg-1 text-left"><p class="col-sm-2 text-bold lead" style="color: #030303" id="labelTotalVencido"><strong>$ 0</strong></p></div>
+                        <div class="col-lg-1 text-right"><p class="col-sm-6 " style="color: #F66C27">PAGOS: </p></div>
+                        <div class="col-lg-1 text-left"><p class="col-sm-2 text-bold lead" style="color: #030303" id="labelPagos"><strong>$ 00</u></strong></div>
+                        <div class="col-lg-1 text-right"><p class="col-sm-6 " style="color: #F66C27">SALDO: </p></div>
+                        <div class="col-lg-1 text-left"><p class="col-sm-2 text-bold lead" style="color: #030303" id="labelSaldos"><strong>$ 00</strong></p></div>
+                        <div class="col-lg-2 text-right"><p  class="col-sm-6" style="color: #F66C27">DÍAS MORA: </p></div>
+                        <div class="col-lg-2 text-left"><p class="col-sm-1 text-bold lead" style="color: #030303" id="labelDiasMora"><strong>00 DÍAS</strong></p></div>
+                     </div>
+                    <div class="row well-sm">
+                        <div class="col-lg-5">
+                            <div id="pagedireccion">  
+                            <div>
+                                <div id="table_direccion" class="form-group">                                
+                                    <dt><a href="#" class="text-aqua"  onclick="AddDirModal();"> Agregar <i class="fa fa-plus"></i></a> </dt>
+                                    <div id="TablaDirecciones" class="box table-responsive" >
+                                        <table id="idAllDireccions" class=" table-striped table-bordered dt-responsive table-condensed nowrap table-hover" cellspacing="0" width="100%">                                           
+                                            <thead>
+                                                <tr  bgcolor="#B5EE8E" width="100%">
+                                                    <th class="col-sm-2">Tipo</th>
+                                                    <th class="col-sm-6">Direcciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>                                                
+                                            </tbody>
+                                        </table>
+                                    </div>                                       
+                                </div>  
+                            </div>
+                            </div>
+                            <div id="pagetelefono">  
+                            <div >        
+                                <dt><a href="#" class="text-aqua " onclick="AddTelModal();"> Agregar <i class="fa fa-plus"></i> </a></dt>
+                                <div id="table_telefono" class="box table-responsive">  
+                                    <table id="idAllTelefonos" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr  bgcolor="#B5EE8E">
+                                                <th class="col-sm-2">Tipo</th>
+                                                <th class="col-sm-8">Télefonos</th>
+                                                <th class="col-sm-2">Llamar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </div>  
                         </div>
-                        <div class="col-lg-3 text-left">
-                            <label class="col-sm-6 " style="color: #F66C27">Total Deuda:   </label><label class="col-sm-2 " style="color: #030303" id="labelTotalDeuda"><u>$ 00</u></label><br>
-                            <label class="col-sm-6 "style="color: #F66C27">Total Vencido: </label><label class="col-sm-2 " style="color: #030303" id="labelTotalVencido"><u>$ 0</u></label>
-                            
-                                     
-                        </div>
-                        <div class="col-lg-3 text-left">
-                            <label class="col-sm-6 " style="color: #F66C27">Pagos:         </label><label class="col-sm-2 " style="color: #030303" id="labelPagos"><u>$ 00</u></label><br>
-                            <label class="col-sm-6 " style="color: #F66C27">Saldo:      </label><label class="col-sm-2 " style="color: #030303" id="labelSaldos"><u>$ 00</u></label> <br>
-                            
-                                 
-                        </div>
-                        <div class="col-lg-2 text-left">
-                            <label  class="col-sm-6" style="color: #F66C27">Días Mora: </label><label class="col-sm-1 " style="color: #030303" id="labelDiasMora"><u>00 Dias</u></label>
-                                 
+                        <div class="col-lg-7">
+                            <div class="row">
+                                <div class="col-lg-6">                             
+                                        <dt>Localidad: </dt>
+                                        <select class="input-sm form-control" id="Ciudad" name="Ciudad" required="required" disabled="true"></select>
+                                  
+                                        <dt>Recordatorio: </dt>
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <input type="text" class="form-control input-sm datepicker" data-date-format="yyyy-mm-dd hh:mi:ss" id="datepickerRecordatorio" onkeyup="verificaFecha();" name="datepickerRecordatorio" placeholder="YYYY-MM-DD" disabled="true">
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <input type="text" class="form-control input-sm" id="hora" name="hora" placeholder="23:59" onkeyup="validaHora();" disabled="true">
+                                            </div>
+                                        </div>
+
+                                            <dt> Fecha Compromiso y Monto:</dt> 
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <input  type="text" class="form-control input-sm datepicker" onkeyup="verificaFecha2();" id="datepickerCompromiso" name="datepickerCompromiso" placeholder="YYYY-MM-DD" disabled="true"/>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <input type="text" class="form-control input-sm" id="monto_compromiso" name="monto_compro" onkeypress="ValidaSoloNumeros()" placeholder="$ 0.00" disabled="true"/>
+                                            </div>
+                                        </div>
+                                        <span id="fechaCompro" ></span> 
+
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <dt>Mensaje:</dt>                                
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <dt style="color:#F66C27" id="contador_notas">400</dt>
+                                            </div>                            
+                                        </div>
+                                        <textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="4" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FBE3BF;  font-size:14px; font-type:Arial" value="0"></textarea>
+
+                                        <dt>Gestión: </dt>
+                                            <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultadoCompromisos()"></select> 		         
+                                        <dt>Respuesta: </dt>
+                                        <select class="input-sm form-control" name="resultado2" required="required" id="resultado2"></select>                                 
+                                        <div class="col-xs-3 hidden">
+                                                <div class="form-group">
+                                                    <label>Tipo Resultado escogido</label>
+                                                    <input type="text" class="form-control" id="tiporesultado" name="tiporesultado" value="" required="required">
+                                                </div> 
+                                            </div>
+                                    </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <dt>Explicación</dt>                                
+                                </div>
+                                <div class="col-sm-3">
+                                    <dt style="color:#F66C27" id="contador_descripcion">500</dt>
+                                </div>
+
+                            </div>
+                            <div class="row"> 
+                                    <div class="col-sm-10">
+                                          <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="4" placeholder="Historia" style="overflow-y:scroll; background-color:#FBE3BF; font-size:18px; font-type:Arial" ></textarea> 
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <br><a   onclick="GuardarTransaccnormalCompromisos()" class="btn btn-info btn-lg"><i class="fa fa-edit text-black"></i> GUARDAR</a>
+                                    </div>
+                            </div>     
                         </div>
                         
                     </div>
-                    
                     
                     
                         <div class="row" hidden="true">
@@ -416,141 +531,11 @@ table tr {
                                     </div>
                               
                         </div>
-                                    
-                                    
-                        <br>
                                    
-                        <div class="row">   
-                            <div id="pagedireccion">  
-                            <div class="col-lg-5">
-                                <div id="table_direccion" class="form-group">                                
-                                    <dt><a href="#" class="text-green" onclick="AddDirModal();"> Agregar <i class="fa fa-plus"></i></a> </dt>
-                                    <div id="TablaDirecciones" class="box table-responsive" >
-                                        <table id="idAllDireccions" class=" table-striped table-bordered dt-responsive table-condensed nowrap table-hover" cellspacing="0" width="100%">                                           
-                                            <thead>
-                                                <tr  bgcolor="#B5EE8E" width="100%">
-                                                    <th class="col-sm-2">Tipo</th>
-                                                    <th class="col-sm-6">Direcciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>                                                
-                                            </tbody>
-                                        </table>
-                                    </div>                                       
-                                </div>  
-                            </div>
-                            </div>
-                            <div id="pagetelefono">  
-                            <div  class="col-lg-3">        
-                                <dt><a href="#" class="text-green " onclick="AddTelModal();"> Agregar <i class="fa fa-plus"></i> </a></dt>
-                                <div id="table_telefono" class="box table-responsive">  
-                                    <table id="idAllTelefonos" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr  bgcolor="#B5EE8E">
-                                                <th class="col-sm-2">Tipo</th>
-                                                <th class="col-sm-8">Télefonos</th>
-                                                <th class="col-sm-2">Llamar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            </div>    
-                            <div class="form-group col-lg-4">
-                                <div class="row">
-                                    <div class="col-lg-5">                                 
-                                    <dt>Localidad: </dt>
-                                    <select class="input-sm form-control" id="Ciudad" name="Ciudad" required="required" disabled="true">
-                                        
-                                    </select>
-                                    </div>
-                                            
-                                    <div class="col-lg-7">
-                                        <dt>Recordatorio: </dt>     
-                                    <form class="form-inline">
-                                        <div class="input-group date">
-                                            <input size="8" type="text" class="form-control input-sm datepicker" data-date-format="yyyy-mm-dd hh:mi:ss" id="datepickerRecordatorio" onkeyup="verificaFecha();" name="datepickerRecordatorio" placeholder="YYYY-MM-DD" disabled="true">
-                                        </div> 
-                                            <input size="4" type="text" class="form-control input-sm" id="hora" name="hora" placeholder="23:59" onkeyup="validaHora();" disabled="true">
-                                    </form>     
-
-
-
-                                  
-                                   
-                                    </div>         
-                                               
-                                </div>    
-                                        <div class="row">
-                                            <div class="col-sm-10">
-                                                <dt>Mensaje:</dt>                                
-                                            </div>
-                                            <div class="col-sm-1">
-                                                <dt style="color:#F66C27" id="contador_notas">400</dt>
-                                            </div>                            
-                                        </div>
-						<textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="2" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FDF9DB;  font-size:14px; font-type:Arial" value="0"></textarea>
-						<!--textarea maxlength="500" id="txtnotaAdmin" class="form-control input-sm " rows="1" onkeyup="ValidarNota2()"  placeholder="NOTAS ADMINISTRADOR" style="overflow-y:scroll; background-color:#EDFAC5;  font-size:14px; font-type:Arial" value="0" readonly></textarea-->
-                                        </div>
-
-
-
-
-                        </div>
-                        <div class="row"> 
-                            <form name="form" action="cobranzas" method="post"  id="data">                 
-                                <div class="col-lg-4">                                  
-                                    <dt>Gestión: </dt>
-                                    <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultadoCompromisos()">
-                                      
-                                        
-                                    </select>                                 
-                                </div>
-                                <div class="col-xs-3 hidden">
-                                    <div class="form-group">
-                                        <label>Tipo Resultado escogido</label>
-                                        <input type="text" class="form-control" id="tiporesultado" name="tiporesultado" value="" required="required">
-                                    </div> 
-                                </div>    
-                                <div class="col-lg-4">                                  
-                                    <dt>Respuesta: </dt>
-                                    <select class="input-sm form-control" name="resultado2" required="required" id="resultado2">
-                                      
-
-                                    </select>                                 
-                                </div>
-
-                                <div class="col-lg-4" >
-                                    <dt> Fecha Compromiso y Monto:</dt> 
-                                        <div class="form-inline ">
-                                                <input size="15" type="text" class="input-sm datepicker" onkeyup="verificaFecha2();" data-date-format="yyyy-mm-dd" id="datepickerCompromiso" name="datepickerCompromiso" placeholder="YYYY-MM-DD" disabled="true">                                                        
-                                                <input size="15" type="text" class="input-sm" id="monto_compromiso" name="monto_compro" onkeypress="ValidaSoloNumeros()" placeholder="$ 0.00" disabled="true">
-                                                <span id="fechaCompro" ></span>  
-                                        </div>
-                                </div>
-                        </div>            
+                       
+                              
                                 
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <dt>Explicación</dt>                                
-                            </div>
-                            <div class="col-sm-3">
-                                <dt style="color:#F66C27" id="contador_descripcion">500</dt>
-                            </div>
-                            
-                        </div>
-                            
                         
-                            <div class="row"> 
-                                <div class="col-sm-10">
-                                      <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="2" placeholder="Historia" style="overflow-y:scroll; background-color:#FDF9DB; font-size:18px; font-type:Arial" ></textarea> 
-                                </div>
-                                <div class="col-sm-2">
-                                    <br><a   onclick="GuardarTransaccnormalCompromisos()" class="btn btn-success btn-lg"><i class="fa fa-edit"></i> REGISTRAR</a>
-                                </div>
-                            </div> 
                               
                             </form>
                             <section class="content ">
@@ -577,9 +562,8 @@ table tr {
                                 </div> 
                             </section>
                         </div>
-             
-                </div>
-                <br>
+                        
+                </div>               <br>
   </div>  <!-- fin de div de inicio  --> 
        
   

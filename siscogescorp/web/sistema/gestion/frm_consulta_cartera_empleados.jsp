@@ -82,32 +82,71 @@ table tr {
     <div class="row">
         <div class="col-lg-12">
             <div class=" box box-danger">
-                <h3>CONSULTA CARTERA POR EMPLEADO</h3>
+                <center><h3>Datos Cedentes</h3></center>
                 <hr> 
                 <div class="row">
                     <div class="col-lg-2"></div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" hidden>
                         <select class="form-control " name="cartera" required="required" id="cartera" hidden ></select>
                     </div>
                 </div>
                  <div class="row">
                      <div class="col-lg-1"></div>
                      <div class="col-lg-10">
-                         <div id="mitable_cartera_empleado">
-                            <table id="cartera_empleado" class="table table-striped table-bordered dt-responsive nowrap table-hover">
-                                <thead>
-                                    <tr bgcolor='#BFF3A0'> 
-                                        <th>Empleados</th>
-                                        <th>Cartera</th>
-                                        <th>Asignados</th>
-                                        <th>Recuperado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
+                         <div class="panel panel-default">
+                             <div class="pannel panel-heading text-info text-bold lead" style="background-color:#9e9998;color:whitesmoke;" > Asignación de Cartera por Empleado</div>
+                             <div class="pannel panel-body">
+                                 <div id="mitable_cartera_empleado">
+                                    <table id="cartera_empleado" class="table table-striped table-bordered dt-responsive nowrap table-hover">
+                                        <thead>
+                                            <tr bgcolor='#FEC187'> 
+                                                <th>Empleados</th>
+                                                <th>Cartera</th>
+                                                <th>Asignados</th>
+                                                <th>Recuperado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                             </div>
+                             
+                         </div>
+                         
+                     </div>
+                     <div class="col-lg-1"></div>
+             </div>
+                <br>
+                
+                 <div class="row">
+                     <div class="col-lg-1"></div>
+                     <div class="col-lg-10">
+                         <div class="panel panel-default">
+                             <div class="pannel panel-heading  text-bold lead" style="background-color:#9e9998;color:whitesmoke;" > Total Clientes por Sub-CarteraCartera</div>
+                             <div class="pannel panel-body">
+                                 <div id="cedente_subcartera">
+                                    <table id="subcaretras" class="table table-striped table-bordered dt-responsive nowrap table-hover">
+                                        <thead>
+                                            <tr bgcolor='#FEC187'> 
+                                                <th>Cendente</th>
+                                                <th>Sub Carteras</th>
+                                                <th>Total Clientes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                             </div>
+                                
+                             
+                         </div>
+                         
+                         
+                         
                      </div>
                      <div class="col-lg-1"></div>
                 
@@ -160,6 +199,7 @@ $('#nombre_deudor').validCampoFranz('abcdefghijklmnñopqrstuvwxyzáéíóúüABC
 consultaMisClientes();
    
 consulta_cartera_empleados();
+consulta_cedentes_subcartera();
 });           
 </script>
 

@@ -2314,6 +2314,27 @@ String color;
              } 
             return valor; 
          }
+         public String fnc_ConsultaCedenteSubCaretra(int id_empresa){
+             String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement("select fnc_consulta_mis_asignaciones_clientes("+id_empresa+");");
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_consulta_mis_asignaciones_clientes");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor; 
+         }
   public String fnc_registra_notificacion(int id_empresa,int id_agencia, int id_deudor, int id_cliente, int id_empleado, String fecha){
              String valor = "";
          try{      

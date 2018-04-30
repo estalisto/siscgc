@@ -63,7 +63,7 @@
                              <table id="consulta_cartera" class="table-hover table-striped" cellspacing="0" width="100%">
                                  
                                  <thead>
-                                    <tr>                                  
+                                    <tr bgcolor='#FEC187'>                                  
                                        <th>Seleccionar</th>
                                        <th>Cartera</th>
                                        <th>Cantidad</th>

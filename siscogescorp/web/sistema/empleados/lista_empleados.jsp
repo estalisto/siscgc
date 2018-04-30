@@ -45,7 +45,7 @@
                 </div>
                 <table id="example1" class="table table-responsive table-bordered table-hover" style="display: block">
                 <thead>
-                <tr  bgcolor='#A0F070'>
+                <tr  bgcolor='#FEC187'>
                   <th class="hidden">ID</th>
                   <th>Agencia</th>
                   <th>Identificación</th>

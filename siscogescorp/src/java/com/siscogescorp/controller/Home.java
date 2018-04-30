@@ -57,7 +57,7 @@ public class Home extends HttpServlet {
             int RolEmpleado= Integer.parseInt(id_rol_empleado);
             id_empleados = sesion.getAttribute("Sstrempleado").toString();
             int EmpleadoID= Integer.parseInt(id_empleados);
-            String Grafica1="", str_parametro="LB_PERMISOS_ADMIN";
+            String Grafica1="",GraficaDiaria="", str_parametro="LB_PERMISOS_ADMIN";
             String id_empresa = sesion.getAttribute("Sstrempresa").toString();
              String id_agencia = sesion.getAttribute("Sstrsucursal").toString();
             
@@ -114,6 +114,17 @@ public class Home extends HttpServlet {
                     request.setAttribute("Grafica1", Grafica1);                   
             }
             request.getRequestDispatcher("sistema/index2.jsp").forward(request, response);
+        }
+        if (accion.equals("consultaGestionDiaria")){
+            
+            s_empleado=request.getParameter("s_empleado");
+            s_cliente=request.getParameter("s_cliente");
+            fecha_cons=request.getParameter("fecha_cons");
+           
+            GraficaDiaria = ds.fnc_ConsultaMisGestionesDiariasOK(1,Integer.parseInt(s_empleado), fecha_cons, Integer.parseInt(s_cliente));  
+            request.setAttribute("GraficaDiaria", GraficaDiaria);
+                
+            request.getRequestDispatcher("sistema/index_final.jsp").forward(request, response);
         }
         if (accion.equals("notificaciones")){
             String notificaciones="", query="select *, (select count(*) from lc_notificaciones n where receptor = "+EmpleadoID+"  and fecha_recepcion is null AND tipo_notificacion = ''WEB'') cantidad  from lc_notificaciones where receptor = "+EmpleadoID+" and fecha_recepcion is null AND tipo_notificacion = ''WEB''";

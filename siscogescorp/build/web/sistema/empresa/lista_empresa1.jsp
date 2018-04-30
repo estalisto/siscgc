@@ -66,7 +66,7 @@
             <div class="box-body" style="overflow-x:scroll;">
               <table id="example1" class="table table-bordered table-hover">
                 <thead>
-                <tr>
+                <tr bgcolor='#FEC187'>
                   <th>ID</th>
                   <th>Identificación</th>
                   <th>Nombre</th>

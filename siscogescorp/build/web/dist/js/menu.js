@@ -390,3 +390,15 @@ document.getElementById("mensajeSalida").innerHTML = modal;
  $("#myModal").modal();
 
 }
+
+function ConsultaGestionesDiariasAll(){
+    //var s_empleado=$("#s_empleado").val();  
+    var s_empleado = $("#mi_empleado").val();
+    var s_cliente = $("#idcartera").val();
+    var fecha_cons = $("#fecha_gestion").val();
+    alert("s_empleado: "+s_empleado+" s_cliente: "+" fecha_cons: "+fecha_cons);
+    
+    $("#MisGraficas").load("home", {"accion":"consultaGestionDiaria","s_empleado":s_empleado,"s_cliente":s_cliente,"fecha_cons":fecha_cons});
+  
+    
+}

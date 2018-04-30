@@ -137,7 +137,7 @@ border: 2px solid #CB8B07;
           
             <table id="consul_cartera" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
                 <thead>
-                    <tr bgcolor="#FBF5EF">                                  
+                    <tr bgcolor='#FEC187'>                                  
                         <th class="col-sm-1 text-left hidden" style="color: #3c8dbc">ID</th>                                                        
                         <th align="left" class="col-sm-1 text-left"><a id="IdentificacionID" onclick="orderIdent()">Identificación</a></th>
                         <th class="col-sm-2 text-left"><a id="NombresID" onclick="orderNombre()">Nombres</a></th>  
@@ -317,7 +317,7 @@ border: 2px solid #CB8B07;
                             <div id="DivTbEmpelados">
                               <table id="tbempleados" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
                                   <thead>
-                                      <tr bgcolor="#FBF5EF">                                  
+                                      <tr bgcolor='#FEC187'>                                  
                                           <th class="col-sm-1 text-left hidden" style="color: #3c8dbc">ID</th>                                                        
                                           <th class="col-sm-2 text-left"><a  >Nombres Empleado</a></th>  
                                           <th class="col-sm-1 text-left"><a >Cartera Asig.</a></th> 
@@ -377,7 +377,7 @@ border: 2px solid #CB8B07;
                                     <div id="DivTbEmpelados2">
                                       <table id="tbempleados2" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
                                           <thead>
-                                              <tr bgcolor="#FBF5EF">                                  
+                                              <tr bgcolor='#FEC187'>                                  
                                                   <th class="col-sm-2 text-left"><a > Nombres Empleado</a></th>  
                                                   <th class="col-sm-1 text-left"><a > Cantidad Cliente Asig.</a></th> 
                                                   <th class="col-sm-1 text-right"><a> Valor Total Asig.</a></th> 
@@ -434,7 +434,7 @@ border: 2px solid #CB8B07;
           
             <table id="consul_cartera" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="50%">
                 <thead>
-                    <tr bgcolor="#FBF5EF">                                  
+                    <tr bgcolor='#FEC187'>                                  
                         <th class="col-sm-1 text-left hidden" style="color: #3c8dbc">ID</th>                                                        
                         <th align="left" class="col-sm-1 text-left"><a id="Nombres" >Nombre Empleado</a></th>
                         <th class="col-sm-2 text-left"><a id="Cartera">Cartera</a></th>  

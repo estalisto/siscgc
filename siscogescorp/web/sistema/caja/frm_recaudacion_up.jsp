@@ -117,7 +117,7 @@
                                                     <div id="table_graf1" style="overflow-x:scroll;">
                                                         <table  class="table table-responsive table-bordered">
                                                             <thead>
-                                                                <tr>
+                                                                <tr bgcolor='#FEC187'>
                                                                 
                                                                 <th class="hidden">IdArticulo</th>
                                                                     <th>Articulo</th>

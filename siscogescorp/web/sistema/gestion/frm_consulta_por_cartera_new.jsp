@@ -49,11 +49,11 @@
   </head>
         <style type="text/css">
 input:enabled {
-background-color:#FDF9DB;
+background-color:#FBE3BF;
 border: 1px solid #FAC197;
 }
 select:enabled {
-background-color:#FDF9DB;
+background-color:#FBE3BF;
 border: 1px solid #FAC197;
 }
 
@@ -76,7 +76,25 @@ table tr {
                         <a href="#" class=" btn btn-default" onclick="compropago();">COMPROMISOS DE PAGO</a>
                         <a href="#" class="active btn btn-default"onclick="hidden_cartera_cliente('false');">CARTERA ASIGNADA</a>
                         <a href="#" class="btn btn-default" onclick="hidden_cartera_cliente('true');">GESTIÓN DEUDORES</a>
-                        <a href="#" data-toggle="modal" class="btn btn-default" data-target="#myModalBusqueda" id="busqueda_deudor">BUSCAR</a>
+                        <% 
+                     try{
+                            String cadena=param.getValorParametro("LB_VALIDA_BUSQUEDA_CLIENTE");
+                            int intIndex = cadena.indexOf(sesion.getAttribute("SstrRolEmpleado").toString());
+                            if(intIndex != - 1){
+                                //response.getWriter().println("true");
+                             %>
+                            <a href="#" data-toggle="modal" class="btn btn-default" data-target="#myModalBusqueda" id="busqueda_deudor">BUSCAR</a>
+                            <%
+                            }
+            
+                        }catch (Exception ex){
+                            response.getWriter().println("flase");
+                        }
+                    
+                    
+                    %>
+                        
+                        
                         <!--a href="#"  onclick="tableToExcel('tabla_div', 'cartera');"   class="btn btn-success  glyphicon glyphicon-download-alt">  EXPORTAR  </a-->
                     
                         
@@ -146,8 +164,8 @@ table tr {
         </div>
     </div>
 </section>
-    <div class="row">
-        <div class="col-lg-9">
+    <div class="row well-sm">
+        <div class="col-lg-12">
             <div class="box box-default">
                     <div >
                       <input  type="text" class="form-control input-sm hidden" id="IdDiasMora">
@@ -166,10 +184,10 @@ table tr {
                       <input  type="text" class="form-control input-sm hidden" id="secuencia_query" >
                        <input  type="text" class="form-control input-sm hidden" id="idNotas" value="0" >
                     </div> 
-                <div class="row">
-                    <div class="col-lg-3">
+                <div class="row well-sm">
+                    <div class="col-lg-2">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-addon" >Asesor:... </span>
+                            <span class="input-group-addon" >Gestor: </span>
                             <select class="form-control input-sm" id="mi_empleado">
                                 <%  String s_empleados3=""; s_empleados3= emp.misEmpleadosALL(Integer.parseInt(id_empresa), RolEmpleado, Integer.parseInt(IdEmpleado)); %>
                                 <%=s_empleados3%>
@@ -177,7 +195,7 @@ table tr {
 
                         </div>                        
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon" >Cedente: </span>
                             <select class="form-control " name="cartera" required="required" id="cartera" onchange="getipoCartera();getTiposGestiones();"  >
@@ -189,10 +207,40 @@ table tr {
                      </div>
 
                     </div>
+                    <div class="col-lg-2">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon" >Gestión: </span>
+                            <select class="form-control  input-sm" onchange="ConsultaTipoResultado();" name="tgestion" id="tgestion" ></select> 
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon" >Resultado: </span>
+                            <select class="form-control  input-sm " name="tresultado_gestion" id="tresultado_gestion" ></select>
+                        </div>                        
+                    </div>
+                    <div class="col-lg-2">
+                        <a id="btnconsultar" onclick="consulta_filtro_cartera();" class="btn btn-primary fa fa-database"> CONSULTAR </a>    
+                    </div>
+                    <div class="col-lg-2">
+                        <%
+                            String permisos_roles= param.Consulta_Parametro("LB_FILTROS_USUARIOS");
+                            
+                            if(permisos_roles.contains(RolEmpleado)){
+                            %>
+                            <a  onclick="tableToExcel('tabla_div', 'cartera');"   class="btn btn-success   glyphicon glyphicon-download-alt">  EXPORTAR  </a>
+
+                    
+                            <%
+                                  }
+                            %>
+
+                    </div>
                     
                     
                 </div>
-                <div class="row">
+                <div class="row well-sm">
                     <div class="col-lg-2">  
                         <div class="form-inline">
                             <label>Pagos</label><br>
@@ -236,112 +284,42 @@ table tr {
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row well-sm">
                     <div class="col-lg-2">
                         <div class="form-inline">  
                                         <label>F. Últ. Gestión</label><br>
-                                        <input size="7" type="text" class="form-control input-sm" id="datetimepicker12" name="ultima_gestiondesde" placeholder="YYYY-MM-DD" >                                                        
-                                        <input size="7" type="text" class="form-control input-sm" id="datetimepicker13" name="ultimo_gestionhasta" placeholder="YYYY-MM-DD" > 
+                                        <input size="6" type="text" class="form-control input-sm" id="datetimepicker12" name="ultima_gestiondesde" placeholder="YYYY-MM-DD" >                                                        
+                                        <input size="6" type="text" class="form-control input-sm" id="datetimepicker13" name="ultimo_gestionhasta" placeholder="YYYY-MM-DD" > 
                         </div>                        
                     </div>  
-                    <div class="col-lg-2">                        
+                    <div class="col-lg-2"> 
+                        <div class="form-inline">  
+                                <label>Fecha Compromiso</label><br>
+                                <input size="6" type="text" class="form-control input-sm" id="datetimepicker14" name="fecha_compromisodesde" placeholder="YYYY-MM-DD" >                                                        
+                                <input size="6" type="text" class="form-control input-sm" id="datetimepicker15" name="fecha_copromisohasta" placeholder="YYYY-MM-DD" > 
+                        </div>
+                    </div>                    
+                    <div class="col-lg-2">
+                        <dt>Cartera: </dt>
+                        <select class="form-control  input-sm " name="tcartera" id="tcartera" onchange="getipoSubCartera();"  disabled="true"></select>                        
                     </div>
-                    <div class="col-lg-2">                        
+                    <div class="col-lg-2">
+                        <dt>Sub-cartera: </dt>
+                        <select class="form-control  input-sm " name="tsub_cartera" id="tsub_cartera" onchange="getipoSegmento();" disabled="true"></select>                        
                     </div>
-                    <div class="col-lg-2">                        
+                    <div class="col-lg-2">
+                        <dt>Campaña: </dt>
+                        <select class="form-control  input-sm " name="tsegmento" id="tsegmento" onchange="getiposubSegmento();" disabled="true"></select>
+
                     </div>
-                    <div class="col-lg-2">                        
+                    <div class="col-lg-2">
+                        <dt>Sub-Campaña: </dt>
+                        <select class="form-control  input-sm " name="tsub_segmento" id="tsub_segmento" disabled="true"></select>
+                                                                
                     </div>
-                    <div class="col-lg-2">                        
-                    </div>
-                </div>
-                <form class="form-inline form-control-sm">
-                        <br>
-                                   <div class="input-group input-group-sm">
-                                      <span class="input-group-addon" id="ttvencidos" >Total Vencido: <strong>$0.00</strong></span>
-                                      <!--input type="text" class="form-control" placeholder="0.00" aria-describedby="sizing-addon3"-->
-                                    </div>
-                                  <div class="input-group input-group-sm">
-                                      <span class="input-group-addon" id="ttpagos" >Total Pagado: <strong>$0.00</strong></span>
-                                      <!--input type="text" class="form-control" placeholder="0.00" aria-describedby="sizing-addon3"-->
-                                    </div>
-                                  <div class="input-group input-group-sm">
-                                      <span class="input-group-addon"  id="ttsaldos" >Saldos: <strong>$0.00</strong></span>
-                                      <!--input type="text" class="form-control"  placeholder="0.00" aria-describedby="sizing-addon3"-->
-                                    </div>
-                                  <div class="input-group input-group-sm">
-                                    <span class="input-group-addon" id="cant_clientes_asignados"  >Asignados <strong>#0</strong></span>
-                                    <!--input type="text" class="form-control" id="cant_clientes_asignados" placeholder="0" aria-describedby="sizing-addon3"-->
-                                  </div>
-                                     
-                                    <!--div class="input-group input-group-sm" hidden="true">
-                                      <a href="#det_filtro" onclick="getTiposGestiones();"  data-toggle="modal" class="btn btn-primary  btn-sm glyphicon glyphicon-filter">  FILTRO  </a>
-                                    </div-->
-                                     <div class="input-group input-group-sm">
-                                      
-                                    </div>
-
-
-
-
-
-                                </form>
-                    <div class="pannel pannel-body" >
-
-
-                        <div id="tabla_div">
-
-
-                          <table id="consul_cartera" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
-                              <thead>
-                                  <tr bgcolor='#FEC187'>                                  
-                                      <th class="col-sm-1 text-left hidden" style="color: #3c8dbc">ID</th>                                                        
-                                      <th align="left" class="col-sm-1 text-left "><a id="IdentificacionID" style="color: #3c8dbc" onclick="orderIdent()">Identificación</a></th>
-                                      <th class="col-sm-2 text-left"><a id="NombresID" onclick="orderNombre()">Nombres</a></th>  
-                                      <th class="col-sm-1 text-left"><a id="DiasMoraID" onclick="orderDiasMora()" >Días Mora</a></th> 
-                                      <th class="col-sm-1 text-right"><a id="TotalID" onclick="orderTotalVenc()" >Total Vnc</a></th> 
-                                      <th align="center" class="col-sm-1 text-right"><a id="PagosID" onclick="orderPagos()">Pagos</a></th>
-                                      <th align="center" class="col-sm-1 text-right"><a id="FecUltPagosID" onclick="orderFechaUltPagos()">Fecha Ult. Pagos</a></th>
-                                      <th align="rigth" class="col-sm-1 text-right"><a id="SaldosID" onclick="orderSaldo()">Saldo</a></th> 
-                                      <th align="center" class="col-sm-1 text-right"><a id="ValorCompID" onclick="orderValorComp()">Valor Comp.</a></th> 
-                                      <th align="center" class="col-sm-2 text-center"><a id="FechaCompID" onclick="orderFechaComp()">Fecha Comp.</a></th>
-                                      <th align="center" class="col-sm-3"><a id="FechaID" onclick="orderFchGestion()" >Fecha Ult. Gestión</a></th> 
-                                      <th align="center" class="col-sm-3"><a id="UltimaID" onclick="orderUltima()">Ult. Gestión</a></th> 
-                                      <th align="center" class="col-sm-2"><a id="ResultadoID" onclick="orderResultado()">Resultado Gestión</a></th>
-                                      <th align="center" class="col-sm-2"><a id="ResultadoID" onclick="orderResultado()">Acciones</a></th>
-                                  </tr> 
-                              </thead>
-                              <tbody id="bodytable">
-                                   <%= request.getAttribute("Tablacartera") %>
-                              </tbody>
-                          </table>
-                         </div>
-                    </div> 
-                </div>
-            
-        </div>
-        <div class="col-lg-3">
-            <div class="modal-content">
-                <div class="modal-header">
-                        
-                        
-                            <%
-                            String permisos_roles= param.Consulta_Parametro("LB_FILTROS_USUARIOS");
-                            
-                            if(permisos_roles.contains(RolEmpleado)){
-                            %>
-                            <a  onclick="tableToExcel('tabla_div', 'cartera');"   class="btn btn-success   glyphicon glyphicon-download-alt">  EXPORTAR  </a>
-
-                    
-                            <%
-                                  }
-                            %>
-                            
-                            
-                            <a id="btnconsultar" onclick="consulta_filtro_cartera();" class="btn btn-primary fa fa-database"> CONSULTAR </a>
-                     
-                     <div class="row">
-                    <div class="col-lg-4" hidden>      
+                    <div class="col-lg-2" hidden>
+                        <input type="text"  class="form-control input-sm hidden" id="order_by" >
+                         <div class="col-lg-4" hidden>      
                                     <input type="radio" name="ordenar" onclick="fnc_order_by(this.value)" value="dias_mora">  Días Mora <br>
                                     <input type="radio" name="ordenar" onclick="fnc_order_by(this.value)" value="total_vencidos">  Total Vencido <br>
                                     <input type="radio" name="ordenar" onclick="fnc_order_by(this.value)" value="pagos">  Pagos<br>
@@ -386,77 +364,68 @@ table tr {
                                             </select>
                                     </div>                                                                                                            
                     </div>
-                    <div class="col-lg-12">             
-                                    <div class="row">
-                    <div class="col-lg-6">
+                   
 
-
-                            <div class="form-inline">
-                                            </div>
-                            
-                            
-                            <span id="escogecliente"></span>
-                            <div class="">
-                                    <dt>Gestión: </dt>
-                                    <select class="form-control  input-sm" onchange="ConsultaTipoResultado();" name="tgestion" id="tgestion" ></select> 
-                            </div>
-                            <div class="">
-                                    <dt>Resultado de Gestión: </dt>
-                                    <select class="form-control  input-sm " name="tresultado_gestion" id="tresultado_gestion" ></select>
-                            </div>
-
-
-                    </div>  
-                                                            <div class="col-lg-6">
-                                                                    
-                                                                    
-                                                                    
-
-                                                                    <div class="form-inline">  
-                                                                                    <label>Fecha Compromiso</label><br>
-                                                                                    <input size="7" type="text" class="form-control input-sm" id="datetimepicker14" name="fecha_compromisodesde" placeholder="YYYY-MM-DD" >                                                        
-                                                                                    <input size="7" type="text" class="form-control input-sm" id="datetimepicker15" name="fecha_copromisohasta" placeholder="YYYY-MM-DD" > 
-                                                                    </div>
-                                                                   <!-- /*Codigo 007: Inicio cambio */
-                                                                    /*Desarrollador: Jimmy Guaranda*/
-                                                                    /*Objetivo: Nuevos filtros*/-->
-                                                                    <div class="" >
-                                                                        <dt>Cartera: </dt>
-                                                                        <!--select class="form-control  input-sm" onchange=" getipoSubCartera();" name="tcartera" id="tcartera" disabled="true"></select--> 
-                                                                        <select class="form-control  input-sm " name="tcartera" id="tcartera" onchange="getipoSubCartera();"  disabled="true"></select>
-                                                                    </div>
-                                                                    <div class="" >
-                                                                            <dt>Sub-cartera: </dt>
-                                                                            <select class="form-control  input-sm " name="tsub_cartera" id="tsub_cartera" onchange="getipoSegmento();" disabled="true"></select>
-                                                                    </div>
-                                                                    <div class="">
-                                                                            <dt>Campaña: </dt>
-                                                                           <!--select class="form-control  input-sm" onchange="ConsultaSubsegmento();" name="tsegmento" id="tsegmento" ></select--> 
-                                                                           <select class="form-control  input-sm " name="tsegmento" id="tsegmento" onchange="getiposubSegmento();" disabled="true"></select>
-                                                                    </div> 
-                                                                    <div class="" >
-                                                                            <dt>Sub-Campaña: </dt>
-                                                                            <select class="form-control  input-sm " name="tsub_segmento" id="tsub_segmento" disabled="true"></select>
-                                                                    </div>
-                                                                   <!-- Fin cambio -->
-                                                                <input type="text"  class="form-control input-sm hidden" id="order_by" >
-
-
-                                                            </div>                                                    
-
-
-                                                    
-                                                    <br>
-
-                                                           
-                                    </div>           
-                            </div>
-                 </div>
+                    </div>
                 </div>
-           
-        </div>
+                <div class="row well-sm">
+                    <div class="col-lg-2">
+                        
+                    </div>
+                    <div class="col-lg-2">
+                     <h4> <span class="small" style="color: #F66C27">Total Vencido: </span> <strong><label class="lead text-left text-blue"  id="ttvencidos" > 0.00</label></strong></h4>    
+                    </div>
+                    <div class="col-lg-2">
+                        <h4> <span class="small" style="color: #F66C27">Total Pagado: </span> <strong><label class="lead text-left text-blue"  id="ttpagos" > 0.00</label></strong></h4>    
+                        
+                    </div>
+                    <div class="col-lg-2">
+                        <h4> <span class="small" style="color: #F66C27">Saldos: </span> <strong><label class="lead text-left text-blue"  id="ttsaldos" > 0.00</label></strong></h4>    
+                        
+                    </div>
+                    <div class="col-lg-2">
+                        <h4> <span class="small" style="color: #F66C27">Asignados </span> <strong><label class="lead text-left text-blue"  id="cant_clientes_asignados" > 0.00</label></strong></h4>    
+                        
+                    </div>
+                    
+                </div>
+                
+                
+                    <div class="pannel pannel-body" >
+
+
+                        <div id="tabla_div" style="height:500px;overflow-x:auto;overflow-y:auto;" >
+
+
+                          <table id="consul_cartera" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
+                              <thead>
+                                  <tr bgcolor='#FEC187'>                                  
+                                      <th class="col-sm-1 text-left hidden" style="color: #3c8dbc">ID</th>                                                        
+                                      <th align="left" class="col-sm-1 text-left "><a id="IdentificacionID" style="color: #3c8dbc" onclick="orderIdent()">Identificación</a></th>
+                                      <th class="col-sm-2 text-left"><a id="NombresID" onclick="orderNombre()">Nombres</a></th>  
+                                      <th class="col-sm-1 text-left"><a id="DiasMoraID" onclick="orderDiasMora()" >Días Mora</a></th> 
+                                      <th class="col-sm-1 text-right"><a id="TotalID" onclick="orderTotalVenc()" >Total Vnc</a></th> 
+                                      <th align="center" class="col-sm-1 text-right"><a id="PagosID" onclick="orderPagos()">Pagos</a></th>
+                                      <th align="center" class="col-sm-1 text-right"><a id="FecUltPagosID" onclick="orderFechaUltPagos()">Fecha Ult. Pagos</a></th>
+                                      <th align="rigth" class="col-sm-1 text-right"><a id="SaldosID" onclick="orderSaldo()">Saldo</a></th> 
+                                      <th align="center" class="col-sm-1 text-right"><a id="ValorCompID" onclick="orderValorComp()">Valor Comp.</a></th> 
+                                      <th align="center" class="col-sm-2 text-center"><a id="FechaCompID" onclick="orderFechaComp()">Fecha Comp.</a></th>
+                                      <th align="center" class="col-sm-3"><a id="FechaID" onclick="orderFchGestion()" >Fecha Ult. Gestión</a></th> 
+                                      <th align="center" class="col-sm-3"><a id="UltimaID" onclick="orderUltima()">Ult. Gestión</a></th> 
+                                      <th align="center" class="col-sm-2"><a id="ResultadoID" onclick="orderResultado()">Resultado Gestión</a></th>
+                                      <th align="center" class="col-sm-2"><a id="ResultadoID" onclick="orderResultado()">Acciones</a></th>
+                                  </tr> 
+                              </thead>
+                              <tbody id="bodytable">
+                                   <%= request.getAttribute("Tablacartera") %>
+                              </tbody>
+                          </table>
+                         </div>
+                    </div> 
+                </div>
             
         </div>
+        
         
     </div>
     
@@ -752,7 +721,7 @@ table tr {
                                                 <dt style="color:#F66C27" id="contador_notas">400</dt>
                                             </div>                            
                                         </div>
-                                        <textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="4" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FDF9DB;  font-size:14px; font-type:Arial" value="0"></textarea>
+                                        <textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="4" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FBE3BF;  font-size:14px; font-type:Arial" value="0"></textarea>
 
                                         <dt>Gestión: </dt>
                                             <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultado()"></select> 		         
@@ -778,7 +747,7 @@ table tr {
                             </div>
                             <div class="row"> 
                                     <div class="col-sm-10">
-                                          <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="4" placeholder="Historia" style="overflow-y:scroll; background-color:#FDF9DB; font-size:18px; font-type:Arial" ></textarea> 
+                                          <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="4" placeholder="Historia" style="overflow-y:scroll; background-color:#FBE3BF; font-size:18px; font-type:Arial" ></textarea> 
                                     </div>
                                     <div class="col-sm-2">
                                         <br><a   onclick="GuardarTransaccnormal()" class="btn btn-info btn-lg"><i class="fa fa-edit text-black"></i> GUARDAR</a>
@@ -1233,7 +1202,7 @@ var tableToExcel = (function() {
   return function(table, name) {
     if (!table.nodeType) table = document.getElementById(table)
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML }
-   // window.location.href = uri + base64(format(template, ctx))
+  window.location.href = uri + base64(format(template, ctx))
     
    
    
@@ -1249,15 +1218,10 @@ if(dd<10){
 if(mm<10){
     mm='0'+mm;
 } 
-var today = yyyy+''+mm+''+dd;
-
-
-
-
-    
-    
+var today2 = yyyy+''+mm+''+dd;
+console.log("today2"+today2);
      var link = document.createElement("a");
-            link.download = "Cartera_"+today+".xls";
+            link.download = "Cartera_"+today2+".xls";
             link.href = uri + base64(format(template, ctx));
             link.click();
   }

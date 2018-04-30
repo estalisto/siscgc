@@ -63,7 +63,7 @@
                             <table id="consulta_oficiales" class="table-hover table-striped" width="100%">
                                  
                                  <thead>
-                                    <tr>    
+                                    <tr bgcolor='#FEC187'>    
                                        <th>Seleccionar</th>
                                        <th>Nombre</th>
                                        <th>Deudores Asignados</th>

@@ -320,5 +320,52 @@ public class DashcboardOk {
              } 
             return valor;      
     }
-    
+     public String fnc_ConsultaMisGestionesDiarias(int id_empleado,String fecha ,int id_cliente){
+         
+         String consulta="select fnc_grafica_gestiones("+id_empleado+",'"+fecha+"',"+id_cliente+");";
+         
+         String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_grafica_gestiones");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;      
+    }
+     public String fnc_ConsultaMisGestionesDiariasOK(int id_empresa,int id_empleado,String fecha ,int id_cliente){
+         
+         String consulta="select fnc_grafica_gestiones_diarias("+id_empresa+","+id_empleado+",'"+fecha+"',"+id_cliente+");";
+         
+         String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_grafica_gestiones_diarias");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;      
+    }
 }
