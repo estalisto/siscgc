@@ -396,9 +396,162 @@ function ConsultaGestionesDiariasAll(){
     var s_empleado = $("#mi_empleado").val();
     var s_cliente = $("#idcartera").val();
     var fecha_cons = $("#fecha_gestion").val();
-    alert("s_empleado: "+s_empleado+" s_cliente: "+" fecha_cons: "+fecha_cons);
+   // alert("s_empleado: "+s_empleado+" s_cliente: "+s_cliente+" fecha_cons: "+fecha_cons);
     
     $("#MisGraficas").load("home", {"accion":"consultaGestionDiaria","s_empleado":s_empleado,"s_cliente":s_cliente,"fecha_cons":fecha_cons});
   
     
+}
+    function ConsultasMisCompromisosAll(){
+        document.getElementById("id_compromisos").innerHTML ="0";
+           // $("#id_sub_cartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
+            $.getJSON("consultacartera", {"accion" : "mis_comprimisos_all"}, function(result){
+                 $.each(result.misCompromisos, function(key, val){  
+                     document.getElementById("id_compromisos").innerHTML =val.compromisos;
+                 // $("#id_sub_cartera").append($("<option>",{value:val.id_subcartera,text:val.subcarteras}));
+                 // var valor_select = val.razon_social;
+                 // alert(valor_select);
+
+                 });
+           });      
+    }  
+    
+  
+function drawChart2() {
+    
+     
+
+        var data = google.visualization.arrayToDataTable([
+        
+        ]);
+
+        var options = {
+          chart: {
+          
+          },
+		   vAxis: {format: 'decimal'},
+		   //height: 300,
+		   //width: 500,
+          bars: 'vertical' //horizontal vertical Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_gestiones_diarias666'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+      
+function ConsultasMisClientesXUsuario(){
+           document.getElementById("idcartera").innerHTML="";
+           $("#idcartera").append($("<option>",{value:"0",text:"- CEDENTE -"}));
+           $.getJSON("consultacartera", {"accion" : "AllClientes"}, function(result){
+                $.each(result.listaClientes, function(key, val){   
+                 $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));
+                });
+           }); 
+       }
+
+function ConsultasMisSubCarteras(){
+      document.getElementById("id_sub_cartera").innerHTML="";
+      alert("ffjdkfjdsk");
+      $("#id_sub_cartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
+      $.getJSON("consultacartera", {"accion" : "AllMisSubCartera"}, function(result){
+           $.each(result.listaClientes, function(key, val){   
+            $("#id_sub_cartera").append($("<option>",{value:val.id_subcartera,text:val.subcarteras}));
+           });
+     });      
+}     
+ 
+getTipoCarteras2();
+function getTipoCarteras2(){
+var  idcliente=$('#idcartera').val();   
+
+    if(idcliente === 0 || idcliente === "" ) {  
+         return;
+     }
+     document.getElementById("tcartera").disabled=false;
+     document.getElementById("tcartera").innerHTML="";
+    $("#tcartera").append($("<option>",{value:"0",text:"- CARTERA -"}));
+        $.getJSON("asignacioncartera", {"accion" : "TiposCarteras","idcliente":idcliente}, function(result){
+              $.each(result.tipo_cartera, function(key, val){                           
+               $("#tcartera").append($("<option>",{value:val.idCartera,text:val.nombreCartera}));               
+              });
+        });
+   document.getElementById("tsub_cartera").innerHTML="";
+   document.getElementById("tsub_cartera").disabled=true;
+   $("#tsub_cartera").append($("<option>",{value:"0",text:"- SUB CARTERA -"}));
+}
+
+function getipoSubCartera2(){
+var  idcartera=$('#tcartera').val();   
+    document.getElementById("tsub_cartera").disabled=true;
+    document.getElementById("tsub_cartera").innerHTML="";
+    $("#tsub_cartera").append($("<option>",{value:"0",text:"- SUB CARTERA -"}));
+    if(idcartera === 0 || idcartera === "" ) {          
+         return;
+     }
+  if(idcartera!==0){      
+     document.getElementById("tsub_cartera").disabled=false;
+     document.getElementById("tsub_cartera").innerHTML="";
+       $("#tsub_cartera").append($("<option>",{value:"0",text:"- SUB CARTERA -"}));
+        $.getJSON("asignacioncartera", {"accion" : "Subcarteras","idcartera":idcartera}, function(result){
+              $.each(result.tipo_subcartera, function(key, val){   
+               $("#tsub_cartera").append($("<option>",{value:val.idSubcartera,text:val.nombreSubcartera}));               
+              });
+        });
+   }
+}
+
+function miGraficaCarteraVsRecuperado()
+{
+    var mi_empleado=$("#mi_empleado").val();
+    var tcartera=$("#tcartera").val();
+    var tsub_cartera=$("#tsub_cartera").val();
+    var fecha_ini=$("#fecha_ini_calidad2").val();
+    var fecha_fin=$("#fecha_fin_calidad2").val();
+    
+    //fecha_fin fecha_ini mi_empleado tcartera tsub_cartera
+    
+    
+        jQuery("#grafico_dash").html("<br/><br/><center><img alt='cargando' src='dist/img/hourglass.gif' /><center>"); 
+        jQuery("#grafico_dash").load("consultacartera?accion=miGraficaCarteraVsRecuperado&mi_empleado="+mi_empleado+"&tcartera="+
+                tcartera+"&tsub_cartera="+tsub_cartera+"&fecha_ini="+fecha_ini+"&fecha_fin="+fecha_fin,{},function(){ });
+      //  console.clear();
+ 
+}
+
+function miGraficaProduccion()
+{
+    var mi_empleado=$("#mi_empleado").val();
+    var tcartera=$("#tcartera").val();
+    var tsub_cartera=$("#tsub_cartera").val();
+    var fecha_ini=$("#fecha_ini_calidad2").val();
+    var fecha_fin=$("#fecha_fin_calidad2").val();
+    document.getElementById("grafica_gestion").innerHTML="";
+   // alert("hooohooh");
+   var id_RolEmpleado=document.getElementById("id_RolEmpleado").value;
+    console.log(">>>>>> id_RolEmpleado: "+id_RolEmpleado+" mi_empleado="+mi_empleado+"&tcartera="+tcartera+"&tsub_cartera="+tsub_cartera+"&fecha_ini="+fecha_ini+"&fecha_fin="+fecha_fin);
+    
+        jQuery("#grafica_gestion").html("<br/><br/><center><img alt='cargando' src='dist/img/hourglass.gif' /><center>"); 
+        jQuery("#grafica_gestion").load("sistema/graficos/gfc_gestion_produccion.jsp?mi_empleado="+mi_empleado+"&tcartera="+
+                tcartera+"&tsub_cartera="+tsub_cartera+"&fecha_ini="+fecha_ini+"&fecha_fin="+fecha_fin,{},function(){ });
+       // console.clear();
+ 
+}
+
+function miGraficaRecuperadoPorUsuario()
+{
+    var mi_empleado=$("#mi_empleado").val();
+    var tcartera=$("#tcartera").val();
+    var tsub_cartera=$("#tsub_cartera").val();
+    var fecha_ini=$("#fecha_ini_calidad2").val();
+    var fecha_fin=$("#fecha_fin_calidad2").val();
+    
+    //fecha_fin fecha_ini mi_empleado tcartera tsub_cartera
+    
+    
+        jQuery("#recuperado_gestor").html("<br/><br/><center><img alt='cargando' src='dist/img/hourglass.gif' /><center>"); 
+        jQuery("#recuperado_gestor").load("consultacartera?accion=miGraficaRecuperadoPorGestor&mi_empleado="+mi_empleado+"&tcartera="+
+                tcartera+"&tsub_cartera="+tsub_cartera+"&fecha_ini="+fecha_ini+"&fecha_fin="+fecha_fin,{},function(){ });
+      //  console.clear();
+ 
 }

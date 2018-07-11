@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.AuditTrail" optimistic-lock="version" schema="public" table="audit_trail">
-    <composite-id class="com.siscogescorp.modelo.AuditTrailId" name="id">
-      <key-property name="oldEmail" type="string">
-        <column name="old_email"/>
-      </key-property>
-      <key-property name="newEmail" type="string">
-        <column name="new_email"/>
-      </key-property>
-    </composite-id>
-  </class>
+    <class name="com.siscogescorp.modelo.AuditTrail" table="audit_trail" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.siscogescorp.modelo.AuditTrailId">
+            <key-property name="oldEmail" type="string">
+                <column name="old_email" />
+            </key-property>
+            <key-property name="newEmail" type="string">
+                <column name="new_email" />
+            </key-property>
+        </composite-id>
+    </class>
 </hibernate-mapping>

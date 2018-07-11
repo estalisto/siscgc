@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,11 +15,11 @@ public class LcCiudad  implements java.io.Serializable {
      private Integer idProvincia;
      private String ciudad;
      private String estado;
-     private Set lcEmpresas = new HashSet(0);
-     private Set lcClienteses = new HashSet(0);
-     private Set lcZonases = new HashSet(0);
      private Set lcReferenciases = new HashSet(0);
+     private Set lcClienteses = new HashSet(0);
      private Set lcDatosDeudoreses = new HashSet(0);
+     private Set lcEmpresas = new HashSet(0);
+     private Set lcZonases = new HashSet(0);
 
     public LcCiudad() {
     }
@@ -28,16 +28,16 @@ public class LcCiudad  implements java.io.Serializable {
     public LcCiudad(int idCiudad) {
         this.idCiudad = idCiudad;
     }
-    public LcCiudad(int idCiudad, Integer idProvincia, String ciudad, String estado, Set lcEmpresas, Set lcClienteses, Set lcZonases, Set lcReferenciases, Set lcDatosDeudoreses) {
+    public LcCiudad(int idCiudad, Integer idProvincia, String ciudad, String estado, Set lcReferenciases, Set lcClienteses, Set lcDatosDeudoreses, Set lcEmpresas, Set lcZonases) {
        this.idCiudad = idCiudad;
        this.idProvincia = idProvincia;
        this.ciudad = ciudad;
        this.estado = estado;
-       this.lcEmpresas = lcEmpresas;
-       this.lcClienteses = lcClienteses;
-       this.lcZonases = lcZonases;
        this.lcReferenciases = lcReferenciases;
+       this.lcClienteses = lcClienteses;
        this.lcDatosDeudoreses = lcDatosDeudoreses;
+       this.lcEmpresas = lcEmpresas;
+       this.lcZonases = lcZonases;
     }
    
     public int getIdCiudad() {
@@ -68,12 +68,12 @@ public class LcCiudad  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public Set getLcEmpresas() {
-        return this.lcEmpresas;
+    public Set getLcReferenciases() {
+        return this.lcReferenciases;
     }
     
-    public void setLcEmpresas(Set lcEmpresas) {
-        this.lcEmpresas = lcEmpresas;
+    public void setLcReferenciases(Set lcReferenciases) {
+        this.lcReferenciases = lcReferenciases;
     }
     public Set getLcClienteses() {
         return this.lcClienteses;
@@ -82,26 +82,26 @@ public class LcCiudad  implements java.io.Serializable {
     public void setLcClienteses(Set lcClienteses) {
         this.lcClienteses = lcClienteses;
     }
-    public Set getLcZonases() {
-        return this.lcZonases;
-    }
-    
-    public void setLcZonases(Set lcZonases) {
-        this.lcZonases = lcZonases;
-    }
-    public Set getLcReferenciases() {
-        return this.lcReferenciases;
-    }
-    
-    public void setLcReferenciases(Set lcReferenciases) {
-        this.lcReferenciases = lcReferenciases;
-    }
     public Set getLcDatosDeudoreses() {
         return this.lcDatosDeudoreses;
     }
     
     public void setLcDatosDeudoreses(Set lcDatosDeudoreses) {
         this.lcDatosDeudoreses = lcDatosDeudoreses;
+    }
+    public Set getLcEmpresas() {
+        return this.lcEmpresas;
+    }
+    
+    public void setLcEmpresas(Set lcEmpresas) {
+        this.lcEmpresas = lcEmpresas;
+    }
+    public Set getLcZonases() {
+        return this.lcZonases;
+    }
+    
+    public void setLcZonases(Set lcZonases) {
+        this.lcZonases = lcZonases;
     }
 
 

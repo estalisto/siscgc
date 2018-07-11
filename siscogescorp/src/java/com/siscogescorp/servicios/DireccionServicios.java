@@ -52,6 +52,16 @@ public class DireccionServicios {
         session.close();
     }
     
+      public void updateInactDireccion(int idDireccion) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        LcDireccion agen = (LcDireccion) session.get(LcDireccion.class, idDireccion);
+        agen.setEstado("I");
+        session.update(agen);
+        tx.commit();
+        session.close();
+    }
         public Long getNext() {
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session;

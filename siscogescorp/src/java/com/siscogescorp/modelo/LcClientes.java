@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,13 +28,13 @@ public class LcClientes  implements java.io.Serializable {
      private String celular;
      private Date fechaCreacion;
      private String estado;
+     private Set lcCarteras = new HashSet(0);
+     private Set lcDeudors = new HashSet(0);
+     private Set lcGestioneses = new HashSet(0);
+     private Set lcDetCampaniases = new HashSet(0);
      private Set lcTransaccioneses = new HashSet(0);
      private Set lcRecordatorioses = new HashSet(0);
-     private Set lcDetCampaniases = new HashSet(0);
-     private Set lcDeudors = new HashSet(0);
      private Set lcClienteResultados = new HashSet(0);
-     private Set lcCarteras = new HashSet(0);
-     private Set lcGestioneses = new HashSet(0);
 
     public LcClientes() {
     }
@@ -43,7 +43,7 @@ public class LcClientes  implements java.io.Serializable {
     public LcClientes(int idCliente) {
         this.idCliente = idCliente;
     }
-    public LcClientes(int idCliente, LcCiudad lcCiudad, LcEmpresa lcEmpresa, LcPais lcPais, LcProvincia lcProvincia, LcTiposIdentificacion lcTiposIdentificacion, String identificacion, String razonSocial, String direccion, String contacto, String email, String telefono, String extensioon, String celular, Date fechaCreacion, String estado, Set lcTransaccioneses, Set lcRecordatorioses, Set lcDetCampaniases, Set lcDeudors, Set lcClienteResultados, Set lcCarteras, Set lcGestioneses) {
+    public LcClientes(int idCliente, LcCiudad lcCiudad, LcEmpresa lcEmpresa, LcPais lcPais, LcProvincia lcProvincia, LcTiposIdentificacion lcTiposIdentificacion, String identificacion, String razonSocial, String direccion, String contacto, String email, String telefono, String extensioon, String celular, Date fechaCreacion, String estado, Set lcCarteras, Set lcDeudors, Set lcGestioneses, Set lcDetCampaniases, Set lcTransaccioneses, Set lcRecordatorioses, Set lcClienteResultados) {
        this.idCliente = idCliente;
        this.lcCiudad = lcCiudad;
        this.lcEmpresa = lcEmpresa;
@@ -60,13 +60,13 @@ public class LcClientes  implements java.io.Serializable {
        this.celular = celular;
        this.fechaCreacion = fechaCreacion;
        this.estado = estado;
+       this.lcCarteras = lcCarteras;
+       this.lcDeudors = lcDeudors;
+       this.lcGestioneses = lcGestioneses;
+       this.lcDetCampaniases = lcDetCampaniases;
        this.lcTransaccioneses = lcTransaccioneses;
        this.lcRecordatorioses = lcRecordatorioses;
-       this.lcDetCampaniases = lcDetCampaniases;
-       this.lcDeudors = lcDeudors;
        this.lcClienteResultados = lcClienteResultados;
-       this.lcCarteras = lcCarteras;
-       this.lcGestioneses = lcGestioneses;
     }
    
     public int getIdCliente() {
@@ -181,6 +181,34 @@ public class LcClientes  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public Set getLcCarteras() {
+        return this.lcCarteras;
+    }
+    
+    public void setLcCarteras(Set lcCarteras) {
+        this.lcCarteras = lcCarteras;
+    }
+    public Set getLcDeudors() {
+        return this.lcDeudors;
+    }
+    
+    public void setLcDeudors(Set lcDeudors) {
+        this.lcDeudors = lcDeudors;
+    }
+    public Set getLcGestioneses() {
+        return this.lcGestioneses;
+    }
+    
+    public void setLcGestioneses(Set lcGestioneses) {
+        this.lcGestioneses = lcGestioneses;
+    }
+    public Set getLcDetCampaniases() {
+        return this.lcDetCampaniases;
+    }
+    
+    public void setLcDetCampaniases(Set lcDetCampaniases) {
+        this.lcDetCampaniases = lcDetCampaniases;
+    }
     public Set getLcTransaccioneses() {
         return this.lcTransaccioneses;
     }
@@ -195,40 +223,12 @@ public class LcClientes  implements java.io.Serializable {
     public void setLcRecordatorioses(Set lcRecordatorioses) {
         this.lcRecordatorioses = lcRecordatorioses;
     }
-    public Set getLcDetCampaniases() {
-        return this.lcDetCampaniases;
-    }
-    
-    public void setLcDetCampaniases(Set lcDetCampaniases) {
-        this.lcDetCampaniases = lcDetCampaniases;
-    }
-    public Set getLcDeudors() {
-        return this.lcDeudors;
-    }
-    
-    public void setLcDeudors(Set lcDeudors) {
-        this.lcDeudors = lcDeudors;
-    }
     public Set getLcClienteResultados() {
         return this.lcClienteResultados;
     }
     
     public void setLcClienteResultados(Set lcClienteResultados) {
         this.lcClienteResultados = lcClienteResultados;
-    }
-    public Set getLcCarteras() {
-        return this.lcCarteras;
-    }
-    
-    public void setLcCarteras(Set lcCarteras) {
-        this.lcCarteras = lcCarteras;
-    }
-    public Set getLcGestioneses() {
-        return this.lcGestioneses;
-    }
-    
-    public void setLcGestioneses(Set lcGestioneses) {
-        this.lcGestioneses = lcGestioneses;
     }
 
 

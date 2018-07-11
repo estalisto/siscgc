@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,15 +27,15 @@ public class LcDatosDeudores  implements java.io.Serializable {
      private Date fechaCreacion;
      private String estado;
      private Integer idParroquia;
-     private Set lcDetCampaniases = new HashSet(0);
-     private Set lcGestioneses = new HashSet(0);
-     private Set lcArticulos = new HashSet(0);
-     private Set lcRecaudacioneses = new HashSet(0);
-     private Set lcRecordatorioses = new HashSet(0);
      private Set lcTransaccioneses = new HashSet(0);
+     private Set lcRecordatorioses = new HashSet(0);
      private Set lcCuotases = new HashSet(0);
-     private Set lcDeudoresDocumentoses = new HashSet(0);
+     private Set lcGestioneses = new HashSet(0);
+     private Set lcRecaudacioneses = new HashSet(0);
+     private Set lcDetCampaniases = new HashSet(0);
+     private Set lcArticulos = new HashSet(0);
      private Set lcCompromisosPagos = new HashSet(0);
+     private Set lcDeudoresDocumentoses = new HashSet(0);
 
     public LcDatosDeudores() {
     }
@@ -44,7 +44,7 @@ public class LcDatosDeudores  implements java.io.Serializable {
     public LcDatosDeudores(int idDatosDeudor) {
         this.idDatosDeudor = idDatosDeudor;
     }
-    public LcDatosDeudores(int idDatosDeudor, LcAgencia lcAgencia, LcCiudad lcCiudad, LcEmpresa lcEmpresa, LcEstatus lcEstatus, LcTipoCredito lcTipoCredito, Integer tipoIdentificacion, String identificacion, String nombres, String apellidos, String nombresCompleto, String email, Date fechaCreacion, String estado, Integer idParroquia, Set lcDetCampaniases, Set lcGestioneses, Set lcArticulos, Set lcRecaudacioneses, Set lcRecordatorioses, Set lcTransaccioneses, Set lcCuotases, Set lcDeudoresDocumentoses, Set lcCompromisosPagos) {
+    public LcDatosDeudores(int idDatosDeudor, LcAgencia lcAgencia, LcCiudad lcCiudad, LcEmpresa lcEmpresa, LcEstatus lcEstatus, LcTipoCredito lcTipoCredito, Integer tipoIdentificacion, String identificacion, String nombres, String apellidos, String nombresCompleto, String email, Date fechaCreacion, String estado, Integer idParroquia, Set lcTransaccioneses, Set lcRecordatorioses, Set lcCuotases, Set lcGestioneses, Set lcRecaudacioneses, Set lcDetCampaniases, Set lcArticulos, Set lcCompromisosPagos, Set lcDeudoresDocumentoses) {
        this.idDatosDeudor = idDatosDeudor;
        this.lcAgencia = lcAgencia;
        this.lcCiudad = lcCiudad;
@@ -60,15 +60,15 @@ public class LcDatosDeudores  implements java.io.Serializable {
        this.fechaCreacion = fechaCreacion;
        this.estado = estado;
        this.idParroquia = idParroquia;
-       this.lcDetCampaniases = lcDetCampaniases;
-       this.lcGestioneses = lcGestioneses;
-       this.lcArticulos = lcArticulos;
-       this.lcRecaudacioneses = lcRecaudacioneses;
-       this.lcRecordatorioses = lcRecordatorioses;
        this.lcTransaccioneses = lcTransaccioneses;
+       this.lcRecordatorioses = lcRecordatorioses;
        this.lcCuotases = lcCuotases;
-       this.lcDeudoresDocumentoses = lcDeudoresDocumentoses;
+       this.lcGestioneses = lcGestioneses;
+       this.lcRecaudacioneses = lcRecaudacioneses;
+       this.lcDetCampaniases = lcDetCampaniases;
+       this.lcArticulos = lcArticulos;
        this.lcCompromisosPagos = lcCompromisosPagos;
+       this.lcDeudoresDocumentoses = lcDeudoresDocumentoses;
     }
    
     public int getIdDatosDeudor() {
@@ -176,33 +176,12 @@ public class LcDatosDeudores  implements java.io.Serializable {
     public void setIdParroquia(Integer idParroquia) {
         this.idParroquia = idParroquia;
     }
-    public Set getLcDetCampaniases() {
-        return this.lcDetCampaniases;
+    public Set getLcTransaccioneses() {
+        return this.lcTransaccioneses;
     }
     
-    public void setLcDetCampaniases(Set lcDetCampaniases) {
-        this.lcDetCampaniases = lcDetCampaniases;
-    }
-    public Set getLcGestioneses() {
-        return this.lcGestioneses;
-    }
-    
-    public void setLcGestioneses(Set lcGestioneses) {
-        this.lcGestioneses = lcGestioneses;
-    }
-    public Set getLcArticulos() {
-        return this.lcArticulos;
-    }
-    
-    public void setLcArticulos(Set lcArticulos) {
-        this.lcArticulos = lcArticulos;
-    }
-    public Set getLcRecaudacioneses() {
-        return this.lcRecaudacioneses;
-    }
-    
-    public void setLcRecaudacioneses(Set lcRecaudacioneses) {
-        this.lcRecaudacioneses = lcRecaudacioneses;
+    public void setLcTransaccioneses(Set lcTransaccioneses) {
+        this.lcTransaccioneses = lcTransaccioneses;
     }
     public Set getLcRecordatorioses() {
         return this.lcRecordatorioses;
@@ -211,13 +190,6 @@ public class LcDatosDeudores  implements java.io.Serializable {
     public void setLcRecordatorioses(Set lcRecordatorioses) {
         this.lcRecordatorioses = lcRecordatorioses;
     }
-    public Set getLcTransaccioneses() {
-        return this.lcTransaccioneses;
-    }
-    
-    public void setLcTransaccioneses(Set lcTransaccioneses) {
-        this.lcTransaccioneses = lcTransaccioneses;
-    }
     public Set getLcCuotases() {
         return this.lcCuotases;
     }
@@ -225,12 +197,33 @@ public class LcDatosDeudores  implements java.io.Serializable {
     public void setLcCuotases(Set lcCuotases) {
         this.lcCuotases = lcCuotases;
     }
-    public Set getLcDeudoresDocumentoses() {
-        return this.lcDeudoresDocumentoses;
+    public Set getLcGestioneses() {
+        return this.lcGestioneses;
     }
     
-    public void setLcDeudoresDocumentoses(Set lcDeudoresDocumentoses) {
-        this.lcDeudoresDocumentoses = lcDeudoresDocumentoses;
+    public void setLcGestioneses(Set lcGestioneses) {
+        this.lcGestioneses = lcGestioneses;
+    }
+    public Set getLcRecaudacioneses() {
+        return this.lcRecaudacioneses;
+    }
+    
+    public void setLcRecaudacioneses(Set lcRecaudacioneses) {
+        this.lcRecaudacioneses = lcRecaudacioneses;
+    }
+    public Set getLcDetCampaniases() {
+        return this.lcDetCampaniases;
+    }
+    
+    public void setLcDetCampaniases(Set lcDetCampaniases) {
+        this.lcDetCampaniases = lcDetCampaniases;
+    }
+    public Set getLcArticulos() {
+        return this.lcArticulos;
+    }
+    
+    public void setLcArticulos(Set lcArticulos) {
+        this.lcArticulos = lcArticulos;
     }
     public Set getLcCompromisosPagos() {
         return this.lcCompromisosPagos;
@@ -238,6 +231,13 @@ public class LcDatosDeudores  implements java.io.Serializable {
     
     public void setLcCompromisosPagos(Set lcCompromisosPagos) {
         this.lcCompromisosPagos = lcCompromisosPagos;
+    }
+    public Set getLcDeudoresDocumentoses() {
+        return this.lcDeudoresDocumentoses;
+    }
+    
+    public void setLcDeudoresDocumentoses(Set lcDeudoresDocumentoses) {
+        this.lcDeudoresDocumentoses = lcDeudoresDocumentoses;
     }
 
 

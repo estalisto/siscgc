@@ -12,9 +12,13 @@ import com.siscogescorp.servicios.ConsultaxCarteraServicios;
 import com.siscogescorp.servicios.EmpresaServicios;
 import com.siscogescorp.servicios.ParametrosServicios;
 import com.siscogescorp.servicios.SucursalServicios;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -63,7 +67,7 @@ public class ConsultaxCartera extends HttpServlet {
          String SSqlDatosDeudor="";
            nombreRolEmpleado = sesion.getAttribute("SstrRolEmpleado").toString();
 
-       
+     
        if(accion.equals("listar"))
         {            
            int idclienteok;
@@ -373,10 +377,37 @@ public class ConsultaxCartera extends HttpServlet {
         // String Clientes = "{\"listaClientes\": "+cd.getIdCliente2(EmpresaID, SucursalID, EmpleadoID)+"}";
          response.getWriter().println(Clientes);
         }
+        //getTiposEstatus AllEstatus
+         if(accion.equals("AllEstatus")){
+         String Clientes = "{\"listaEstatus\": "+cd.getTiposEstatus(EmpresaID)+"}";
+         response.getWriter().println(Clientes);
+        }
+         if(accion.equals("allCompromisos")){
+         String Clientes = "{\"compromisos\": "+cd.getCountCompromisos(EmpresaID,SucursalID,EmpleadoID,nombreRolEmpleado)+"}";
+         response.getWriter().println(Clientes);
+        }
+        
         if(accion.equals("AllClientes")){
          String Clientes = "{\"listaClientes\": "+cd.getIdClienteAll(EmpresaID, SucursalID)+"}";
          response.getWriter().println(Clientes);
         }
+        //AllClientesROL
+        if(accion.equals("AllClientesROL")){
+         String mis_roles= param.Consulta_Parametro("LB_FILTROS_USUARIOS");
+               String Clientes="";
+             if(mis_roles.contains(nombreRolEmpleado)){
+                Clientes = "{\"listaClientes\": "+cd.getIdCliente3(EmpresaID, SucursalID)+"}";
+             }
+             else{
+                Clientes = "{\"listaClientes\": "+cd.getIdCliente2(EmpresaID, SucursalID, EmpleadoID)+"}";
+             }
+         
+        
+         response.getWriter().println(Clientes);
+        }
+        //generarCSV
+        
+        
         if(accion.equals("AllTiposGestiones")){
           int idclienteok;
           int cliente = Integer.parseInt(request.getParameter("cliente"));
@@ -449,8 +480,9 @@ public class ConsultaxCartera extends HttpServlet {
         }
         //
         if(accion.equals("TiposResulatdos")){
-         int idcliente;
+         int idcliente=0;
         String DatosTiposResultados="";
+       // String IDCLIENTE=request.getParameter("idcliente").toString();
          if(!request.getParameter("idcliente").isEmpty()){
              idcliente=Integer.parseInt(request.getParameter("idcliente"));
             
@@ -638,6 +670,133 @@ public class ConsultaxCartera extends HttpServlet {
           NuevosDatos="{\"data\": "+cd.fnc_ConsultaCedenteSubCaretra(EmpresaID)+"}";
           response.getWriter().println(NuevosDatos);
          }
+         
+         //cuadro_calidad
+         if(accion.equals("cuadro_calidad2")){
+         //int cartera = Integer.parseInt(request.getParameter("cartera")); 
+          String NuevosDatos="";
+          NuevosDatos="{\"data\": "+cd.fnc_ConsultaCuadroCalidad2(EmpresaID,SucursalID)+"}";
+          response.getWriter().println(NuevosDatos);
+         }
+         //cuadro_calidad2
+         if(accion.equals("cuadro_calidad")){
+         //int cartera = Integer.parseInt(request.getParameter("cartera")); 
+          String NuevosDatos="";
+          String fecha_inicial =request.getParameter("fecha_inicial");
+          String fecha_final =request.getParameter("fecha_final");
+          NuevosDatos="{\"data\": "+cd.fnc_ConsultaCuadroCalidad(EmpresaID,SucursalID,fecha_inicial,fecha_final)+"}";
+          response.getWriter().println(NuevosDatos);
+         }
+         if(accion.equals("cuadro_eficiencia_porcentaje")){
+         //int cartera = Integer.parseInt(request.getParameter("cartera")); 
+          String NuevosDatos="",fecha_final="",fecha_inicial="";
+          int cartera = 0, subcartera=0;
+          Date date = new Date();
+          DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+          String fecha=dateFormat.format(date);
+          
+          if(!request.getParameter("tcartera").isEmpty()){
+                cartera =Integer.parseInt(request.getParameter("tcartera"));
+          }else{
+          cartera=0;
+          }
+          if(!request.getParameter("tsub_cartera").isEmpty()){
+                subcartera =Integer.parseInt(request.getParameter("tsub_cartera"));
+          }else{
+          subcartera=0;
+          }
+          
+          if(!request.getParameter("fecha_inicial").isEmpty()){
+                fecha_inicial =request.getParameter("fecha_inicial");
+          }else{
+          fecha_inicial = fecha;
+          }
+          if(!request.getParameter("fecha_final").isEmpty()){
+               fecha_final =request.getParameter("fecha_final");
+          }else{
+              fecha_final=fecha;
+          }
+         String resultado=cd.fnc_ConsultaCuadroCalidadEficiencia(EmpresaID,SucursalID,96,fecha_inicial,fecha_final,cartera, subcartera);
+         
+         try{
+           if(resultado.equals(null)){
+             resultado="[]";
+         }
+         }catch (Exception exe ){
+             resultado="[]";
+         }
+         
+         
+          NuevosDatos="{\"data\": "+resultado+"}";
+          response.getWriter().println(NuevosDatos);
+         } 
+          if(accion.equals("AllMisSubCartera")){
+              String mis_roles= param.Consulta_Parametro("LB_FILTROS_USUARIOS");
+               String Clientes="";
+             if(mis_roles.contains(nombreRolEmpleado)){
+                  Clientes = "{\"listaClientes\": "+cd.getSubCarterasClientesAll(EmpresaID, "")+"}";
+             }
+             else{
+                  Clientes = "{\"listaClientes\": "+cd.getSubCarterasClientesAll(EmpresaID, "")+"}";
+                
+             }
+       
+         response.getWriter().println(Clientes);
+        }
+          if (accion.equals("mis_comprimisos_all")) {
+             try{
+                String Compromisos="";
+
+                Compromisos = "{\"misCompromisos\": "+cd.getMisCompromisosAll(EmpresaID,SucursalID,EmpleadoID,nombreRolEmpleado)+"}";
+                response.getWriter().println(Compromisos);
+             }catch (Exception ex){
+                       System.out.println("Error Nueva Consulta: misCompromisos ");
+                }
+             
+       
+         
+        }
+             if(accion.equals("miGraficaCarteraVsRecuperado")){
+                  //fecha_fin fecha_ini mi_empleado tcartera tsub_cartera
+             int mi_empleado=Integer.parseInt(request.getParameter("mi_empleado"));
+             int tcartera=Integer.parseInt(request.getParameter("tcartera"));
+             int tsub_cartera=Integer.parseInt(request.getParameter("tsub_cartera"));
+             String  fecha_ini=request.getParameter("fecha_ini");
+             String  fecha_fin=request.getParameter("fecha_fin");
+              //EmpresaID SucursalID
+              
+               sesion.setAttribute("GSGEmpresaID", EmpresaID);
+               sesion.setAttribute("GSmi_empleado", mi_empleado);
+               sesion.setAttribute("GSSucursalID", SucursalID);
+               sesion.setAttribute("GStcartera", tcartera);
+               sesion.setAttribute("GStsub_cartera", tsub_cartera);
+               sesion.setAttribute("GSfecha_ini", fecha_ini);
+               sesion.setAttribute("GSfecha_fin", fecha_fin);
+           
+             
+             request.getRequestDispatcher("sistema/graficos/gfc_carteras_recuperado.jsp").forward(request, response);
+             }
+              if(accion.equals("miGraficaRecuperadoPorGestor")){
+                  //fecha_fin fecha_ini mi_empleado tcartera tsub_cartera
+             int mi_empleado=Integer.parseInt(request.getParameter("mi_empleado"));
+             int tcartera=Integer.parseInt(request.getParameter("tcartera"));
+             int tsub_cartera=Integer.parseInt(request.getParameter("tsub_cartera"));
+             String  fecha_ini=request.getParameter("fecha_ini");
+             String  fecha_fin=request.getParameter("fecha_fin");
+              //EmpresaID SucursalID
+              
+               sesion.setAttribute("GSGEmpresaID", EmpresaID);
+               sesion.setAttribute("GSmi_empleado", mi_empleado);
+               sesion.setAttribute("GSSucursalID", SucursalID);
+               sesion.setAttribute("GStcartera", tcartera);
+               sesion.setAttribute("GStsub_cartera", tsub_cartera);
+               sesion.setAttribute("GSfecha_ini", fecha_ini);
+               sesion.setAttribute("GSfecha_fin", fecha_fin);
+           
+             
+             request.getRequestDispatcher("sistema/graficos/gfc_recuperado_gestor.jsp").forward(request, response);
+             }
+         
         
     }
 

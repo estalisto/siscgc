@@ -1,83 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcDetCampanias" optimistic-lock="version" schema="public" table="lc_det_campanias">
-    <id name="idDetCampanias" type="int">
-      <column name="id_det_campanias"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcClientes" fetch="select" name="lcClientes">
-      <column name="id_cliente"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
-      <column name="id_datos_deudor"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpleados" fetch="select" name="lcEmpleados">
-      <column name="id_empleado"/>
-    </many-to-one>
-    <property name="idCampanias" type="java.lang.Integer">
-      <column name="id_campanias"/>
-    </property>
-    <property name="idCartera" type="java.lang.Integer">
-      <column name="id_cartera"/>
-    </property>
-    <property name="idSubCartera" type="java.lang.Integer">
-      <column name="id_sub_cartera"/>
-    </property>
-    <property name="idSegmento" type="java.lang.Integer">
-      <column name="id_segmento"/>
-    </property>
-    <property name="idSubSegmento" type="java.lang.Integer">
-      <column name="id_sub_segmento"/>
-    </property>
-    <property name="identificacion" type="string">
-      <column length="13" name="identificacion"/>
-    </property>
-    <property name="nombresCompleto" type="string">
-      <column length="120" name="nombres_completo"/>
-    </property>
-    <property name="diasMora" type="java.lang.Integer">
-      <column name="dias_mora"/>
-    </property>
-    <property name="totalVencidos" type="big_decimal">
-      <column name="total_vencidos" precision="10"/>
-    </property>
-    <property name="pagos" type="big_decimal">
-      <column name="pagos" precision="131089" scale="0"/>
-    </property>
-    <property name="fechaUltPagos" type="timestamp">
-      <column length="29" name="fecha_ult_pagos"/>
-    </property>
-    <property name="saldo" type="big_decimal">
-      <column name="saldo" precision="131089" scale="0"/>
-    </property>
-    <property name="valorCompro" type="big_decimal">
-      <column name="valor_compro" precision="131089" scale="0"/>
-    </property>
-    <property name="fechaComp" type="timestamp">
-      <column length="29" name="fecha_comp"/>
-    </property>
-    <property name="fechUltimaGestion" type="timestamp">
-      <column length="29" name="fech_ultima_gestion"/>
-    </property>
-    <property name="ultimaGestion" type="string">
-      <column length="20" name="ultima_gestion"/>
-    </property>
-    <property name="resultadoGestion" type="string">
-      <column length="20" name="resultado_gestion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <property name="fechaDesde" type="timestamp">
-      <column length="29" name="fecha_desde"/>
-    </property>
-    <property name="fecha1Hasta" type="timestamp">
-      <column length="29" name="fecha1_hasta"/>
-    </property>
-    <property name="asignacion" type="string">
-      <column length="1" name="asignacion"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcDetCampanias" table="lc_det_campanias" schema="public" optimistic-lock="version">
+        <id name="idDetCampanias" type="int">
+            <column name="id_det_campanias" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcClientes" class="com.siscogescorp.modelo.LcClientes" fetch="select">
+            <column name="id_cliente" />
+        </many-to-one>
+        <many-to-one name="lcDatosDeudores" class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select">
+            <column name="id_datos_deudor" />
+        </many-to-one>
+        <many-to-one name="lcEmpleados" class="com.siscogescorp.modelo.LcEmpleados" fetch="select">
+            <column name="id_empleado" />
+        </many-to-one>
+        <property name="idCampanias" type="java.lang.Integer">
+            <column name="id_campanias" />
+        </property>
+        <property name="idCartera" type="java.lang.Integer">
+            <column name="id_cartera" />
+        </property>
+        <property name="idSubCartera" type="java.lang.Integer">
+            <column name="id_sub_cartera" />
+        </property>
+        <property name="idSegmento" type="java.lang.Integer">
+            <column name="id_segmento" />
+        </property>
+        <property name="idSubSegmento" type="java.lang.Integer">
+            <column name="id_sub_segmento" />
+        </property>
+        <property name="identificacion" type="string">
+            <column name="identificacion" length="13" />
+        </property>
+        <property name="nombresCompleto" type="string">
+            <column name="nombres_completo" length="120" />
+        </property>
+        <property name="diasMora" type="java.lang.Integer">
+            <column name="dias_mora" />
+        </property>
+        <property name="totalVencidos" type="big_decimal">
+            <column name="total_vencidos" precision="10" />
+        </property>
+        <property name="pagos" type="big_decimal">
+            <column name="pagos" precision="131089" scale="0" />
+        </property>
+        <property name="fechaUltPagos" type="timestamp">
+            <column name="fecha_ult_pagos" length="29" />
+        </property>
+        <property name="saldo" type="big_decimal">
+            <column name="saldo" precision="131089" scale="0" />
+        </property>
+        <property name="valorCompro" type="big_decimal">
+            <column name="valor_compro" precision="131089" scale="0" />
+        </property>
+        <property name="fechaComp" type="timestamp">
+            <column name="fecha_comp" length="29" />
+        </property>
+        <property name="fechUltimaGestion" type="timestamp">
+            <column name="fech_ultima_gestion" length="29" />
+        </property>
+        <property name="ultimaGestion" type="string">
+            <column name="ultima_gestion" length="20" />
+        </property>
+        <property name="resultadoGestion" type="string">
+            <column name="resultado_gestion" length="20" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <property name="fechaDesde" type="timestamp">
+            <column name="fecha_desde" length="29" />
+        </property>
+        <property name="fecha1Hasta" type="timestamp">
+            <column name="fecha1_hasta" length="29" />
+        </property>
+        <property name="asignacion" type="string">
+            <column name="asignacion" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

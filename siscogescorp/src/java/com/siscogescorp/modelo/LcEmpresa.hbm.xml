@@ -1,149 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcEmpresa" optimistic-lock="version" schema="public" table="lc_empresa">
-    <comment>Registro de Empresas que existen en el sistema ARGUS</comment>
-    <id name="idEmpresa" type="int">
-      <column name="id_empresa"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcCiudad" fetch="select" name="lcCiudad">
-      <column name="id_ciudad">
-        <comment>Identificador único de Ciudad</comment>
-      </column>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcPais" fetch="select" name="lcPais">
-      <column name="id_pais"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcProvincia" fetch="select" name="lcProvincia">
-      <column name="id_provincia">
-        <comment>Identificador único de Provincia</comment>
-      </column>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select" name="lcTiposIdentificacion">
-      <column name="tipo_identificacion">
-        <comment>Tipo de Identificación</comment>
-      </column>
-    </many-to-one>
-    <property name="identificacion" type="string">
-      <column length="13" name="identificacion">
-        <comment>Número de Identificación</comment>
-      </column>
-    </property>
-    <property name="razonSocial" type="string">
-      <column length="100" name="razon_social">
-        <comment>Razón Social de la Empresa</comment>
-      </column>
-    </property>
-    <property name="direccion" type="string">
-      <column length="100" name="direccion">
-        <comment>Dirección de la Empresa</comment>
-      </column>
-    </property>
-    <property name="telefonos" type="string">
-      <column length="100" name="telefonos">
-        <comment>telefonos de la empresa</comment>
-      </column>
-    </property>
-    <property name="email" type="string">
-      <column length="100" name="email">
-        <comment>Email de la empresa (Contacto)</comment>
-      </column>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion">
-        <comment>Fecha en que se crea la Empresa</comment>
-      </column>
-    </property>
-    <property name="fechaActualizacion" type="timestamp">
-      <column length="29" name="fecha_actualizacion">
-        <comment>fecha de actualización</comment>
-      </column>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado">
-        <comment>"A" Activo, "I" Inactivo</comment>
-      </column>
-    </property>
-    <property name="telfonos2" type="string">
-      <column length="100" name="telfonos2"/>
-    </property>
-    <property name="celular" type="string">
-      <column length="100" name="celular"/>
-    </property>
-    <property name="sucursal" type="java.lang.Integer">
-      <column name="sucursal"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcRoleses" table="lc_roles">
-      <key>
-        <column name="id_empresa">
-          <comment>Id de la empresa</comment>
-        </column>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcRoles"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcEmpleadoses" table="lc_empleados">
-      <key>
-        <column name="id_empresa" not-null="true">
-          <comment>Identificador único de la empresa</comment>
-        </column>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcEmpleados"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcAgencias" table="lc_agencia">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcAgencia"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcDatosDeudoreses" table="lc_datos_deudores">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcDatosDeudores"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcZonases" table="lc_zonas">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcZonas"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcUsuarioses" table="lc_usuarios">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcUsuarios"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcCargoses" table="lc_cargos">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcCargos"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcClienteses" table="lc_clientes">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcClientes"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcDeudors" table="lc_deudor">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcDeudor"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcRecordatorioses" table="lc_recordatorios">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcRecordatorios"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcModuloRols" table="lc_modulo_rol">
-      <key>
-        <column name="id_empresa"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcModuloRol"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcEmpresa" table="lc_empresa" schema="public" optimistic-lock="version">
+        <comment>Registro de Empresas que existen en el sistema ARGUS</comment>
+        <id name="idEmpresa" type="int">
+            <column name="id_empresa" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcCiudad" class="com.siscogescorp.modelo.LcCiudad" fetch="select">
+            <column name="id_ciudad">
+                <comment>Identificador &#250;nico de Ciudad</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="lcPais" class="com.siscogescorp.modelo.LcPais" fetch="select">
+            <column name="id_pais" />
+        </many-to-one>
+        <many-to-one name="lcProvincia" class="com.siscogescorp.modelo.LcProvincia" fetch="select">
+            <column name="id_provincia">
+                <comment>Identificador &#250;nico de Provincia</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="lcTiposIdentificacion" class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select">
+            <column name="tipo_identificacion">
+                <comment>Tipo de Identificaci&#243;n</comment>
+            </column>
+        </many-to-one>
+        <property name="identificacion" type="string">
+            <column name="identificacion" length="13">
+                <comment>N&#250;mero de Identificaci&#243;n</comment>
+            </column>
+        </property>
+        <property name="razonSocial" type="string">
+            <column name="razon_social" length="100">
+                <comment>Raz&#243;n Social de la Empresa</comment>
+            </column>
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100">
+                <comment>Direcci&#243;n de la Empresa</comment>
+            </column>
+        </property>
+        <property name="telefonos" type="string">
+            <column name="telefonos" length="100">
+                <comment>telefonos de la empresa</comment>
+            </column>
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100">
+                <comment>Email de la empresa (Contacto)</comment>
+            </column>
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29">
+                <comment>Fecha en que se crea la Empresa</comment>
+            </column>
+        </property>
+        <property name="fechaActualizacion" type="timestamp">
+            <column name="fecha_actualizacion" length="29">
+                <comment>fecha de actualizaci&#243;n</comment>
+            </column>
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1">
+                <comment>"A" Activo, "I" Inactivo</comment>
+            </column>
+        </property>
+        <property name="telfonos2" type="string">
+            <column name="telfonos2" length="100" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="100" />
+        </property>
+        <property name="sucursal" type="java.lang.Integer">
+            <column name="sucursal" />
+        </property>
+        <set name="lcDatosDeudoreses" table="lc_datos_deudores" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcDatosDeudores" />
+        </set>
+        <set name="lcZonases" table="lc_zonas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcZonas" />
+        </set>
+        <set name="lcModuloRols" table="lc_modulo_rol" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcModuloRol" />
+        </set>
+        <set name="lcClienteses" table="lc_clientes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcClientes" />
+        </set>
+        <set name="lcRoleses" table="lc_roles" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa">
+                    <comment>Id de la empresa</comment>
+                </column>
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcRoles" />
+        </set>
+        <set name="lcDeudors" table="lc_deudor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcDeudor" />
+        </set>
+        <set name="lcCargoses" table="lc_cargos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcCargos" />
+        </set>
+        <set name="lcEmpleadoses" table="lc_empleados" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" not-null="true">
+                    <comment>Identificador &#250;nico de la empresa</comment>
+                </column>
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcEmpleados" />
+        </set>
+        <set name="lcUsuarioses" table="lc_usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcUsuarios" />
+        </set>
+        <set name="lcRecordatorioses" table="lc_recordatorios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcRecordatorios" />
+        </set>
+        <set name="lcAgencias" table="lc_agencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empresa" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcAgencia" />
+        </set>
+    </class>
 </hibernate-mapping>

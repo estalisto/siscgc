@@ -1,41 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcRecordatorios" optimistic-lock="version" schema="public" table="lc_recordatorios">
-    <id name="idRecordatorio" type="int">
-      <column name="id_recordatorio"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcAgencia" fetch="select" name="lcAgencia">
-      <column name="id_agencia"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcClientes" fetch="select" name="lcClientes">
-      <column name="id_cliente"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
-      <column name="id_deudor"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpleados" fetch="select" name="lcEmpleados">
-      <column name="id_empleado"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
-      <column name="id_empresa"/>
-    </many-to-one>
-    <property name="fechaCompromiso" type="timestamp">
-      <column length="29" name="fecha_compromiso"/>
-    </property>
-    <property name="revisado" type="string">
-      <column length="1" name="revisado"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="fechaActualizado" type="timestamp">
-      <column length="29" name="fecha_actualizado"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcRecordatorios" table="lc_recordatorios" schema="public" optimistic-lock="version">
+        <id name="idRecordatorio" type="int">
+            <column name="id_recordatorio" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcAgencia" class="com.siscogescorp.modelo.LcAgencia" fetch="select">
+            <column name="id_agencia" />
+        </many-to-one>
+        <many-to-one name="lcClientes" class="com.siscogescorp.modelo.LcClientes" fetch="select">
+            <column name="id_cliente" />
+        </many-to-one>
+        <many-to-one name="lcDatosDeudores" class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select">
+            <column name="id_deudor" />
+        </many-to-one>
+        <many-to-one name="lcEmpleados" class="com.siscogescorp.modelo.LcEmpleados" fetch="select">
+            <column name="id_empleado" />
+        </many-to-one>
+        <many-to-one name="lcEmpresa" class="com.siscogescorp.modelo.LcEmpresa" fetch="select">
+            <column name="id_empresa" />
+        </many-to-one>
+        <property name="fechaCompromiso" type="timestamp">
+            <column name="fecha_compromiso" length="29" />
+        </property>
+        <property name="revisado" type="string">
+            <column name="revisado" length="1" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="fechaActualizado" type="timestamp">
+            <column name="fecha_actualizado" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

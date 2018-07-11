@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcTipoResultado" optimistic-lock="version" schema="public" table="lc_tipo_resultado">
-    <id name="idTipoResultado" type="int">
-      <column name="id_tipo_resultado"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="idTipoGestion" type="java.lang.Integer">
-      <column name="id_tipo_gestion"/>
-    </property>
-    <property name="nombreTipoResultado" type="string">
-      <column length="20" name="nombre_tipo_resultado"/>
-    </property>
-    <property name="observacion" type="string">
-      <column name="observacion"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcClienteResultados" table="lc_cliente_resultado">
-      <key>
-        <column name="id_tipo_resultado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcClienteResultado"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcGestioneses" table="lc_gestiones">
-      <key>
-        <column name="id_tipo_resultado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcGestiones"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcTipoResultado" table="lc_tipo_resultado" schema="public" optimistic-lock="version">
+        <id name="idTipoResultado" type="int">
+            <column name="id_tipo_resultado" />
+            <generator class="assigned" />
+        </id>
+        <property name="idTipoGestion" type="java.lang.Integer">
+            <column name="id_tipo_gestion" />
+        </property>
+        <property name="nombreTipoResultado" type="string">
+            <column name="nombre_tipo_resultado" length="50" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcClienteResultados" table="lc_cliente_resultado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tipo_resultado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcClienteResultado" />
+        </set>
+        <set name="lcGestioneses" table="lc_gestiones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tipo_resultado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcGestiones" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcZonas" optimistic-lock="version" schema="public" table="lc_zonas">
-    <id name="idZona" type="int">
-      <column name="id_zona"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcCiudad" fetch="select" name="lcCiudad">
-      <column name="id_ciudad"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
-      <column name="id_empresa"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcPais" fetch="select" name="lcPais">
-      <column name="id_pais"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcProvincia" fetch="select" name="lcProvincia">
-      <column name="id_provincia"/>
-    </many-to-one>
-    <property name="nombreZona" type="string">
-      <column length="100" name="nombre_zona"/>
-    </property>
-    <property name="sectorDescripcion" type="string">
-      <column length="1000" name="sector_descripcion"/>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcZonas" table="lc_zonas" schema="public" optimistic-lock="version">
+        <id name="idZona" type="int">
+            <column name="id_zona" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcCiudad" class="com.siscogescorp.modelo.LcCiudad" fetch="select">
+            <column name="id_ciudad" />
+        </many-to-one>
+        <many-to-one name="lcEmpresa" class="com.siscogescorp.modelo.LcEmpresa" fetch="select">
+            <column name="id_empresa" />
+        </many-to-one>
+        <many-to-one name="lcPais" class="com.siscogescorp.modelo.LcPais" fetch="select">
+            <column name="id_pais" />
+        </many-to-one>
+        <many-to-one name="lcProvincia" class="com.siscogescorp.modelo.LcProvincia" fetch="select">
+            <column name="id_provincia" />
+        </many-to-one>
+        <property name="nombreZona" type="string">
+            <column name="nombre_zona" length="100" />
+        </property>
+        <property name="sectorDescripcion" type="string">
+            <column name="sector_descripcion" length="1000" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcAsignaEmpleadosTmp" optimistic-lock="version" schema="public" table="lc_asigna_empleados_tmp">
-    <id name="idSecCampania" type="int">
-      <column name="id_sec_campania"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpleados" fetch="select" name="lcEmpleados">
-      <column name="id_empleado"/>
-    </many-to-one>
-    <property name="idUsuarioSession" type="java.lang.Integer">
-      <column name="id_usuario_session"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <property name="idCliente" type="java.lang.Integer">
-      <column name="id_cliente"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcAsignaEmpleadosTmp" table="lc_asigna_empleados_tmp" schema="public" optimistic-lock="version">
+        <id name="idSecCampania" type="int">
+            <column name="id_sec_campania" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcEmpleados" class="com.siscogescorp.modelo.LcEmpleados" fetch="select">
+            <column name="id_empleado" />
+        </many-to-one>
+        <property name="idUsuarioSession" type="java.lang.Integer">
+            <column name="id_usuario_session" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <property name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+        </property>
+    </class>
 </hibernate-mapping>

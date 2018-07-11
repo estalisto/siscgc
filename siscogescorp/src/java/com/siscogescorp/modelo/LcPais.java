@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,10 +15,10 @@ public class LcPais  implements java.io.Serializable {
      private String pais;
      private String codigo;
      private String estado;
-     private Set lcZonases = new HashSet(0);
      private Set lcClienteses = new HashSet(0);
-     private Set lcProvincias = new HashSet(0);
      private Set lcEmpresas = new HashSet(0);
+     private Set lcProvincias = new HashSet(0);
+     private Set lcZonases = new HashSet(0);
 
     public LcPais() {
     }
@@ -27,15 +27,15 @@ public class LcPais  implements java.io.Serializable {
     public LcPais(int idPais) {
         this.idPais = idPais;
     }
-    public LcPais(int idPais, String pais, String codigo, String estado, Set lcZonases, Set lcClienteses, Set lcProvincias, Set lcEmpresas) {
+    public LcPais(int idPais, String pais, String codigo, String estado, Set lcClienteses, Set lcEmpresas, Set lcProvincias, Set lcZonases) {
        this.idPais = idPais;
        this.pais = pais;
        this.codigo = codigo;
        this.estado = estado;
-       this.lcZonases = lcZonases;
        this.lcClienteses = lcClienteses;
-       this.lcProvincias = lcProvincias;
        this.lcEmpresas = lcEmpresas;
+       this.lcProvincias = lcProvincias;
+       this.lcZonases = lcZonases;
     }
    
     public int getIdPais() {
@@ -66,19 +66,19 @@ public class LcPais  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public Set getLcZonases() {
-        return this.lcZonases;
-    }
-    
-    public void setLcZonases(Set lcZonases) {
-        this.lcZonases = lcZonases;
-    }
     public Set getLcClienteses() {
         return this.lcClienteses;
     }
     
     public void setLcClienteses(Set lcClienteses) {
         this.lcClienteses = lcClienteses;
+    }
+    public Set getLcEmpresas() {
+        return this.lcEmpresas;
+    }
+    
+    public void setLcEmpresas(Set lcEmpresas) {
+        this.lcEmpresas = lcEmpresas;
     }
     public Set getLcProvincias() {
         return this.lcProvincias;
@@ -87,12 +87,12 @@ public class LcPais  implements java.io.Serializable {
     public void setLcProvincias(Set lcProvincias) {
         this.lcProvincias = lcProvincias;
     }
-    public Set getLcEmpresas() {
-        return this.lcEmpresas;
+    public Set getLcZonases() {
+        return this.lcZonases;
     }
     
-    public void setLcEmpresas(Set lcEmpresas) {
-        this.lcEmpresas = lcEmpresas;
+    public void setLcZonases(Set lcZonases) {
+        this.lcZonases = lcZonases;
     }
 
 

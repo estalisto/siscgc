@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcCiudades2" optimistic-lock="version" schema="public" table="lc_ciudades2">
-    <composite-id class="com.siscogescorp.modelo.LcCiudades2Id" name="id">
-      <key-property name="idCiudad" type="java.lang.Integer">
-        <column name="id_ciudad"/>
-      </key-property>
-      <key-property name="idProvincia" type="java.lang.Integer">
-        <column name="id_provincia"/>
-      </key-property>
-      <key-property name="ciudad" type="string">
-        <column length="100" name="ciudad"/>
-      </key-property>
-      <key-property name="estado" type="string">
-        <column length="1" name="estado"/>
-      </key-property>
-    </composite-id>
-  </class>
+    <class name="com.siscogescorp.modelo.LcCiudades2" table="lc_ciudades2" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.siscogescorp.modelo.LcCiudades2Id">
+            <key-property name="idCiudad" type="java.lang.Integer">
+                <column name="id_ciudad" />
+            </key-property>
+            <key-property name="idProvincia" type="java.lang.Integer">
+                <column name="id_provincia" />
+            </key-property>
+            <key-property name="ciudad" type="string">
+                <column name="ciudad" length="100" />
+            </key-property>
+            <key-property name="estado" type="string">
+                <column name="estado" length="1" />
+            </key-property>
+        </composite-id>
+    </class>
 </hibernate-mapping>

@@ -1,28 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcEstadoCivil" optimistic-lock="version" schema="public" table="lc_estado_civil">
-    <id name="idEstcivil" type="int">
-      <column name="id_estcivil"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="abreviatura" type="string">
-      <column length="100" name="abreviatura"/>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="100" name="descripcion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcEmpleadoses" table="lc_empleados">
-      <key>
-        <column name="estado_civil">
-          <comment>Estado Civila</comment>
-        </column>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcEmpleados"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcEstadoCivil" table="lc_estado_civil" schema="public" optimistic-lock="version">
+        <id name="idEstcivil" type="int">
+            <column name="id_estcivil" />
+            <generator class="assigned" />
+        </id>
+        <property name="abreviatura" type="string">
+            <column name="abreviatura" length="100" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcEmpleadoses" table="lc_empleados" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="estado_civil">
+                    <comment>Estado Civila</comment>
+                </column>
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcEmpleados" />
+        </set>
+    </class>
 </hibernate-mapping>

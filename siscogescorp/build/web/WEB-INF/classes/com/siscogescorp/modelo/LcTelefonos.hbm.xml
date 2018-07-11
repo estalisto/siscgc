@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcTelefonos" optimistic-lock="version" schema="public" table="lc_telefonos">
-    <id name="idTelefono" type="int">
-      <column name="id_telefono"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcTipoPersona" fetch="select" name="lcTipoPersona">
-      <column name="tipo_persona"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcTiposTelefono" fetch="select" name="lcTiposTelefono">
-      <column name="id_tipo_tlf"/>
-    </many-to-one>
-    <property name="idPersona" type="java.lang.Integer">
-      <column name="id_persona"/>
-    </property>
-    <property name="identificacionDeudor" type="string">
-      <column length="50" name="identificacion_deudor"/>
-    </property>
-    <property name="telefono" type="string">
-      <column length="15" name="telefono"/>
-    </property>
-    <property name="scoring" type="java.lang.Integer">
-      <column name="scoring"/>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <property name="descripcionCarga" type="string">
-      <column length="500" name="descripcion_carga"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcTelefonos" table="lc_telefonos" schema="public" optimistic-lock="version">
+        <id name="idTelefono" type="int">
+            <column name="id_telefono" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcTipoPersona" class="com.siscogescorp.modelo.LcTipoPersona" fetch="select">
+            <column name="tipo_persona" />
+        </many-to-one>
+        <many-to-one name="lcTiposTelefono" class="com.siscogescorp.modelo.LcTiposTelefono" fetch="select">
+            <column name="id_tipo_tlf" />
+        </many-to-one>
+        <property name="idPersona" type="java.lang.Integer">
+            <column name="id_persona" />
+        </property>
+        <property name="identificacionDeudor" type="string">
+            <column name="identificacion_deudor" length="50" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="15" />
+        </property>
+        <property name="scoring" type="java.lang.Integer">
+            <column name="scoring" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <property name="descripcionCarga" type="string">
+            <column name="descripcion_carga" length="500" />
+        </property>
+    </class>
 </hibernate-mapping>

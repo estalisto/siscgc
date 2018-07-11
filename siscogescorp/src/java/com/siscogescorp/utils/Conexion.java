@@ -17,9 +17,13 @@ import javax.swing.JOptionPane;
 public class Conexion {
     
    String url2="jdbc:postgresql://localhost:5432/cogescorp_db";
+    // String url2="jdbc:postgresql://192.168.0.33:5432/cogescorp_db";
+    
  Connection cn=null;
      public Connection getconexion(){
-        String url="jdbc:postgresql://localhost:5432/cogescorp_db";
+       
+         String url="jdbc:postgresql://localhost:5432/cogescorp_db";
+         //String url="jdbc:postgresql://192.168.0.33:5432/cogescorp_db";
         String user = "admin";
         String pass = "cogescorp2018";
         

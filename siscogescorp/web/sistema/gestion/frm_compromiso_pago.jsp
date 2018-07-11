@@ -219,8 +219,19 @@ table tr {
                                             <div class="col-lg-5">
                                                 <input type="text" class="form-control input-sm" id="monto_compromiso" name="monto_compro" onkeypress="ValidaSoloNumeros()" placeholder="$ 0.00" disabled="true"/>
                                             </div>
-                                        </div>
+                                        </div>                                            
                                         <span id="fechaCompro" ></span> 
+                                        <!--  -->
+                                        <dt>Gestión: </dt>
+                                            <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultadoCompromisos()"></select> 		         
+                                        <dt>Respuesta: </dt>
+                                        <select class="input-sm form-control" name="resultado2" required="required" id="resultado2"></select>                                 
+                                        <div class="col-xs-3 hidden">
+                                                <div class="form-group">
+                                                    <label>Tipo Resultado escogido</label>
+                                                    <input type="text" class="form-control" id="tiporesultado" name="tiporesultado" value="" required="required">
+                                                </div> 
+                                            </div>
 
 
                                     </div>
@@ -235,17 +246,16 @@ table tr {
                                             </div>                            
                                         </div>
                                         <textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="4" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FBE3BF;  font-size:14px; font-type:Arial" value="0"></textarea>
-
-                                        <dt>Gestión: </dt>
-                                            <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultadoCompromisos()"></select> 		         
-                                        <dt>Respuesta: </dt>
-                                        <select class="input-sm form-control" name="resultado2" required="required" id="resultado2"></select>                                 
-                                        <div class="col-xs-3 hidden">
-                                                <div class="form-group">
-                                                    <label>Tipo Resultado escogido</label>
-                                                    <input type="text" class="form-control" id="tiporesultado" name="tiporesultado" value="" required="required">
-                                                </div> 
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <dt>Notas Admin:</dt>                                
                                             </div>
+                                                                       
+                                        </div>
+                                        <textarea maxlength="400" id="txtnota_admin" class="form-control input-sm " rows="3" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FBE3BF;  font-size:14px; font-type:Arial" value="0"></textarea>
+
+                                             
+                                        
                                     </div>
                                 
                             </div>

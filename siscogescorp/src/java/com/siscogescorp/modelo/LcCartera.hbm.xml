@@ -1,29 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcCartera" optimistic-lock="version" schema="public" table="lc_cartera">
-    <id name="idCartera" type="int">
-      <column name="id_cartera"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcClientes" fetch="select" name="lcClientes">
-      <column name="id_cliente"/>
-    </many-to-one>
-    <property name="nombreCartera" type="string">
-      <column length="20" name="nombre_cartera"/>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcSubcarteras" table="lc_subcartera">
-      <key>
-        <column name="id_cartera"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcSubcartera"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcCartera" table="lc_cartera" schema="public" optimistic-lock="version">
+        <id name="idCartera" type="int">
+            <column name="id_cartera" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcClientes" class="com.siscogescorp.modelo.LcClientes" fetch="select">
+            <column name="id_cliente" />
+        </many-to-one>
+        <property name="nombreCartera" type="string">
+            <column name="nombre_cartera" length="20" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcSubcarteras" table="lc_subcartera" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cartera" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcSubcartera" />
+        </set>
+    </class>
 </hibernate-mapping>

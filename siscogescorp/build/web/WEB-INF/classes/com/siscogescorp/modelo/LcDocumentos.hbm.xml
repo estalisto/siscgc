@@ -1,47 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcDocumentos" optimistic-lock="version" schema="public" table="lc_documentos">
-    <id name="idDocumento" type="int">
-      <column name="id_documento"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="idEmpresa" type="java.lang.Integer">
-      <column name="id_empresa"/>
-    </property>
-    <property name="idAgencia" type="java.lang.Integer">
-      <column name="id_agencia"/>
-    </property>
-    <property name="idCliente" type="java.lang.Integer">
-      <column name="id_cliente"/>
-    </property>
-    <property name="idEmpleado" type="java.lang.Integer">
-      <column name="id_empleado"/>
-    </property>
-    <property name="nombreDocumento" type="string">
-      <column length="100" name="nombre_documento"/>
-    </property>
-    <property name="saludo" type="string">
-      <column length="100" name="saludo"/>
-    </property>
-    <property name="cuerpo" type="string">
-      <column name="cuerpo"/>
-    </property>
-    <property name="despedida" type="string">
-      <column name="despedida"/>
-    </property>
-    <property name="firma" type="string">
-      <column name="firma"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="fechaActualizado" type="timestamp">
-      <column length="29" name="fecha_actualizado"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcDocumentos" table="lc_documentos" schema="public" optimistic-lock="version">
+        <id name="idDocumento" type="int">
+            <column name="id_documento" />
+            <generator class="assigned" />
+        </id>
+        <property name="idEmpresa" type="java.lang.Integer">
+            <column name="id_empresa" />
+        </property>
+        <property name="idAgencia" type="java.lang.Integer">
+            <column name="id_agencia" />
+        </property>
+        <property name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+        </property>
+        <property name="idEmpleado" type="java.lang.Integer">
+            <column name="id_empleado" />
+        </property>
+        <property name="nombreDocumento" type="string">
+            <column name="nombre_documento" length="100" />
+        </property>
+        <property name="saludo" type="string">
+            <column name="saludo" length="100" />
+        </property>
+        <property name="cuerpo" type="string">
+            <column name="cuerpo" />
+        </property>
+        <property name="despedida" type="string">
+            <column name="despedida" />
+        </property>
+        <property name="firma" type="string">
+            <column name="firma" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="fechaActualizado" type="timestamp">
+            <column name="fecha_actualizado" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

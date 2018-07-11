@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcAsignacionTransTmp" optimistic-lock="version" schema="public" table="lc_asignacion_trans_tmp">
-    <id name="idAsig" type="int">
-      <column name="id_asig"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="idSecuencial" type="java.lang.Integer">
-      <column name="id_secuencial"/>
-    </property>
-    <property name="idTransaccion" type="java.lang.Integer">
-      <column name="id_transaccion"/>
-    </property>
-    <property name="idDeudor" type="java.lang.Integer">
-      <column name="id_deudor"/>
-    </property>
-    <property name="idCliente" type="java.lang.Integer">
-      <column name="id_cliente"/>
-    </property>
-    <property name="idEmpleado" type="java.lang.Integer">
-      <column name="id_empleado"/>
-    </property>
-    <property name="totalVencidos" type="big_decimal">
-      <column name="total_vencidos" precision="10"/>
-    </property>
-    <property name="estatus" type="string">
-      <column length="1" name="estatus"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcAsignacionTransTmp" table="lc_asignacion_trans_tmp" schema="public" optimistic-lock="version">
+        <id name="idAsig" type="int">
+            <column name="id_asig" />
+            <generator class="assigned" />
+        </id>
+        <property name="idSecuencial" type="java.lang.Integer">
+            <column name="id_secuencial" />
+        </property>
+        <property name="idTransaccion" type="java.lang.Integer">
+            <column name="id_transaccion" />
+        </property>
+        <property name="idDeudor" type="java.lang.Integer">
+            <column name="id_deudor" />
+        </property>
+        <property name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+        </property>
+        <property name="idEmpleado" type="java.lang.Integer">
+            <column name="id_empleado" />
+        </property>
+        <property name="totalVencidos" type="big_decimal">
+            <column name="total_vencidos" precision="10" />
+        </property>
+        <property name="estatus" type="string">
+            <column name="estatus" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

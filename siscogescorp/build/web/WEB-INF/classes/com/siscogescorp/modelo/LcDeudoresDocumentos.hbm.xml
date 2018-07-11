@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcDeudoresDocumentos" optimistic-lock="version" schema="public" table="lc_deudores_documentos">
-    <id name="id" type="int">
-      <column name="id"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
-      <column name="id_deudores"/>
-    </many-to-one>
-    <property name="idTicket" type="java.lang.Integer">
-      <column name="id_ticket"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcDeudoresDocumentos" table="lc_deudores_documentos" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcDatosDeudores" class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select">
+            <column name="id_deudores" />
+        </many-to-one>
+        <property name="idTicket" type="java.lang.Integer">
+            <column name="id_ticket" />
+        </property>
+    </class>
 </hibernate-mapping>

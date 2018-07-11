@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -39,6 +39,7 @@ public class LcTransacciones  implements java.io.Serializable {
      private String descripcionCarga;
      private Date fechaTransaccion;
      private String estado;
+     private Integer tipoEstatus;
 
     public LcTransacciones() {
     }
@@ -47,7 +48,7 @@ public class LcTransacciones  implements java.io.Serializable {
     public LcTransacciones(int idTransaccion) {
         this.idTransaccion = idTransaccion;
     }
-    public LcTransacciones(int idTransaccion, LcClientes lcClientes, LcDatosDeudores lcDatosDeudores, LcEmpleados lcEmpleados, Integer idEmpresa, Integer idAgencia, Integer idCartera, Integer idSubCartera, Integer idSegmento, Integer idSubSegmento, Integer idTipoIdentificacion, String identificacion, String numCuenta, String numCuenta2, BigDecimal montoAsignado, BigDecimal ultimoPago, Integer numeroPagos, BigDecimal valorCuota, Integer diasMora, BigDecimal interesMora, BigDecimal interesCapital, BigDecimal interesAdicional, BigDecimal interesOtros, Integer diasVencidos, BigDecimal totalVencidos, String descripcionCarga, Date fechaTransaccion, String estado) {
+    public LcTransacciones(int idTransaccion, LcClientes lcClientes, LcDatosDeudores lcDatosDeudores, LcEmpleados lcEmpleados, Integer idEmpresa, Integer idAgencia, Integer idCartera, Integer idSubCartera, Integer idSegmento, Integer idSubSegmento, Integer idTipoIdentificacion, String identificacion, String numCuenta, String numCuenta2, BigDecimal montoAsignado, BigDecimal ultimoPago, Integer numeroPagos, BigDecimal valorCuota, Integer diasMora, BigDecimal interesMora, BigDecimal interesCapital, BigDecimal interesAdicional, BigDecimal interesOtros, Integer diasVencidos, BigDecimal totalVencidos, String descripcionCarga, Date fechaTransaccion, String estado, Integer tipoEstatus) {
        this.idTransaccion = idTransaccion;
        this.lcClientes = lcClientes;
        this.lcDatosDeudores = lcDatosDeudores;
@@ -76,6 +77,7 @@ public class LcTransacciones  implements java.io.Serializable {
        this.descripcionCarga = descripcionCarga;
        this.fechaTransaccion = fechaTransaccion;
        this.estado = estado;
+       this.tipoEstatus = tipoEstatus;
     }
    
     public int getIdTransaccion() {
@@ -273,6 +275,13 @@ public class LcTransacciones  implements java.io.Serializable {
     
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public Integer getTipoEstatus() {
+        return this.tipoEstatus;
+    }
+    
+    public void setTipoEstatus(Integer tipoEstatus) {
+        this.tipoEstatus = tipoEstatus;
     }
 
 

@@ -262,14 +262,15 @@ public class CobranzaController extends HttpServlet {
                         idCliente,
                         txtnota,
                         fecha_reg,
-                        "A"
+                        "A",
+                            0,null
                 ));
                 }else{
                    
                     cd.updateNota(idNota, txtnota);
                 }
                
-                            response.getWriter().println(idNota);
+                    response.getWriter().println(idNota);
         }
 
         if (accion.equals("ResulParametro")) {
@@ -627,6 +628,20 @@ public class CobranzaController extends HttpServlet {
             }
             
          }
+         if(accion.equals("InactivaTelefono")){
+             int idTelefono = Integer.parseInt(request.getParameter("idTelefono"));
+             telf.updateTelefono(idTelefono);
+             response.getWriter().println("Teléfono Eliminado Exitosamente...");
+             
+         }
+         
+         if(accion.equals("inactivarDireccion")){
+             int idDireccion = Integer.parseInt(request.getParameter("idDireccion"));
+             dir.updateInactDireccion(idDireccion);
+             response.getWriter().println("Dirección Eliminada Exitosamente...");
+             
+         }
+         
         if(accion.equals("anterior")){
             try {
                 int idDeudor = Integer.parseInt(request.getParameter("idDeudor"));
@@ -773,7 +788,7 @@ public class CobranzaController extends HttpServlet {
           
       
         }
-         
+        
          
          
          

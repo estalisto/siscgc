@@ -1,98 +1,99 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcClientes" optimistic-lock="version" schema="public" table="lc_clientes">
-    <id name="idCliente" type="int">
-      <column name="id_cliente"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcCiudad" fetch="select" name="lcCiudad">
-      <column name="ciudad"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
-      <column name="id_empresa"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcPais" fetch="select" name="lcPais">
-      <column name="pais"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcProvincia" fetch="select" name="lcProvincia">
-      <column name="provincia"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select" name="lcTiposIdentificacion">
-      <column name="tipo_identificacion"/>
-    </many-to-one>
-    <property name="identificacion" type="string">
-      <column length="100" name="identificacion"/>
-    </property>
-    <property name="razonSocial" type="string">
-      <column length="100" name="razon_social"/>
-    </property>
-    <property name="direccion" type="string">
-      <column length="100" name="direccion"/>
-    </property>
-    <property name="contacto" type="string">
-      <column length="100" name="contacto"/>
-    </property>
-    <property name="email" type="string">
-      <column length="100" name="email"/>
-    </property>
-    <property name="telefono" type="string">
-      <column length="100" name="telefono"/>
-    </property>
-    <property name="extensioon" type="string">
-      <column length="10" name="extensioon"/>
-    </property>
-    <property name="celular" type="string">
-      <column length="50" name="celular"/>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcTransaccioneses" table="lc_transacciones">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcTransacciones"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcRecordatorioses" table="lc_recordatorios">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcRecordatorios"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcDetCampaniases" table="lc_det_campanias">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcDetCampanias"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcDeudors" table="lc_deudor">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcDeudor"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcClienteResultados" table="lc_cliente_resultado">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcClienteResultado"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcCarteras" table="lc_cartera">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcCartera"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcGestioneses" table="lc_gestiones">
-      <key>
-        <column name="id_cliente"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcGestiones"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcClientes" table="lc_clientes" schema="public" optimistic-lock="version">
+        <id name="idCliente" type="int">
+            <column name="id_cliente" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcCiudad" class="com.siscogescorp.modelo.LcCiudad" fetch="select">
+            <column name="ciudad" />
+        </many-to-one>
+        <many-to-one name="lcEmpresa" class="com.siscogescorp.modelo.LcEmpresa" fetch="select">
+            <column name="id_empresa" />
+        </many-to-one>
+        <many-to-one name="lcPais" class="com.siscogescorp.modelo.LcPais" fetch="select">
+            <column name="pais" />
+        </many-to-one>
+        <many-to-one name="lcProvincia" class="com.siscogescorp.modelo.LcProvincia" fetch="select">
+            <column name="provincia" />
+        </many-to-one>
+        <many-to-one name="lcTiposIdentificacion" class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select">
+            <column name="tipo_identificacion" />
+        </many-to-one>
+        <property name="identificacion" type="string">
+            <column name="identificacion" length="100" />
+        </property>
+        <property name="razonSocial" type="string">
+            <column name="razon_social" length="100" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" />
+        </property>
+        <property name="contacto" type="string">
+            <column name="contacto" length="100" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="100" />
+        </property>
+        <property name="extensioon" type="string">
+            <column name="extensioon" length="10" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="50" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcCarteras" table="lc_cartera" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcCartera" />
+        </set>
+        <set name="lcDeudors" table="lc_deudor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcDeudor" />
+        </set>
+        <set name="lcGestioneses" table="lc_gestiones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcGestiones" />
+        </set>
+        <set name="lcDetCampaniases" table="lc_det_campanias" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcDetCampanias" />
+        </set>
+        <set name="lcTransaccioneses" table="lc_transacciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcTransacciones" />
+        </set>
+        <set name="lcRecordatorioses" table="lc_recordatorios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcRecordatorios" />
+        </set>
+        <set name="lcClienteResultados" table="lc_cliente_resultado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcClienteResultado" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -30,11 +30,12 @@ public class VwConsultaCarteraId  implements java.io.Serializable {
      private String ultimaGestion;
      private String resultadoGestion;
      private String estado;
+     private Integer tipoEstatus;
 
     public VwConsultaCarteraId() {
     }
 
-    public VwConsultaCarteraId(Integer idEmpleado, Integer idDatosDeudor, Integer idCliente, Integer idCartera, Integer idSubCartera, Integer idSegmento, Integer idSubSegmento, String identificacion, String nombresCompleto, Integer diasMora, BigDecimal totalVencidos, BigDecimal pagos, String fechaUltPagos, BigDecimal saldo, BigDecimal valorCompro, String fechaComp, String fechUltimaGestion, String ultimaGestion, String resultadoGestion, String estado) {
+    public VwConsultaCarteraId(Integer idEmpleado, Integer idDatosDeudor, Integer idCliente, Integer idCartera, Integer idSubCartera, Integer idSegmento, Integer idSubSegmento, String identificacion, String nombresCompleto, Integer diasMora, BigDecimal totalVencidos, BigDecimal pagos, String fechaUltPagos, BigDecimal saldo, BigDecimal valorCompro, String fechaComp, String fechUltimaGestion, String ultimaGestion, String resultadoGestion, String estado, Integer tipoEstatus) {
        this.idEmpleado = idEmpleado;
        this.idDatosDeudor = idDatosDeudor;
        this.idCliente = idCliente;
@@ -55,6 +56,7 @@ public class VwConsultaCarteraId  implements java.io.Serializable {
        this.ultimaGestion = ultimaGestion;
        this.resultadoGestion = resultadoGestion;
        this.estado = estado;
+       this.tipoEstatus = tipoEstatus;
     }
    
     public Integer getIdEmpleado() {
@@ -197,6 +199,13 @@ public class VwConsultaCarteraId  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public Integer getTipoEstatus() {
+        return this.tipoEstatus;
+    }
+    
+    public void setTipoEstatus(Integer tipoEstatus) {
+        this.tipoEstatus = tipoEstatus;
+    }
 
 
    public boolean equals(Object other) {
@@ -224,7 +233,8 @@ public class VwConsultaCarteraId  implements java.io.Serializable {
  && ( (this.getFechUltimaGestion()==castOther.getFechUltimaGestion()) || ( this.getFechUltimaGestion()!=null && castOther.getFechUltimaGestion()!=null && this.getFechUltimaGestion().equals(castOther.getFechUltimaGestion()) ) )
  && ( (this.getUltimaGestion()==castOther.getUltimaGestion()) || ( this.getUltimaGestion()!=null && castOther.getUltimaGestion()!=null && this.getUltimaGestion().equals(castOther.getUltimaGestion()) ) )
  && ( (this.getResultadoGestion()==castOther.getResultadoGestion()) || ( this.getResultadoGestion()!=null && castOther.getResultadoGestion()!=null && this.getResultadoGestion().equals(castOther.getResultadoGestion()) ) )
- && ( (this.getEstado()==castOther.getEstado()) || ( this.getEstado()!=null && castOther.getEstado()!=null && this.getEstado().equals(castOther.getEstado()) ) );
+ && ( (this.getEstado()==castOther.getEstado()) || ( this.getEstado()!=null && castOther.getEstado()!=null && this.getEstado().equals(castOther.getEstado()) ) )
+ && ( (this.getTipoEstatus()==castOther.getTipoEstatus()) || ( this.getTipoEstatus()!=null && castOther.getTipoEstatus()!=null && this.getTipoEstatus().equals(castOther.getTipoEstatus()) ) );
    }
    
    public int hashCode() {
@@ -250,6 +260,7 @@ public class VwConsultaCarteraId  implements java.io.Serializable {
          result = 37 * result + ( getUltimaGestion() == null ? 0 : this.getUltimaGestion().hashCode() );
          result = 37 * result + ( getResultadoGestion() == null ? 0 : this.getResultadoGestion().hashCode() );
          result = 37 * result + ( getEstado() == null ? 0 : this.getEstado().hashCode() );
+         result = 37 * result + ( getTipoEstatus() == null ? 0 : this.getTipoEstatus().hashCode() );
          return result;
    }   
 

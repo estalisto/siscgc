@@ -120,6 +120,7 @@ table tr {
 
 <body id="MisGraficas" style="background-color:#9e9998">
     <div  id="mensajeSalida"></div>
+    
   
 <nav class="topnav navbar navbar-inverse" style="background-color:#F98021; border-color: #E7E7E7;" >
   <div class="container-fluid">
@@ -175,92 +176,135 @@ table tr {
     </div>
   </div>
 </nav>
+          <%  
+               String permisos_roles_cal= param.Consulta_Parametro("LB_FILTROS_USUARIOS");                            
+               String VarHidden="",VarHiddenOficial=""; 
+               Boolean grafica=false;
+               int col=0;
+               if(!permisos_roles_cal.contains(RolEmpleado)){
+                 VarHidden="hidden";
+                 grafica=false;
+                 col=6;
+                }
+               else{
+                   VarHiddenOficial="hidden";
+                   grafica=true;
+                    col=4;
+               }
+              %>
      <div  id="mensajeSalida"></div>   
       <div id="page-wrapper" style="background-color:#9e9998" >
           
-          <div class="row well-sm">
-              <div class="col-lg-8">
-                  <select class="input-sm text-bold" id="mi_empleado">
-                                <%   EmpleadosServicios emp = new EmpleadosServicios();
-                                    String s_empleados3=""; s_empleados3= emp.misEmpleadosALL(Integer.parseInt(id_empresa), RolEmpleado, Integer.parseInt(IdEmpleado)); %>
-                                <%=s_empleados3%>
-                            </select>
-                            <select class="input-sm text-bold"  id="idcartera" >
-                            </select>
-                           
-              </div>
-          </div>
           
-          <div class="row well-sm" >
-              <div class="col-lg-4" hidden="true">
-                  <div class="box box-warning">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">Producción Diaria -- </h3>
-                      <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <!--button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button-->
-                      </div>
-                    </div>
-                    <div class="box-body">
-                      <div id="chart_gestiones_diarias" ></div>
-                    </div>
-                    <div class="box-footer clearfix">
-                            
-                       <!--input id="fecha_gestion" type="text" class="input-sm text-bold" placeholder="YYYY-MM-DD" /-->      
-                      <a href="#" class="btn btn-sm btn-default ">Consultar</a>
-                    </div>
-                  </div>
-              </div>
+        <div class="panel panel-default <%=VarHidden%> ">
+                 <div class="pannel panel-body">
+                     <div class="row">
+                                        <div class="col-lg-11" >
+                                              <select class="input-sm text-bold" id="mi_empleado">
+                                                <%   EmpleadosServicios emp = new EmpleadosServicios();
+                                                    String s_empleados3=""; s_empleados3= emp.misEmpleadosALL(Integer.parseInt(id_empresa), RolEmpleado, Integer.parseInt(IdEmpleado)); %>
+                                                <%=s_empleados3%>
+                                            </select>
+                                            <select class="input-sm text-bold"  id="idcartera" onchange="getTipoCarteras2();" >
+                                            </select>
+                                            <select class="input-sm text-bold <%=VarHidden%> "  id="tcartera" onchange="getipoSubCartera2();" >
+                                            </select>
+                                             <select class="input-sm text-bold <%=VarHidden%> "  id="tsub_cartera" >
+                                            </select>
+                                            <label class=" <%=VarHidden%>">Fecha Inicio:</label>
+                                            <input id="fecha_ini_calidad2" type="text" class="input-sm text-bold <%=VarHidden%>" placeholder="YYYY-MM-DD" />
+                                            <label class="<%=VarHidden%>">Fecha Fin:</label>
+                                            <input id="fecha_fin_calidad2" type="text" class="input-sm text-bold <%=VarHidden%>" placeholder="YYYY-MM-DD" />
+                                         </div>
+                                        <div class="col-lg-1" >
+                                            <a  onclick="miGraficaRecuperadoPorUsuario();miGraficaCarteraVsRecuperado();cuadro_eficiencia_porcentaje();miGraficaProduccion();"   class="btn btn-success   glyphicon glyphicon-cog">  FILTRAR  </a>
+                                        </div>
+                                    </div>
+                                     
+                     
+
+                 </div>
+        </div>
+          
+          <div class="row well-sm"  >
               
-              <div class="col-lg-8" >
-                  <div class="box box-warning">
-                    <div class="box-header with-border">
-                      <h3 class="box-title">Producción Diaria</h3>
-                      <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <!--button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button-->
-                      </div>
-                    </div>
-                    <div class="box-body">
-                      <div id="chart_gestiones_mensual" ></div>
-                    </div>
-                    <div class="box-footer clearfix ">
-                         <input id="fecha_gestion" type="text" class="input-sm text-bold" placeholder="YYYY-MM-DD" />
-                          <!--input id="fecha_gestion_fin" type="text" class="input-sm text-bold" placeholder="YYYY-MM-DD" /-->
-                          <a href="#" onclick="ConsultaGestionesDiariasAll();" class="btn btn-sm btn-default pull-right">Consultar</a>
-                    </div>
-                  </div>
+          
+              <div class="col-lg-<%=col %>" id='grafica_gestion' >
+                 
               </div>
-              <div class="col-lg-4" >
-                  <div >
-                    <div class="info-box">
-                      <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-                      <div class="info-box-content">
-                        <span class="info-box-text">Compromisos de Pagos</span>
-                        <span class="info-box-number">48</span>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                  </div>
-                  <div >
-                    <div class="info-box">
-                      <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-
-                      <div class="info-box-content">
-                        <span class="info-box-text">Total Recuperado</span>
-                        <span class="info-box-number">48000</span>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                  </div>
+               <div class='col-lg-<%=col %> ' id='grafico_dash' >
+                  
+				 
               </div>
+              <div class="col-lg-<%=col %>" id='recuperado_gestor' >
+                 
+              </div>
+             
               
               
              
           </div>
+            
+                
+                
+                            
+        <div class="row well-sm  <%=VarHidden%> "  >
+            <div class="col-lg-6" >
+                   
+                <div class="panel panel-default" hidden>
+                             <div class="pannel panel-heading text-info text-bold lead" style="background-color:#FEC187;color:#302f2f;" > Asignación de Cartera por Empleado </div>
+                             <div class="pannel panel-body">
+                                 
+                                 <div id="mitable_calidad">
+                                    <table id="idCuadroCalidad" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr  bgcolor='#FEC187'>
+                                                <th class="col-sm-2">Usuario</th>
+                                                <th class="col-sm-2">T.Asignados</th>
+                                                <th class="col-sm-2">Total Deuda</th>
+                                                <th class="col-sm-2">Gestiones</th>
+                                                <th class="col-sm-2">Recuperado</th>
+                                                <th class="col-sm-1">Eficiencia</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                             </div>
+                             
+                         </div>
+                
+            </div>
+            <div class="col-lg-12" >
+                   
+                <div class="panel panel-default">
+                             <div class="pannel panel-heading text-info text-bold lead" style="background-color:#FEC187;color:#302f2f;" > Cuadro de Calidad  </div>
+                             <a  onclick="tableToExcel('mitable_calidad2', 'Calidad');"   class="btn btn-success   glyphicon glyphicon-download-alt">  EXPORTAR  </a>
+                             <div class="pannel panel-body">
+                                
+                                 <div id="mitable_calidad2">
+                                    <table id="idCuadroCalidad2" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr  bgcolor='#FEC187'>
+                                                <th class="col-sm-2">Usuario</th>
+                                                <th class="col-sm-2">T.Asignados</th>
+                                                <th class="col-sm-2">Total Deuda</th>
+                                                <th class="col-sm-2">Gestiones</th>
+                                                <th class="col-sm-2">Recuperado</th>
+                                                <th class="col-sm-1">Eficiencia</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                             </div>
+                             
+                         </div>
+                
+            </div>
+        </div>
           
           
           
@@ -299,6 +343,7 @@ table tr {
         <div class="pull-left info">
             <p class="text-uppercase"><%=USER_SESION%></p>
           <a href="#"><i class="fa fa-circle text-green"></i> <%=RolEmpleado.toUpperCase()%></a>
+           <input hidden id="id_RolEmpleado" value="<%=RolEmpleado.toUpperCase()%>"/>
         </div>
       </div></span>
     
@@ -459,6 +504,7 @@ table tr {
           <!--img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"-->
         </div>
         <div class="pull-left info">
+            
             <p class="text-uppercase"><%=USER_SESION%></p>
           <a href="#"><i class="fa fa-circle text-green"></i> <%=RolEmpleado.toUpperCase()%></a>
         </div>
@@ -741,125 +787,9 @@ table tr {
 <script src="dist/code/modules/exporting.js"></script>
 
 <%DashcboardOk gfc=new DashcboardOk();%>
-    <!--script type="text/javascript">
-        
-      google.charts.load('current', {'packages':['corechart','bar']});
-      google.charts.setOnLoadCallback(drawChart);
-      google.charts.setOnLoadCallback(drawChart2);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Meses', 'Compromisos de Pago'],           
-           /*  <%=gfc.ObtenerCompromisosPagos()%>*/
-           ]);
-        var options = {
-           title: 'Compromisos de Pagos'
-        };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-      }
-      function drawChart2() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     5],         
-          ['Sleep',    9]
-        ]);
-        var options = {
-          title: 'My Daily Activities'
-        };
-        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart2.draw(data, options);
-      }
     
-     
-      google.charts.setOnLoadCallback(drawChart3);
-      function drawChart3() {
-        var data = google.visualization.arrayToDataTable([
-          ['','Gestiones'],           
-            /*   <%=gfc.ObtenerGestiones()%> */
-          ]);
-/*
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]*/
-        var options = {
-          chart: {
-            title: 'Gestiones Realizadas por mes',
-            
-          }
-        };
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script-->
     
-<script type="text/javascript">
-
-   /* Highcharts.chart('container2', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Gestiones Realizadas'
-        },
-        subtitle: {
-            text: 'Seis ultimos Periodos'
-        },
-        xAxis: {
-            categories: [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May'
-
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Transacciones (u)'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} U</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Pvillota',
-            data: [20, 56, 0, 129.2, 144.0]
-
-        }, {
-            name: 'eharo',
-            data: [83.6, 78.8, 98.5, 93.4, 106.0]
-
-        }, {
-            name: 'London',
-            data: [48.9, 38.8, 39.3, 41.4, 1]
-
-        }, {
-            name: 'Berlin',
-            data: [42.4, 2, 34.5, 39.7, 52.6]
-
-        }]
-    });*/
-   
-       
-      /* <%=gfc.ObtenerGestionmesesHist(IdEmpleado)%>*/
-           
-
-</script>  
+ 
 
      <script src="dist/js/jquery.datetimepicker.full.js"></script>
      <script>
@@ -887,6 +817,7 @@ table tr {
 
 //empleados
 consultaMisEmpleados();
+//ConsultasMisClientesXUsuario();
 function consultaMisEmpleados(){
              
    var IDUserRol = $("#IDUserRol").val();
@@ -928,13 +859,6 @@ function fncConsultaGestionesDiarias(pn_id_empleado,pv_fecha,pn_id_cliente){
 }
 */
 
-<%  if(request.getAttribute("Grafica1")!= null){
-     %>
-     <%=request.getAttribute("Grafica1")%>
-
-<%
-    
-}   %>
 
 
      
@@ -952,17 +876,7 @@ function gestiones_diarias(){
         
     }
     $("#midashboard").load("home", {"accion":"consulta","s_empleado":s_empleado,"s_cliente":s_cliente,"fecha_cons":fecha_cons});
-   // var s_clientes=$("#s_clientes")val();
-    //var fecha_cons=$("#fecha_cons").val();
-  //  alert("ooook");
-    /*if(s_clientes==="0"){
-        MsgSalidaModalA("Debe seleccionar una cartera");
-        return;
-        
-    }*/
-    
-    // jQuery("#midashboard").load("home?s_empleado=28",{},function(){});
-  // $("#midashboard").load("home", {s_empleado:'s_empleado',s_clientes:'s_clientes',fecha_cons:'fecha_cons'});
+ 
     
 }
      </script>   
@@ -1128,6 +1042,7 @@ function fnc_registra_datos_gestion(IdDeudor,IdClienteCartera){
 </script> 
 <script>
    // fnc_consulta_mis_notificaciones();
+    
     function fnc_consulta_mis_notificaciones(){
         
         $.getJSON("home", {"accion":"ConsultaMisNotificaciones"}, function(result){
@@ -1163,8 +1078,9 @@ var parametros = {
      }
 </script>
 <script>
+    
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawVisualization);
+   //   google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
@@ -1206,9 +1122,9 @@ var parametros = {
     chart.draw(data, options);
   }
 </script>
-<script type="text/javascript">
+<!--script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart3);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
@@ -1233,27 +1149,381 @@ var parametros = {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+      
     </script>
-        <script>
-        ConsultasMisCarteras();
-        function ConsultasMisCarteras(){
-     document.getElementById("idcartera").innerHTML="";
-     $("#idcartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
-     $.getJSON("consultacartera", {"accion" : "AllClientes"}, function(result){
-          $.each(result.listaClientes, function(key, val){   
-           $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));
-          // var valor_select = val.razon_social;
-          // alert(valor_select);
-       
-          });
-    });  
-    
-}
+    <script>
         
+          function GraficaMensuales(){
+      //  var grafico_dash=$()
+        
+         document.getElementById("grafico_dash").innerHTML ="";
+           document.getElementById("grafico_dash").innerHTML =
+         "<div  id='grafico_dash' ><div class='box box-warning'>"+
+"<div class='box-header with-border'><h3 class='box-title'>Valores Recuperado </h3><div class='box-tools pull-right'>"+
+"<button type='button' class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>"+
+"</div></div><div class='box-body'><div id='chart_gestiones_diarias666' ></div></div>"+
+"<div class='box-footer clearfix'><!--a href='#' onclick='borrar_grafico()' class='btn btn-sm btn-default '>Consultar</a></div>"+
+"</div></div>";
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart3);
+
+
+
+}
+
+        function drawChart3() {
+    
+   
+        var data = google.visualization.arrayToDataTable([
+           
+        
+                    
+        ]);
+
+        var options = {
+          chart: {
+          
+          },
+		   vAxis: {format: 'decimal'},
+		   //height: 300,
+		   //width: 500,
+          bars: 'vertical' //horizontal vertical Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('chart_gestiones_diarias666'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+        
+    </script-->
+        <script>
+   
+            
     $('#fecha_gestion').datetimepicker({   format:'Y-m-d' });    
     $('#fecha_gestion_ini').datetimepicker({   format:'Y-m-d' }); 
     $('#fecha_gestion_fin').datetimepicker({   format:'Y-m-d' }); 
+    $('#fecha_ini_calidad').datetimepicker({   format:'Y-m-d' }); 
+    $('#fecha_fin_calidad').datetimepicker({   format:'Y-m-d' });   
+    $('#fecha_ini_calidad2').datetimepicker({   format:'Y-m-d' }); 
+    $('#fecha_fin_calidad2').datetimepicker({   format:'Y-m-d' });  
+    
+    
     </script>
-	 
+    <script>
+       // ConsultasMisCompromisosAll();
+        miGraficaProduccion();
+        miGraficaCarteraVsRecuperado();
+       //cuadro_eficiencia_porcentaje();
+        <% if(grafica){
+            %>
+             //consulta_cuadro_calidad();
+             consulta_cuadro_calidad_eficiencia();
+             //GraficaMensuales();
+           miGraficaRecuperadoPorUsuario();
+             <%
+            }         
+        %>
+       
+        
+      
+      
+    function consulta_cuadro_calidad(){
+    var fecha_inicial=$("#fecha_ini_calidad").val();
+    var fecha_final=$("#fecha_fin_calidad").val();
+     var accion = "cuadro_calidad2";
+     console.log("fecha_inicial: "+fecha_inicial);
+    // alert("Calidad");
+    
+
+ document.getElementById("mitable_calidad").innerHTML = "";
+    var htmlTable="<table id='idCuadroCalidad' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Usuario</th><th class='col-sm-2'>Cartera</th><th class='col-sm-2'>Sub Cartera</th><th class='col-sm-2'>T.Asignados</th><th class='col-sm-2'>Total Deuda</th><th class='col-sm-2'>Gestiones</th><th class='col-sm-2'>Recuperado</th><th class='col-sm-1'>Eficiencia</th></tr></thead><tbody></tbody></table></div>";
+    document.getElementById("mitable_calidad").innerHTML = htmlTable;
+    
+    $('#idCuadroCalidad').DataTable( {
+        "ajax": {   
+            "data": {"accion": accion},
+            "url": "consultacartera",
+            "type": "GET"
+            },
+            "columns": [
+                { "data": "usuario"},
+                { "data": "cartera"},
+                { "data": "sub_cartera"},
+                { "data": "asignados",class:'text-right' },
+                { "data": "deuda",class:'text-right' },
+                { "data": "gestiones" ,class:'text-right'},
+                { "data": "recuperado"  ,class:'text-right' },
+                { "data": "eficiencia",class:'text-right' }
+            ],
+            paging: false,
+                  "language": {
+    				"emptyTable":			"No hay datos disponibles en la tabla.",
+    				"info":		   		"Del _START_ al _END_ de _TOTAL_ ",
+    				"infoEmpty":			"Mostrando 0 registros de un total de 0.",
+    				"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+    				"infoPostFix":			"(actualizados)",
+    				"lengthMenu":			"Mostrar _MENU_ registros",
+    				"loadingRecords":		"Cargando...",
+    				"processing":			"Procesando...",
+    				"search":			"Buscar:",
+    				"searchPlaceholder":		"Dato para buscar",
+    				"zeroRecords":			"No se han encontrado coincidencias.",
+    				"paginate": {
+    					"first":			"Primera", 
+    					"last":				"Última",
+    					"next":				"Siguiente",
+    					"previous":			"Anterior"
+    				},"aria": {
+    					"sortAscending":	"Ordenación ascendente",
+    					"sortDescending":	"Ordenación descendente"
+    				}
+    			},
+                          
+            scrollX:        true,
+            scrollCollapse: true,
+    } );
+       
+}
+
+function consulta_cuadro_calidad_eficiencia(){
+    var fecha_inicial=$("#fecha_ini_eficiencia").val();
+    var fecha_final=$("#fecha_fin_eficiencia").val();
+     var accion = "cuadro_calidad2";
+     console.log("fecha_inicial: "+fecha_inicial);
+    // alert("Calidad");
+    
+
+ document.getElementById("mitable_calidad").innerHTML = "";
+    var htmlTable="<table id='idCuadroCalidad' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Usuario</th><th class='col-sm-2'>Cartera</th><th class='col-sm-2'>Sub Cartera</th><th class='col-sm-2'>T.Asignados</th><th class='col-sm-2'>Total Deuda</th><th class='col-sm-2'>Gestiones</th><th class='col-sm-2'>Recuperado</th><th class='col-sm-1'>Eficiencia</th></tr></thead><tbody></tbody></table></div>";
+    document.getElementById("mitable_calidad").innerHTML = htmlTable;
+    
+    $('#idCuadroCalidad').DataTable( {
+        "ajax": {   
+            "data": {"accion": accion},
+            "url": "consultacartera",
+            "type": "GET"
+            },
+            "columns": [
+                { "data": "usuario"},
+                { "data": "cartera"},
+                { "data": "sub_cartera"},
+                { "data": "asignados",class:'text-right' },
+                { "data": "deuda",class:'text-right' },
+                { "data": "gestiones" ,class:'text-right'},
+                { "data": "recuperado"  ,class:'text-right' },
+                { "data": "eficiencia",class:'text-right' }
+            ],
+            paging: false,
+                  "language": {
+    				"emptyTable":			"No hay datos disponibles en la tabla.",
+    				"info":		   		"Del _START_ al _END_ de _TOTAL_ ",
+    				"infoEmpty":			"Mostrando 0 registros de un total de 0.",
+    				"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+    				"infoPostFix":			"(actualizados)",
+    				"lengthMenu":			"Mostrar _MENU_ registros",
+    				"loadingRecords":		"Cargando...",
+    				"processing":			"Procesando...",
+    				"search":			"Buscar:",
+    				"searchPlaceholder":		"Dato para buscar",
+    				"zeroRecords":			"No se han encontrado coincidencias.",
+    				"paginate": {
+    					"first":			"Primera", 
+    					"last":				"Última",
+    					"next":				"Siguiente",
+    					"previous":			"Anterior"
+    				},"aria": {
+    					"sortAscending":	"Ordenación ascendente",
+    					"sortDescending":	"Ordenación descendente"
+    				}
+    			},
+                          
+            scrollX:        true,
+            scrollCollapse: true,
+    } );
+       
+}
+
+/**
+ * Comment
+ */
+limpiar_filtros_ini();
+function limpiar_filtros_ini(){
+        cuadro_eficiencia_porcentaje();
+        document.getElementById("fecha_ini_calidad2").value = "";
+        document.getElementById("fecha_fin_calidad2").value = "";
+        ConsultasMisClientesXUsuario();
+      //  ConsultasMisSubCarteras();
+}
+function cuadro_eficiencia_porcentaje(){
+        var fecha_inicial=$("#fecha_ini_calidad2").val();
+        var fecha_final=$("#fecha_fin_calidad2").val();
+        var tcartera=$("#tcartera").val();
+        var tsub_cartera=$("#tsub_cartera").val();
+        
+        var accion = "cuadro_eficiencia_porcentaje";
+
+        document.getElementById("mitable_calidad2").innerHTML = "";
+        var htmlTable="<table id='idCuadroCalidad2' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Gestores</th><th class='col-sm-2'>Cartera</th><th class='col-sm-2'>Sub Cartera</th><th class='col-sm-2'>Client/Asig.</th><th class='col-sm-2'>#Gestiones</th><th class='col-sm-2'>#Gestionados</th><th class='col-sm-2'>#Clientes Contactados</th><th class='col-sm-2'>Mensaje Directo</th><th class='col-sm-2'>Compromisos Pago</th><th class='col-sm-2'>%Eficiencia Contactado</th><th class='col-sm-2'>%Eficiencia MD</th><th class='col-sm-2'>%Efic. Comp. Pago</th><th class='col-sm-1'>Cumplimiento CP</th></tr></thead><tbody></tbody></table></div>";
+        document.getElementById("mitable_calidad2").innerHTML = htmlTable;
+    
+        
+        $('#idCuadroCalidad2').DataTable({
+        "ajax": {   
+            "data": {"accion": accion,"fecha_inicial":fecha_inicial,"fecha_final":fecha_final,"tcartera":tcartera,"tsub_cartera":tsub_cartera},
+            "url": "consultacartera",
+            "type": "GET"
+            },
+            "columns": [
+                { "data": "usuario"},
+                 { "data": "cartera"},
+                { "data": "subcartera"},
+                { "data": "clientes_asignados",class:'text-right' },
+                { "data": "gestiones_all",class:'text-right' },
+                { "data": "cli_gestionados",class:'text-right' },
+                { "data": "cli_contactado",class:'text-right' },
+                { "data": "cli_contatado_direc",class:'text-right' },
+                { "data": "cli_compromiso",class:'text-right' },
+                { "data": "eficiencia_contac",class:'text-right' },
+                { "data": "msm_directo",class:'text-right' },
+                { "data": "eficiencia_compromiso",class:'text-right' },
+                { "data": "compro_efect" ,class:'text-right'}
+            ],
+             
+            paging: false,
+                  "language": {
+    				"emptyTable":			"No hay datos disponibles en la tabla.",
+    				"info":		   		"Del _START_ al _END_ de _TOTAL_ ",
+    				"infoEmpty":			"Mostrando 0 registros de un total de 0.",
+    				"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+    				"infoPostFix":			"(actualizados)",
+    				"lengthMenu":			"Mostrar _MENU_ registros",
+    				"loadingRecords":		"Cargando...",
+    				"processing":			"Procesando...",
+    				"search":			"Buscar:",
+    				"searchPlaceholder":		"Dato para buscar",
+    				"zeroRecords":			"No se han encontrado coincidencias.",
+    				"paginate": {
+    					"first":			"Primera", 
+    					"last":				"Última",
+    					"next":				"Siguiente",
+    					"previous":			"Anterior"
+    				},"aria": {
+    					"sortAscending":	"Ordenación ascendente",
+    					"sortDescending":	"Ordenación descendente"
+    				}
+    			},
+            scrollX:        true,
+            scrollCollapse: true
+    } );
+     
+        
+}
+
+
+
+
+
+function consulta_cuadro_calidad_all(){
+    var fecha_inicial=$("#fecha_ini_calidad2").val();
+    var fecha_final=$("#fecha_fin_calidad2").val();
+    var accion = "cuadro_calidad";
+     //
+     //console.log("fecha_inicial: "+fecha_inicial);
+   /* if(fecha_inicial===""){
+       alert("Debe Ingresar una fecha Desde");
+       return;
+    }
+    
+    if(fecha_final===""){
+       alert("Debe Ingresar una fecha Hasta");
+       return;
+    }*/
+
+ document.getElementById("mitable_calidad").innerHTML = "";
+    var htmlTable="<table id='idCuadroCalidad' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Usuario</th><th class='col-sm-2'>Cartera</th><th class='col-sm-2'>Sub Cartera</th><th class='col-sm-2'>T.Asignados</th><th class='col-sm-2'>Total Deuda</th><th class='col-sm-2'>Gestiones</th><th class='col-sm-2'>Recuperado</th><th class='col-sm-1'>Eficiencia</th></tr></thead><tbody></tbody></table></div>";
+    document.getElementById("mitable_calidad").innerHTML = htmlTable;
+    
+    $('#idCuadroCalidad').DataTable( {
+        "ajax": {   
+            "data": {"accion": accion,"fecha_inicial":fecha_inicial,"fecha_final":fecha_final},
+            "url": "consultacartera",
+            "type": "GET"
+            },
+            "columns": [
+                { "data": "usuario"},
+                 { "data": "cartera"},
+                { "data": "sub_cartera"},
+                { "data": "asignados",class:'text-right' },
+                { "data": "deuda",class:'text-right' },
+                { "data": "gestiones" ,class:'text-right'},
+                { "data": "recuperado"  ,class:'text-right' },
+                { "data": "eficiencia",class:'text-right' }
+            ],
+             
+            paging: false,
+                  "language": {
+    				"emptyTable":			"No hay datos disponibles en la tabla.",
+    				"info":		   		"Del _START_ al _END_ de _TOTAL_ ",
+    				"infoEmpty":			"Mostrando 0 registros de un total de 0.",
+    				"infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+    				"infoPostFix":			"(actualizados)",
+    				"lengthMenu":			"Mostrar _MENU_ registros",
+    				"loadingRecords":		"Cargando...",
+    				"processing":			"Procesando...",
+    				"search":			"Buscar:",
+    				"searchPlaceholder":		"Dato para buscar",
+    				"zeroRecords":			"No se han encontrado coincidencias.",
+    				"paginate": {
+    					"first":			"Primera", 
+    					"last":				"Última",
+    					"next":				"Siguiente",
+    					"previous":			"Anterior"
+    				},"aria": {
+    					"sortAscending":	"Ordenación ascendente",
+    					"sortDescending":	"Ordenación descendente"
+    				}
+    			},
+            scrollX:        true,
+            scrollCollapse: true
+    } );
+       
+}
+
+    </script>
+	 <script type="text/javascript">
+var tableToExcel = (function() {
+  var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><meta charset="utf-8" /><body><table>{table}</table></body></html>'
+    , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+  return function(table, name) {
+    if (!table.nodeType) table = document.getElementById(table)
+    var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML }
+  window.location.href = uri + base64(format(template, ctx))
+    
+   
+   
+   
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+} 
+if(mm<10){
+    mm='0'+mm;
+} 
+var today2 = yyyy+''+mm+''+dd;
+console.log("today2"+today2);
+     var link = document.createElement("a");
+            link.download = "Cartera_"+today2+".xls";
+            link.href = uri + base64(format(template, ctx));
+            link.click();
+  }
+})()
+         
+</script>
 </body>
 </html>

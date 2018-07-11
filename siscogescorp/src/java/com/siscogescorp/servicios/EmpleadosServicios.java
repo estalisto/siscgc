@@ -550,11 +550,11 @@ public class EmpleadosServicios {
         
         // hacemos la transaccion
         if(mis_roles.contains(nombre_rol)){
-            Query q = session.createQuery("from LcEmpleados E WHERE E.estado = :estado ");
+            Query q = session.createQuery("from LcEmpleados E WHERE E.estado = :estado ORDER BY E.nombres");
             q.setParameter("estado","A");   
             lista=q.list();
        }else{
-            Query q = session.createQuery("from LcEmpleados E WHERE E.estado = :estado and E.idEmpleado= :idEmpleado");
+            Query q = session.createQuery("from LcEmpleados E WHERE E.estado = :estado and E.idEmpleado= :idEmpleado ORDER BY E.nombres");
             q.setParameter("estado","A"); 
             q.setParameter("idEmpleado",id_empleado); 
             lista=q.list();

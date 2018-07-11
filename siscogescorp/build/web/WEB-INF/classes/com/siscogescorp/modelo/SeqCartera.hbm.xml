@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.SeqCartera" optimistic-lock="version" schema="public" table="seq_cartera">
-    <composite-id class="com.siscogescorp.modelo.SeqCarteraId" name="id">
-      <key-property name="id" type="int">
-        <column name="id"/>
-      </key-property>
-      <key-property name="secuencia" type="java.lang.Integer">
-        <column name="secuencia"/>
-      </key-property>
-      <key-property name="idDeudor" type="java.lang.Integer">
-        <column name="id_deudor"/>
-      </key-property>
-    </composite-id>
-  </class>
+    <class name="com.siscogescorp.modelo.SeqCartera" table="seq_cartera" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.siscogescorp.modelo.SeqCarteraId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="secuencia" type="java.lang.Integer">
+                <column name="secuencia" />
+            </key-property>
+            <key-property name="idDeudor" type="java.lang.Integer">
+                <column name="id_deudor" />
+            </key-property>
+        </composite-id>
+    </class>
 </hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.siscogescorp.modelo.LcTiposEstatus" table="lc_tipos_estatus" schema="public" optimistic-lock="version">
+        <id name="idEstatus" type="int">
+            <column name="id_estatus" />
+            <generator class="assigned" />
+        </id>
+        <property name="idEmpresa" type="java.lang.Integer">
+            <column name="id_empresa" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

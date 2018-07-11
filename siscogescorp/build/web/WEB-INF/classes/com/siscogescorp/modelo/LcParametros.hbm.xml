@@ -1,39 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcParametros" optimistic-lock="version" schema="public" table="lc_parametros">
-    <id name="id" type="int">
-      <column name="id"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="idParametro" type="java.lang.Integer">
-      <column name="id_parametro">
-        <comment>Código Parametro</comment>
-      </column>
-    </property>
-    <property name="parametro" type="string">
-      <column length="200" name="parametro">
-        <comment>Nombre del parametro</comment>
-      </column>
-    </property>
-    <property name="valor" type="string">
-      <column name="valor">
-        <comment>valor del parametro</comment>
-      </column>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="500" name="descripcion"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="35" name="fecha_registro">
-        <comment>Fecha de Creación</comment>
-      </column>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado">
-        <comment>(A) activo, (I) inactivo</comment>
-      </column>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcParametros" table="lc_parametros" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="idParametro" type="java.lang.Integer">
+            <column name="id_parametro">
+                <comment>C&#243;digo Parametro</comment>
+            </column>
+        </property>
+        <property name="parametro" type="string">
+            <column name="parametro" length="200">
+                <comment>Nombre del parametro</comment>
+            </column>
+        </property>
+        <property name="valor" type="string">
+            <column name="valor">
+                <comment>valor del parametro</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="500" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="35">
+                <comment>Fecha de Creaci&#243;n</comment>
+            </column>
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1">
+                <comment>(A) activo, (I) inactivo</comment>
+            </column>
+        </property>
+    </class>
 </hibernate-mapping>

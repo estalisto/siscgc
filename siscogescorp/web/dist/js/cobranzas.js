@@ -908,45 +908,7 @@ function GuardarCompPago() {
     } else {
         MsgSalidaModalM("Debe Ingresar una Fecha de Compromiso De Pago");
     }
-}/*
-$('#agregaDir').click(function(e){
-   e.preventDefault();  
-    var cliente = $('#idcliente').val();
-    var idDeudor = $('#id').val();
-    var tDireccion = $('#tDireccion').val();
-    var direccion_new = $('#direccion_new').val();
-    var accion = "agraga_direccion";
-   // alert("agraga_telef?cliente: "+cliente+"Deudor: "+idDeudor+"Telefono: "+tipoTelefono+"New Tele: "+newTelefono+accion);
-
-    if (direccion_new === "") {
-        alert("Ingrese una dirección válida");
-        return;  
-      }
-var parametros = {
-            "accion": accion,
-            "idDeudor": idDeudor,
-            "cliente": cliente,
-            "tDireccion": tDireccion,
-            "direccion_new": direccion_new
-          
-        };
-        $.ajax({
-            data: parametros,
-            url: 'cobranzas',
-            type: 'GET',
-            beforeSend: function () {
-            },
-            success: function (response) {
-
-                if (response) {
-                    alert(response);
-                  document.getElementById("direccion_new").value = "";
-               // $('#table_direccion').css("display", "none");
-                table_direccion(cliente, idDeudor);
-                }
-            }
-        });
-	});*/
+}
         
 function agregarDireccionModal(){
      var cliente = $('#idcliente').val();
@@ -997,7 +959,7 @@ function agregarTelefonosModal(){
     var newTelefono = $('#newTelefono').val();
     var accion = "agraga_telef";
     //alert("agraga_telef?cliente: "+cliente+"Deudor: "+idDeudor+"Telefono: "+tipoTelefono+"New Tele: "+newTelefono+accion);
-
+//console.log("okoko"+);
     if (newTelefono === "") {
         alert("Ingrese un numero de telefono");
         return;  
@@ -1021,8 +983,7 @@ var parametros = {
                 if (response) {
                     alert(response);
                       document.getElementById("newTelefono").value = "";
-              //  $('#table_telefono').css("display", "none");
-                //table_telefono(cliente, idDeudor);
+
                 TelefonosJson(cliente, idDeudor);
                 }
                 
@@ -1541,7 +1502,7 @@ function GestionCliente(stridCliente, stride){
 var idCliente = stridCliente;
 var idDeudor= stride;
 var accion="GestionCliente";
-hidden_cartera_cliente('true');
+hidden_cartera_cliente('true',stride);
 document.getElementById("siguiente").disabled = false; 
 document.getElementById("anterior").disabled = false; 
 
@@ -1556,23 +1517,28 @@ document.getElementById("anterior").disabled = false;
               document.getElementById("labelPagos").innerHTML  ="";
               document.getElementById("labelSaldos").innerHTML  ="";
               document.getElementById("labelDiasMora").innerHTML  ="";
-              
+              //grupo_sub_grupo
               document.getElementById("id_deudor").value=val.IdDeudor;
               document.getElementById("idcliente").value=val.IdCliente;
               console.log('NombresCompletos: '+val.NombresCompletos);            
              document.getElementById("identificacion").innerHTML =val.Identificacion; 
              document.getElementById("deudor").innerHTML  = val.NombresCompletos; 
              document.getElementById("cliente").innerHTML = val.RazonSocialCliente; 
+             document.getElementById("grupo_sub_grupo").innerHTML = val.Grupo; 
              document.getElementById("cuenta").value = val.NumCuenta; 
-             document.getElementById("labelTotalDeuda").innerHTML = val.TotalDeuda; 
+  
+           
              document.getElementById("labelTotalVencido").innerHTML = val.TotalVencido; 
              document.getElementById("labelPagos").innerHTML = val.Pago; 
              document.getElementById("labelSaldos").innerHTML = val.Saldo; 
              document.getElementById("labelDiasMora").innerHTML = val.DiasMora; 
              $("#Ciudad").append($("<option>",{value:val.IDCiudad,text:val.Ciudad}));
              document.getElementById("txtnota").value=val.Notas;
+             //NotasAdm
+             document.getElementById("txtnota_admin").value=val.NotasAdm;
              document.getElementById("idNotas").value=val.IDNotas;
              document.getElementById("idTransaccion").value=val.IDTransaccion;
+             document.getElementById("nom_empleado").innerHTML=val.NombreEmpleado;
             
             
             
@@ -1593,9 +1559,10 @@ console.log("MuestraDatosReferencias Cliente: "+idCliente+" Id_deudor: "+idDeudo
 MuestraDatosReferencias(idCliente,idDeudor);
 //ComprasJson(idCliente, idDeudor);
 }
+function formatearNumero(nStr) { nStr += ''; x = nStr.split(','); x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : ''; var rgx = /(\d+)(\d{3})/; while (rgx.test(x1)) { x1 = x1.replace(rgx, '$1' + ',' + '$2'); } return x1 + x2; }
 function DireccionesJson(idCliente, idDeudor){
   
-    var StringTablaCabecera="<table id='idAllDireccions' class=' table-striped table-bordered dt-responsive table-condensed table-hover' ><thead><tr  bgcolor='#FEC187' width='100%'><th >Tipo</th><th class='sorting_asc' tabindex='0' aria-controls='idAllDireccions' rowspan='1' colspan='1' style='width: 767px;' aria-label='Dirección: activate to sort column descending' aria-sort='ascending'>Dirección</th></tr></thead><tbody></tbody></table>";
+    var StringTablaCabecera="<table id='idAllDireccions' class=' table-striped table-bordered dt-responsive table-condensed table-hover' ><thead><tr  bgcolor='#FEC187' width='100%'><th >Tipo</th><th class='sorting_asc' tabindex='0' aria-controls='idAllDireccions' rowspan='1' colspan='1' style='width: 767px;' aria-label='Dirección: activate to sort column descending' aria-sort='ascending'>Dirección</th> <th>Acciones</th></tr></thead><tbody></tbody></table>";
     var accion="listar_direccion";
     document.getElementById("TablaDirecciones").innerHTML  =""; 
     document.getElementById("TablaDirecciones").innerHTML  =StringTablaCabecera;
@@ -1610,7 +1577,8 @@ function DireccionesJson(idCliente, idDeudor){
             },
             "columns": [
                 { "data": "TipoDireccion" },
-                { "data": "Direccion" }
+                { "data": "Direccion" },
+                { "data": "acciones" }
             ],
             scrollY:        110,
             scrollX:        false,
@@ -1632,7 +1600,7 @@ function DireccionesJson(idCliente, idDeudor){
 
 function TelefonosJson(idCliente, idDeudor){
     
-    var TablaTelefonos="<table id='idAllTelefonos' class='table table-striped table-bordered dt-responsive   table-condensed  table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Tipo</th><th class='col-sm-8'>Télefonos</th><th class='col-sm-2'>Llamar</th></tr></thead><tbody></tbody></table>";
+    var TablaTelefonos="<table id='idAllTelefonos' class='table table-striped table-bordered dt-responsive   table-condensed  table-hover' cellspacing='0' width='100%'><thead><tr  bgcolor='#FEC187'><th class='col-sm-2'>Tipo</th><th class='col-sm-8'>Télefonos</th><th class='col-sm-2'>Acciones</th></tr></thead><tbody></tbody></table>";
     document.getElementById("table_telefono").innerHTML  =""; 
     document.getElementById("table_telefono").innerHTML  =TablaTelefonos;
       $(document).ready(function() {	
@@ -1935,8 +1903,7 @@ document.getElementById("anterior").disabled = false;
               document.getElementById("labelTotalVencido").innerHTML  ="";
               document.getElementById("labelPagos").innerHTML  ="";
               document.getElementById("labelSaldos").innerHTML  ="";
-              document.getElementById("labelDiasMora").innerHTML  ="";
-              
+              document.getElementById("labelDiasMora").innerHTML  ="";              
               document.getElementById("id_deudor").value=val.IdDeudor;
               document.getElementById("idcliente").value=val.IdCliente;
               //console.log('NombresCompletos: '+val.NombresCompletos);            
@@ -1953,6 +1920,8 @@ document.getElementById("anterior").disabled = false;
              document.getElementById("txtnota").value=val.Notas;
              document.getElementById("idNotas").value=val.IDNotas;
              document.getElementById("idTransaccion").value=val.IDTransaccion;
+             
+             
             
             
             
@@ -1974,8 +1943,12 @@ MuestraDatosReferencias(idCliente,idDeudor);
 //ComprasJson(idCliente, idDeudor);
 }
 
-function hidden_cartera_cliente(valor){
-   
+function hidden_cartera_cliente(valor,id){
+     
+    if(document.getElementById("id_deudor").value==="" && id===""){
+         alert("Debe Seleccionar un Cliente");
+       return;
+    }
    if(valor==="true"){
        document.getElementById("cliente_cartera").style.display = 'none';
         document.getElementById("gestion_cliente").style.display = 'block';
@@ -2002,6 +1975,20 @@ function ConsultasMisCarteras(){
 document.getElementById("idcartera").innerHTML="";
   $("#idcartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
      $.getJSON("consultacartera", {"accion" : "AllClientes"}, function(result){
+          $.each(result.listaClientes, function(key, val){   
+           $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));
+          // var valor_select = val.razon_social;
+          // alert(valor_select);
+       
+          });
+    });  
+    
+}
+
+function LlenarComboBuscarCliente(){
+document.getElementById("idcartera").innerHTML="";
+  
+     $.getJSON("consultacartera", {"accion" : "AllClientesROL"}, function(result){
           $.each(result.listaClientes, function(key, val){   
            $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));
           // var valor_select = val.razon_social;
@@ -2108,6 +2095,8 @@ document.getElementById("anterior").disabled = false;
              $("#Ciudad").append($("<option>",{value:val.IDCiudad,text:val.Ciudad}));
              document.getElementById("txtnota").value=val.Notas;
            //  document.getElementById("idNotas").value=val.IDNotas;
+           //NotasAdm
+             document.getElementById("txtnota_admin").value=val.NotasAdm;
              document.getElementById("idTransaccion").value=val.IDTransaccion;
             
             
@@ -2418,3 +2407,63 @@ function GuardarTransaccnormalCompromisos() {
         
           
 }
+function inactivaTelefono(idTelefono, telefono){
+       var idDeudor = document.getElementById("id_deudor").value;
+    var idCliente = document.getElementById("idcliente").value;
+   var r = confirm("Esta Seguro de eliminar este numero de telefono "+telefono+"?");
+    if (r == true) {
+       var parametros = {
+            "accion": "InactivaTelefono",
+            "idTelefono": idTelefono          
+        };
+        $.ajax({
+            data: parametros,
+            url: 'cobranzas',
+            type: 'GET',
+            beforeSend: function () {
+            },
+            success: function (response) {  
+                alert(response.toString());
+                TelefonosJson(idCliente, idDeudor);
+            }
+        });
+    
+      
+    }
+    
+}
+
+function inactivarDireccion(idDireccion){
+    
+     var idDeudor = document.getElementById("id_deudor").value;
+    var idCliente = document.getElementById("idcliente").value;
+   var r = confirm("Esta Seguro que desea eliminar este tipo de Dirección?");
+    if (r == true) {
+       var parametros = {
+            "accion": "inactivarDireccion",
+            "idDireccion": idDireccion          
+        };
+        $.ajax({
+            data: parametros,
+            url: 'cobranzas',
+            type: 'GET',
+            beforeSend: function () {
+            },
+            success: function (response) {  
+                alert(response.toString());
+               DireccionesJson(idCliente, idDeudor);
+            }
+        });
+    
+      
+    }
+}
+function ConsultasTiposTelefonos(){
+           document.getElementById("idcartera").innerHTML="";
+           $("#idcartera").append($("<option>",{value:"0",text:"- CEDENTE -"}));
+           $.getJSON("consultacartera", {"accion" : "AllClientes"}, function(result){
+                $.each(result.listaClientes, function(key, val){   
+                 $("#idcartera").append($("<option>",{value:val.id_cliente,text:val.razon_social}));
+                });
+           }); 
+       }

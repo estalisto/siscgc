@@ -1,29 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcTipoFormaPago" optimistic-lock="version" schema="public" table="lc_tipo_forma_pago">
-    <id name="idTipoFp" type="int">
-      <column name="id_tipo_fp"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="tipoPago" type="string">
-      <column length="20" name="tipo_pago"/>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="50" name="descripcion"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcFormapagoRecaudacions" table="lc_formapago_recaudacion">
-      <key>
-        <column name="tipo_forma_pago"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcFormapagoRecaudacion"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcTipoFormaPago" table="lc_tipo_forma_pago" schema="public" optimistic-lock="version">
+        <id name="idTipoFp" type="int">
+            <column name="id_tipo_fp" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoPago" type="string">
+            <column name="tipo_pago" length="20" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcFormapagoRecaudacions" table="lc_formapago_recaudacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_forma_pago" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcFormapagoRecaudacion" />
+        </set>
+    </class>
 </hibernate-mapping>

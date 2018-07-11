@@ -1,52 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcCiudad" optimistic-lock="version" schema="public" table="lc_ciudad">
-    <id name="idCiudad" type="int">
-      <column name="id_ciudad"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="idProvincia" type="java.lang.Integer">
-      <column name="id_provincia"/>
-    </property>
-    <property name="ciudad" type="string">
-      <column length="100" name="ciudad"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcEmpresas" table="lc_empresa">
-      <key>
-        <column name="id_ciudad">
-          <comment>Identificador único de Ciudad</comment>
-        </column>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcEmpresa"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcClienteses" table="lc_clientes">
-      <key>
-        <column name="ciudad"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcClientes"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcZonases" table="lc_zonas">
-      <key>
-        <column name="id_ciudad"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcZonas"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcReferenciases" table="lc_referencias">
-      <key>
-        <column name="id_ciudad"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcReferencias"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcDatosDeudoreses" table="lc_datos_deudores">
-      <key>
-        <column name="id_ciudad"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcDatosDeudores"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcCiudad" table="lc_ciudad" schema="public" optimistic-lock="version">
+        <id name="idCiudad" type="int">
+            <column name="id_ciudad" />
+            <generator class="assigned" />
+        </id>
+        <property name="idProvincia" type="java.lang.Integer">
+            <column name="id_provincia" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="100" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcReferenciases" table="lc_referencias" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciudad" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcReferencias" />
+        </set>
+        <set name="lcClienteses" table="lc_clientes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ciudad" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcClientes" />
+        </set>
+        <set name="lcDatosDeudoreses" table="lc_datos_deudores" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciudad" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcDatosDeudores" />
+        </set>
+        <set name="lcEmpresas" table="lc_empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciudad">
+                    <comment>Identificador &#250;nico de Ciudad</comment>
+                </column>
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcEmpresa" />
+        </set>
+        <set name="lcZonases" table="lc_zonas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciudad" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcZonas" />
+        </set>
+    </class>
 </hibernate-mapping>

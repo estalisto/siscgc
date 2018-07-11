@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,8 @@ public class LcNotas  implements java.io.Serializable {
      private String observacion;
      private Date fechaTransaccion;
      private String estado;
+     private Integer idTransaccion;
+     private String notaAdmin;
 
     public LcNotas() {
     }
@@ -24,13 +26,15 @@ public class LcNotas  implements java.io.Serializable {
     public LcNotas(int idNota) {
         this.idNota = idNota;
     }
-    public LcNotas(int idNota, Integer idDeudor, Integer idCliente, String observacion, Date fechaTransaccion, String estado) {
+    public LcNotas(int idNota, Integer idDeudor, Integer idCliente, String observacion, Date fechaTransaccion, String estado, Integer idTransaccion, String notaAdmin) {
        this.idNota = idNota;
        this.idDeudor = idDeudor;
        this.idCliente = idCliente;
        this.observacion = observacion;
        this.fechaTransaccion = fechaTransaccion;
        this.estado = estado;
+       this.idTransaccion = idTransaccion;
+       this.notaAdmin = notaAdmin;
     }
    
     public int getIdNota() {
@@ -74,6 +78,20 @@ public class LcNotas  implements java.io.Serializable {
     
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public Integer getIdTransaccion() {
+        return this.idTransaccion;
+    }
+    
+    public void setIdTransaccion(Integer idTransaccion) {
+        this.idTransaccion = idTransaccion;
+    }
+    public String getNotaAdmin() {
+        return this.notaAdmin;
+    }
+    
+    public void setNotaAdmin(String notaAdmin) {
+        this.notaAdmin = notaAdmin;
     }
 
 

@@ -1,65 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcArticulo" optimistic-lock="version" schema="public" table="lc_articulo">
-    <id name="idArticulo" type="int">
-      <column name="id_articulo"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
-      <column name="id_deudor"/>
-    </many-to-one>
-    <property name="idCliente" type="java.lang.Integer">
-      <column name="id_cliente"/>
-    </property>
-    <property name="referencia" type="string">
-      <column length="100" name="referencia"/>
-    </property>
-    <property name="nombreArticulo" type="string">
-      <column name="nombre_articulo"/>
-    </property>
-    <property name="tipoCredito" type="java.lang.Integer">
-      <column name="tipo_credito"/>
-    </property>
-    <property name="valorArticulo" type="big_decimal">
-      <column name="valor_articulo" precision="10"/>
-    </property>
-    <property name="interes" type="big_decimal">
-      <column name="interes" precision="10"/>
-    </property>
-    <property name="numCuotas" type="java.lang.Integer">
-      <column name="num_cuotas"/>
-    </property>
-    <property name="numCuotasPagadas" type="java.lang.Integer">
-      <column name="num_cuotas_pagadas"/>
-    </property>
-    <property name="numCuotasPendientes" type="java.lang.Integer">
-      <column name="num_cuotas_pendientes"/>
-    </property>
-    <property name="interesMora" type="big_decimal">
-      <column name="interes_mora" precision="10"/>
-    </property>
-    <property name="gastosAdicional" type="big_decimal">
-      <column name="gastos_adicional" precision="10"/>
-    </property>
-    <property name="fechaCompra" type="timestamp">
-      <column length="29" name="fecha_compra"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <property name="descripcionCarga" type="string">
-      <column length="500" name="descripcion_carga"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcCuotases" table="lc_cuotas">
-      <key>
-        <column name="id_articulo"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcCuotas"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcArticulo" table="lc_articulo" schema="public" optimistic-lock="version">
+        <id name="idArticulo" type="int">
+            <column name="id_articulo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcDatosDeudores" class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select">
+            <column name="id_deudor" />
+        </many-to-one>
+        <property name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+        </property>
+        <property name="referencia" type="string">
+            <column name="referencia" length="100" />
+        </property>
+        <property name="nombreArticulo" type="string">
+            <column name="nombre_articulo" />
+        </property>
+        <property name="tipoCredito" type="java.lang.Integer">
+            <column name="tipo_credito" />
+        </property>
+        <property name="valorArticulo" type="big_decimal">
+            <column name="valor_articulo" precision="10" />
+        </property>
+        <property name="interes" type="big_decimal">
+            <column name="interes" precision="10" />
+        </property>
+        <property name="numCuotas" type="java.lang.Integer">
+            <column name="num_cuotas" />
+        </property>
+        <property name="numCuotasPagadas" type="java.lang.Integer">
+            <column name="num_cuotas_pagadas" />
+        </property>
+        <property name="numCuotasPendientes" type="java.lang.Integer">
+            <column name="num_cuotas_pendientes" />
+        </property>
+        <property name="interesMora" type="big_decimal">
+            <column name="interes_mora" precision="10" />
+        </property>
+        <property name="gastosAdicional" type="big_decimal">
+            <column name="gastos_adicional" precision="10" />
+        </property>
+        <property name="fechaCompra" type="timestamp">
+            <column name="fecha_compra" length="29" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <property name="descripcionCarga" type="string">
+            <column name="descripcion_carga" length="500" />
+        </property>
+        <set name="lcCuotases" table="lc_cuotas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_articulo" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcCuotas" />
+        </set>
+    </class>
 </hibernate-mapping>

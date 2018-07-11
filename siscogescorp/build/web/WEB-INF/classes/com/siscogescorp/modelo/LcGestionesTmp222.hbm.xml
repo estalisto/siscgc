@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.siscogescorp.modelo.LcGestionesTmp222" table="lc_gestiones_tmp222" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.siscogescorp.modelo.LcGestionesTmp222Id">
+            <key-property name="idDeudor" type="java.lang.Integer">
+                <column name="id_deudor" />
+            </key-property>
+            <key-property name="idCliente" type="java.lang.Integer">
+                <column name="id_cliente" />
+            </key-property>
+            <key-property name="idEmpleado" type="java.lang.Integer">
+                <column name="id_empleado" />
+            </key-property>
+            <key-property name="idTipoGestion" type="java.lang.Integer">
+                <column name="id_tipo_gestion" />
+            </key-property>
+            <key-property name="idTipoResultado" type="java.lang.Integer">
+                <column name="id_tipo_resultado" />
+            </key-property>
+            <key-property name="observacion" type="string">
+                <column name="observacion" />
+            </key-property>
+            <key-property name="fechaTransaccion" type="timestamp">
+                <column name="fecha_transaccion" length="29" />
+            </key-property>
+            <key-property name="estado" type="string">
+                <column name="estado" length="1" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

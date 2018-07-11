@@ -1,44 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcCuadreCaja" optimistic-lock="version" schema="public" table="lc_cuadre_caja">
-    <id name="idCuadreCaja" type="int">
-      <column name="id_cuadre_caja"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="idFormaPago" type="java.lang.Integer">
-      <column name="id_forma_pago"/>
-    </property>
-    <property name="idUsuario" type="java.lang.Integer">
-      <column name="id_usuario"/>
-    </property>
-    <property name="idEmpresa" type="java.lang.Integer">
-      <column name="id_empresa"/>
-    </property>
-    <property name="idSucursal" type="java.lang.Integer">
-      <column name="id_sucursal"/>
-    </property>
-    <property name="numeroComprobante" type="java.lang.Integer">
-      <column name="numero_comprobante"/>
-    </property>
-    <property name="fechaPago" type="timestamp">
-      <column length="29" name="fecha_pago"/>
-    </property>
-    <property name="idDeudor" type="java.lang.Integer">
-      <column name="id_deudor"/>
-    </property>
-    <property name="total" type="big_decimal">
-      <column name="total" precision="10"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="fechaCuadre" type="timestamp">
-      <column length="29" name="fecha_cuadre"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcCuadreCaja" table="lc_cuadre_caja" schema="public" optimistic-lock="version">
+        <id name="idCuadreCaja" type="int">
+            <column name="id_cuadre_caja" />
+            <generator class="assigned" />
+        </id>
+        <property name="idFormaPago" type="java.lang.Integer">
+            <column name="id_forma_pago" />
+        </property>
+        <property name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+        </property>
+        <property name="idEmpresa" type="java.lang.Integer">
+            <column name="id_empresa" />
+        </property>
+        <property name="idSucursal" type="java.lang.Integer">
+            <column name="id_sucursal" />
+        </property>
+        <property name="numeroComprobante" type="java.lang.Integer">
+            <column name="numero_comprobante" />
+        </property>
+        <property name="fechaPago" type="timestamp">
+            <column name="fecha_pago" length="29" />
+        </property>
+        <property name="idDeudor" type="java.lang.Integer">
+            <column name="id_deudor" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="total" precision="10" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="fechaCuadre" type="timestamp">
+            <column name="fecha_cuadre" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

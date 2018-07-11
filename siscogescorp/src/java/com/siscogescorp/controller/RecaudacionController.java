@@ -324,7 +324,10 @@ public class RecaudacionController extends HttpServlet {
 //            }else {
 //             EmpleadoID2=EmpleadoID;
 //            }
-            
+//TODO:: TEMPORAL HASAT QUE SE REGULARICE...
+ 
+// TODO:  
+            Integer id_transaccion=0;
             rs.addRecaudacion(new LcRecaudaciones
                 (id_recaudacion,
                  new LcDatosDeudores(idDeudor),
@@ -334,7 +337,7 @@ public class RecaudacionController extends HttpServlet {
                  EmpleadoID2,
                  valor_total,       
                  fecha_reg,
-                 fecha_reg,"A",null,"WEB",null,null));
+                 fecha_reg,"A",null,"WEB",id_transaccion,null,null));
                  response.getWriter().println(id_recaudacion);
             } catch (Exception ex) {
                 try{grb.grabaLog("RecaudacionController_guardaregistros Recaudacion  Error Java: "+ex.getMessage());}catch(IOException e){}

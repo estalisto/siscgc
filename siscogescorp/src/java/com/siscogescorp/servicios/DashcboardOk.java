@@ -368,4 +368,124 @@ public class DashcboardOk {
              } 
             return valor;      
     }
+     
+     public String fnc_ConsultaRecuperado(int id_empresa,int id_agencia, int id_empleado, int idcartera, int idSubCartera, String fecha_ini,String fecha_fin){
+         
+         String consulta="select fnc_grafica_cartera_comprada("+id_empresa+","+id_agencia+","+id_empleado+",'"+fecha_ini+"','"+fecha_fin+"',"+idcartera+","+idSubCartera+");";
+         
+         String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_grafica_cartera_comprada");
+                if("['',],['RECUPERADO',],".equals(valor)){
+                  valor="['','NINGUNA',],['RECUPERADO',0,],";  
+                }
+               // valor="['',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',  'COMPRA5',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',],['RECUPERADO',535.00,840.00,1845.20,4873.41,4933.16,5896.94,10495.33,150.00,763.00,],";
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;      
+    }
+     public String fnc_ConsultaRecuperadoxUsuario(int id_empresa,int id_agencia, int id_empleado, int idcartera, int idSubCartera, String fecha_ini,String fecha_fin){
+         
+         String consulta="select fnc_grafica_recuperado_x_usuarios("+id_empresa+","+id_agencia+","+id_empleado+",'"+fecha_ini+"','"+fecha_fin+"',"+idcartera+","+idSubCartera+");";
+         
+         String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_grafica_recuperado_x_usuarios");
+                if("['',],['RECUPERADO',],".equals(valor)){
+                  valor="['','NINGUNA',],['RECUPERADO',0,],";  
+                }
+               // valor="['',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',  'COMPRA5',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',],['RECUPERADO',535.00,840.00,1845.20,4873.41,4933.16,5896.94,10495.33,150.00,763.00,],";
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;      
+    }
+     
+      public String fnc_ConsultaGestionProduccion2(int id_empresa,int id_agencia, int id_empleado, int idcartera, int idSubCartera, String fecha_ini,String fecha_fin){
+         
+         String consulta="select fnc_grafica_gestion_produccion2("+id_empresa+","+id_agencia+","+id_empleado+",'"+fecha_ini+"','"+fecha_fin+"',"+idcartera+","+idSubCartera+");";
+         
+         String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_grafica_gestion_produccion2");
+                if("['CARTERA',],['GESTIONES',],".equals(valor)){
+                  valor="['','NINGUNA',],['GESTIONES',0,],";  
+                }
+               // valor="['',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',  'COMPRA5',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',],['RECUPERADO',535.00,840.00,1845.20,4873.41,4933.16,5896.94,10495.33,150.00,763.00,],";
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;      
+    }
+       public String  fnc_ConsultaGestionProduccionOPER(int id_empresa,
+                                                        int id_agencia, 
+                                                        int id_empleado, 
+                                                        int idcartera, 
+                                                        int idSubCartera, 
+                                                        String fecha_ini,
+                                                        String fecha_fin){
+         
+         String consulta="select fnc_grafica_gestion_produccion2("+id_empresa+","+id_agencia+","+id_empleado+",'"+fecha_ini+"','"+fecha_fin+"',"+idcartera+","+idSubCartera+");";
+         
+         String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(consulta);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_grafica_gestion_produccion2");
+                if("['CARTERA',],['GESTIONES',],".equals(valor)){
+                  valor="['','NINGUNA',],['GESTIONES',0,],";  
+                }
+               // valor="['',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',  'COMPRA5',  'COMPRA1',  'COMPRA2',  'COMPRA3',  'COMPRA4',],['RECUPERADO',535.00,840.00,1845.20,4873.41,4933.16,5896.94,10495.33,150.00,763.00,],";
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;      
+    }
 }

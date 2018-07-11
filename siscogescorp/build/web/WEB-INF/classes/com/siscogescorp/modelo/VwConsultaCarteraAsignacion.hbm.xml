@@ -1,69 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.VwConsultaCarteraAsignacion" optimistic-lock="version" schema="public" table="vw_consulta_cartera_asignacion">
-    <composite-id class="com.siscogescorp.modelo.VwConsultaCarteraAsignacionId" name="id">
-      <key-property name="idEmpleado" type="java.lang.Integer">
-        <column name="id_empleado"/>
-      </key-property>
-      <key-property name="idDatosDeudor" type="java.lang.Integer">
-        <column name="id_datos_deudor"/>
-      </key-property>
-      <key-property name="idCliente" type="java.lang.Integer">
-        <column name="id_cliente"/>
-      </key-property>
-      <key-property name="idCartera" type="java.lang.Integer">
-        <column name="id_cartera"/>
-      </key-property>
-      <key-property name="idSubCartera" type="java.lang.Integer">
-        <column name="id_sub_cartera"/>
-      </key-property>
-      <key-property name="idSegmento" type="java.lang.Integer">
-        <column name="id_segmento"/>
-      </key-property>
-      <key-property name="idSubSegmento" type="java.lang.Integer">
-        <column name="id_sub_segmento"/>
-      </key-property>
-      <key-property name="identificacion" type="string">
-        <column length="13" name="identificacion"/>
-      </key-property>
-      <key-property name="nombresCompleto" type="string">
-        <column length="120" name="nombres_completo"/>
-      </key-property>
-      <key-property name="diasMora" type="java.lang.Integer">
-        <column name="dias_mora"/>
-      </key-property>
-      <key-property name="totalVencidos" type="big_decimal">
-        <column name="total_vencidos" precision="10"/>
-      </key-property>
-      <key-property name="pagos" type="big_decimal">
-        <column name="pagos" precision="131089" scale="0"/>
-      </key-property>
-      <key-property name="fechaUltPagos" type="string">
-        <column name="fecha_ult_pagos"/>
-      </key-property>
-      <key-property name="saldo" type="big_decimal">
-        <column name="saldo" precision="131089" scale="0"/>
-      </key-property>
-      <key-property name="valorCompro" type="big_decimal">
-        <column name="valor_compro" precision="131089" scale="0"/>
-      </key-property>
-      <key-property name="fechaComp" type="string">
-        <column name="fecha_comp"/>
-      </key-property>
-      <key-property name="fechUltimaGestion" type="string">
-        <column name="fech_ultima_gestion"/>
-      </key-property>
-      <key-property name="ultimaGestion" type="string">
-        <column length="20" name="ultima_gestion"/>
-      </key-property>
-      <key-property name="resultadoGestion" type="string">
-        <column length="20" name="resultado_gestion"/>
-      </key-property>
-      <key-property name="estado" type="string">
-        <column length="1" name="estado"/>
-      </key-property>
-    </composite-id>
-  </class>
+    <class name="com.siscogescorp.modelo.VwConsultaCarteraAsignacion" table="vw_consulta_cartera_asignacion" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.siscogescorp.modelo.VwConsultaCarteraAsignacionId">
+            <key-property name="idEmpleado" type="java.lang.Integer">
+                <column name="id_empleado" />
+            </key-property>
+            <key-property name="idDatosDeudor" type="java.lang.Integer">
+                <column name="id_datos_deudor" />
+            </key-property>
+            <key-property name="idCliente" type="java.lang.Integer">
+                <column name="id_cliente" />
+            </key-property>
+            <key-property name="idCartera" type="java.lang.Integer">
+                <column name="id_cartera" />
+            </key-property>
+            <key-property name="idSubCartera" type="java.lang.Integer">
+                <column name="id_sub_cartera" />
+            </key-property>
+            <key-property name="idSegmento" type="java.lang.Integer">
+                <column name="id_segmento" />
+            </key-property>
+            <key-property name="idSubSegmento" type="java.lang.Integer">
+                <column name="id_sub_segmento" />
+            </key-property>
+            <key-property name="identificacion" type="string">
+                <column name="identificacion" length="13" />
+            </key-property>
+            <key-property name="nombresCompleto" type="string">
+                <column name="nombres_completo" length="120" />
+            </key-property>
+            <key-property name="diasMora" type="java.lang.Integer">
+                <column name="dias_mora" />
+            </key-property>
+            <key-property name="totalVencidos" type="big_decimal">
+                <column name="total_vencidos" precision="10" />
+            </key-property>
+            <key-property name="pagos" type="big_decimal">
+                <column name="pagos" precision="131089" scale="0" />
+            </key-property>
+            <key-property name="fechaUltPagos" type="string">
+                <column name="fecha_ult_pagos" />
+            </key-property>
+            <key-property name="saldo" type="big_decimal">
+                <column name="saldo" precision="131089" scale="0" />
+            </key-property>
+            <key-property name="valorCompro" type="big_decimal">
+                <column name="valor_compro" precision="131089" scale="0" />
+            </key-property>
+            <key-property name="fechaComp" type="string">
+                <column name="fecha_comp" />
+            </key-property>
+            <key-property name="fechUltimaGestion" type="string">
+                <column name="fech_ultima_gestion" />
+            </key-property>
+            <key-property name="ultimaGestion" type="string">
+                <column name="ultima_gestion" length="20" />
+            </key-property>
+            <key-property name="resultadoGestion" type="string">
+                <column name="resultado_gestion" length="50" />
+            </key-property>
+            <key-property name="estado" type="string">
+                <column name="estado" length="1" />
+            </key-property>
+        </composite-id>
+    </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,9 +23,9 @@ public class LcAgencia  implements java.io.Serializable {
      private String email;
      private Date fechaCreacion;
      private String estado;
+     private Set lcRecordatorioses = new HashSet(0);
      private Set lcDatosDeudoreses = new HashSet(0);
      private Set lcEmpleadoses = new HashSet(0);
-     private Set lcRecordatorioses = new HashSet(0);
 
     public LcAgencia() {
     }
@@ -34,7 +34,7 @@ public class LcAgencia  implements java.io.Serializable {
     public LcAgencia(int idAgencia) {
         this.idAgencia = idAgencia;
     }
-    public LcAgencia(int idAgencia, LcEmpresa lcEmpresa, String nombre, String opcion, String direccion, String telefono, String telefono2, String celular, String email, Date fechaCreacion, String estado, Set lcDatosDeudoreses, Set lcEmpleadoses, Set lcRecordatorioses) {
+    public LcAgencia(int idAgencia, LcEmpresa lcEmpresa, String nombre, String opcion, String direccion, String telefono, String telefono2, String celular, String email, Date fechaCreacion, String estado, Set lcRecordatorioses, Set lcDatosDeudoreses, Set lcEmpleadoses) {
        this.idAgencia = idAgencia;
        this.lcEmpresa = lcEmpresa;
        this.nombre = nombre;
@@ -46,9 +46,9 @@ public class LcAgencia  implements java.io.Serializable {
        this.email = email;
        this.fechaCreacion = fechaCreacion;
        this.estado = estado;
+       this.lcRecordatorioses = lcRecordatorioses;
        this.lcDatosDeudoreses = lcDatosDeudoreses;
        this.lcEmpleadoses = lcEmpleadoses;
-       this.lcRecordatorioses = lcRecordatorioses;
     }
    
     public int getIdAgencia() {
@@ -128,6 +128,13 @@ public class LcAgencia  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public Set getLcRecordatorioses() {
+        return this.lcRecordatorioses;
+    }
+    
+    public void setLcRecordatorioses(Set lcRecordatorioses) {
+        this.lcRecordatorioses = lcRecordatorioses;
+    }
     public Set getLcDatosDeudoreses() {
         return this.lcDatosDeudoreses;
     }
@@ -141,13 +148,6 @@ public class LcAgencia  implements java.io.Serializable {
     
     public void setLcEmpleadoses(Set lcEmpleadoses) {
         this.lcEmpleadoses = lcEmpleadoses;
-    }
-    public Set getLcRecordatorioses() {
-        return this.lcRecordatorioses;
-    }
-    
-    public void setLcRecordatorioses(Set lcRecordatorioses) {
-        this.lcRecordatorioses = lcRecordatorioses;
     }
 
 

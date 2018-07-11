@@ -1,36 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcModuloRol" optimistic-lock="version" schema="public" table="lc_modulo_rol">
-    <comment>Registros de los Módulos del sistema</comment>
-    <id name="idModuloRol" type="int">
-      <column name="id_modulo_rol"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
-      <column name="id_empresa"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcModulos" fetch="select" name="lcModulos">
-      <column name="id_modulo"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcRoles" fetch="select" name="lcRoles">
-      <column name="id_rol"/>
-    </many-to-one>
-    <property name="nivelModulo" type="java.lang.Integer">
-      <column name="nivel_modulo"/>
-    </property>
-    <property name="grupoMod" type="java.lang.Integer">
-      <column name="grupo_mod"/>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <property name="ordenReg" type="java.lang.Integer">
-      <column name="orden_reg"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcModuloRol" table="lc_modulo_rol" schema="public" optimistic-lock="version">
+        <comment>Registros de los M&#243;dulos del sistema</comment>
+        <id name="idModuloRol" type="int">
+            <column name="id_modulo_rol" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcEmpresa" class="com.siscogescorp.modelo.LcEmpresa" fetch="select">
+            <column name="id_empresa" />
+        </many-to-one>
+        <many-to-one name="lcModulos" class="com.siscogescorp.modelo.LcModulos" fetch="select">
+            <column name="id_modulo" />
+        </many-to-one>
+        <many-to-one name="lcRoles" class="com.siscogescorp.modelo.LcRoles" fetch="select">
+            <column name="id_rol" />
+        </many-to-one>
+        <property name="nivelModulo" type="java.lang.Integer">
+            <column name="nivel_modulo" />
+        </property>
+        <property name="grupoMod" type="java.lang.Integer">
+            <column name="grupo_mod" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <property name="ordenReg" type="java.lang.Integer">
+            <column name="orden_reg" />
+        </property>
+    </class>
 </hibernate-mapping>

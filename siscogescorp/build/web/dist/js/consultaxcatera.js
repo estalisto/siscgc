@@ -387,6 +387,7 @@ function orderTotalVenc(){
     }); */
 }
 function orderIdent(){
+   
    var orden_IDE=  document.getElementById("IdIdentificacion").value;
     var cartera=$("#cartera").val();
     //var accion="filtrosIDE";
@@ -880,24 +881,30 @@ document.getElementById("escogecliente").innerHTML="";
     var subcartera=$('#tsub_cartera').val();
     var segmento=$('#tsegmento').val();
     var subsegmento=$("#tsub_segmento").val();
+    var testatus_cre=$("#testatus_cre").val();
     var cartera = $("#cartera").val();
     console.log("Paso1: >>>"+cartera);
     var accion = "nuevaConsulta";
     var order_by=$('#order_by').val();
-    var lv_select=" select";
+    var lv_select=" select count(*) OVER (ORDER BY s.id_transaccion) AS secuencia2,";
+      var lv_select2=" select ";
     var lv_datos=" '<a href=\"#\" onclick=\"GestionCliente('||s.id_cliente||','||s.id_datos_deudor||');\" >'||s.nombres_completo||'</a>' nombres_completo2,s.*  ";
-    var lv_from=" from ";
-  
+    var lv_from=" from ";  
     var lv_mi_empleado=$('#mi_empleado').val();//"IDEmpleadoConsulta";
     var lv_query=" vw_consulta_cartera s  ";
     var IDEmpleadoConsulta="";
+    var estatus="";
     if(lv_mi_empleado===""){
         IDEmpleadoConsulta="and s.id_empleado=IDEmpleadoConsulta";
         
     }else{
         IDEmpleadoConsulta="and s.id_empleado="+lv_mi_empleado;
     }
-     if(lv_mi_empleado==="0"){
+    //testatus_cre
+     if(testatus_cre!=="0"){
+       estatus=" and s.tipo_estatus="+testatus_cre;  
+     }
+    if(lv_mi_empleado==="0"){
             var txt;
             var r = confirm("Esta seguro que desea consultar todos los Gestores \nRecuerde que esta consulta puede detener los procesos actuales del Sistema. \nProcure utilizar los filtros");
             if (r == false) {
@@ -908,7 +915,7 @@ document.getElementById("escogecliente").innerHTML="";
      }
     
     
-      var lv_filtros=" where s.id_cliente=IDClienteConsulta "+IDEmpleadoConsulta+" and s.estado != 'E'";
+      var lv_filtros=" where s.id_cliente=IDClienteConsulta "+IDEmpleadoConsulta+" and s.estado != 'E' " +estatus;
     var sqlQuery=lv_select+lv_datos+lv_from+lv_query+lv_filtros;
     
     //
@@ -1012,11 +1019,11 @@ document.getElementById("escogecliente").innerHTML="";
         "accion": accion
     };
     console.log("Paso2: >>>"+cartera);
-     document.getElementById("tabla_div").innerHTML = "";
-    var htmlTable="<table id='consul_cartera' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr bgcolor='#FEC187'><th class='col-sm-1 text-left ' style='color: #3c8dbc'>ID</th><th align='left' class='col-sm-1 text-left'><a id='IdentificacionID' >Identificación</a></th><th class='col-sm-2 text-left'><a id='NombresID' >Nombres</a></th>  <th class='col-sm-1 text-left'><a id='DiasMoraID'  >Días Mora</a></th> <th class='col-sm-1 text-right'><a id='TotalID'  >Total Vnc</a></th> <th align='center' class='col-sm-1 text-right'><a id='PagosID' >Pagos</a></th><th align='center' class='col-sm-1 text-right'><a id='FecUltPagosID' >Fecha Ult. Pagos</a></th><th align='rigth' class='col-sm-1 text-right'><a id='SaldosID' >Saldo</a></th> <th align='center' class='col-sm-1 text-right'><a id='ValorCompID' >Valor Comp.</a></th> <th align='center' class='col-sm-2 text-center'><a id='FechaCompID' >Fecha Comp.</a></th><th align='center' class='col-sm-3'><a id='FechaID' >Fecha Ult. Gestión</a></th> <th align='center' class='col-sm-3'><a id='UltimaID' >Ult. Gestión</a></th> <th align='center' class='col-sm-2'><a id='ResultadoID' >Resultado Gestión</a></th></tr> </thead><tbody></tbody></table>";
+     document.getElementById("tabla_div").innerHTML = "";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    var htmlTable="<table id='consul_cartera' class='table table-striped table-bordered dt-responsive nowrap table-hover' cellspacing='0' width='100%'><thead><tr bgcolor='#FEC187'><th class='col-sm-1 text-left ' style='color: #3c8dbc'>ID</th><th align='left' class='col-sm-1 text-left'><a  >#</a></th><th align='left' class='col-sm-1 text-left'><a onclick='orderIdent()' id='IdentificacionID' >Identificación</a></th><th class='col-sm-2 text-left'><a onclick='orderNombre();' id='NombresID' >Nombres</a></th>  <th class='col-sm-1 text-left'><a onclick='orderDiasMora();' id='DiasMoraID'  >Días Mora</a></th> <th class='col-sm-1 text-right'><a onclick='orderTotalVenc();' id='TotalID'  >Total Vnc</a></th> <th align='center' class='col-sm-1 text-right'><a onclick='orderPagos();' id='PagosID' >Pagos</a></th><th align='center' class='col-sm-1 text-right'><a onclick='orderFechaUltPagos();' id='FecUltPagosID' >Fecha Ult. Pagos</a></th><th align='rigth' class='col-sm-1 text-right'><a onclick='orderSaldo();' id='SaldosID' >Saldo</a></th> <th align='center' class='col-sm-1 text-right'><a onclick='orderValorComp();' id='ValorCompID' >Valor Comp.</a></th> <th align='center' class='col-sm-2 text-center'><a onclick='orderFechaComp();' id='FechaCompID' >Fecha Comp.</a></th><th align='center' class='col-sm-3'><a onclick='orderFchGestion();' id='FechaID' >Fecha Ult. Gestión</a></th> <th align='center' class='col-sm-3'><a onclick='orderUltima();' id='UltimaID' >Ult. Gestión</a></th> <th align='center' class='col-sm-2'><a onclick='orderResultado();' id='ResultadoID' >Resultado Gestión</a></th></tr> </thead><tbody></tbody></table>";
     document.getElementById("tabla_div").innerHTML = htmlTable;
     
-    $('#consul_cartera').DataTable( {
+$('#consul_cartera').DataTable( {
         "ajax": {   
             "data": {"accion": accion,"sqlQuery": sqlQuery,"cartera": cartera},
             "url": "consultacartera",
@@ -1024,14 +1031,15 @@ document.getElementById("escogecliente").innerHTML="";
             },
             "columns": [
                 { "data": "id_datos_deudor","title":"ID", "visible": false },
+                { "data": "secuencia2",class:'text-right' },
                 { "data": "identificacion" },
                 { "data": "nombres_completo2" },
-                { "data": "dias_mora" },
-                { "data": "total_vencidos" },
-                { "data": "pagos" },
+                { "data": "dias_mora",class:'text-right' },
+                { "data": "total_vencidos",class:'text-right' },
+                { "data": "pagos",class:'text-right' },
                 { "data": "fecha_ult_pagos" },
-                { "data": "saldo" },
-                { "data": "valor_compro" },
+                { "data": "saldo",class:'text-right' },
+                { "data": "valor_compro",class:'text-right' },
                 { "data": "fecha_comp" },
                 { "data": "fech_ultima_gestion" },
                 { "data": "ultima_gestion" },
@@ -1058,14 +1066,25 @@ document.getElementById("escogecliente").innerHTML="";
     					"sortDescending":	"Ordenación descendente"
     				}
     			},
+            scrollY:        500,
+            scrollX:        true,
+            scrollCollapse: true,
             paging: false
     } );
+   
     $('#id_loader').css("display", "none");
-    $('#det_filtro').modal('hide');   
-
+   // $('#det_filtro').modal('hide');   
+ 
    consulta_sec(sqlQuery,cartera,"");
-    
-table = $('#consul_cartera').DataTable();
+  
+  
+
+
+var table = $('#consul_cartera').DataTable();
+table
+    .column( '0:visible' )
+    .order( 'asc' )
+    .draw();
 
 $('#consul_cartera thead').on('click', 'th', function () {
  var index = table.column(this).index();
@@ -1075,7 +1094,7 @@ console.log('consulta de columna: '+index);
         orderIdent();
         break;
     case 2:
-        orderNombre();
+        orderNombre(); 
         break;
     case 3:
         orderDiasMora();
@@ -1114,12 +1133,12 @@ console.log('consulta de columna: '+index);
  // alert('index : '+index);
 });
 
+
     // alert(sqlQuery); 
     
-    var qCantClientes=lv_select+" count(*)  "+lv_from+lv_query+lv_filtros+fmontos+order_by;
-    
-    var qSum=lv_select+" sum(s.total_vencidos) as total_vencidos, sum(s.pagos) as pagos, (sum(s.total_vencidos) -  sum(pagos)) as saldo, ("+qCantClientes +") as total_clientes "+lv_from+lv_query+lv_filtros+fmontos+order_by;
-    console.log(qSum);
+    var qCantClientes=lv_select2+" count(*)  "+lv_from+lv_query+lv_filtros+fmontos+order_by;
+    var qSum=lv_select2+" COALESCE(sum(s.total_vencidos), 0::numeric) as total_vencidos, COALESCE(sum(s.pagos), 0::numeric) as pagos, COALESCE(sum(s.total_vencidos) -  COALESCE(sum(s.pagos), 0::numeric), 0::numeric) as saldo, ("+qCantClientes +") as total_clientes "+lv_from+lv_query+lv_filtros+fmontos+order_by;
+    console.log(">>>>>QSUM: "+qSum);
     Totales_Suman(qSum, IdCliente);
 } 
 
@@ -1178,7 +1197,7 @@ function getiposubSegmento(){
 var  idsegmento=$('#tsegmento').val();  
 document.getElementById("tsub_segmento").disabled=true;
 document.getElementById("tsub_segmento").innerHTML="";
-$("#tsub_segmento").append($("<option>",{value:"0",text:"Seleccione Subsegmento"}));
+$("#tsub_segmento").append($("<option>",{value:"0",text:"Seleccione Grupo"}));
  if(idsegmento === 0 || idsegmento === "" ) {  
         
          return;
@@ -1186,7 +1205,7 @@ $("#tsub_segmento").append($("<option>",{value:"0",text:"Seleccione Subsegmento"
   if(idsegmento!==0){
       document.getElementById("tsub_segmento").disabled=false;
       document.getElementById("tsub_segmento").innerHTML="";
-$("#tsub_segmento").append($("<option>",{value:"0",text:"Seleccione Subsegmento"}));
+$("#tsub_segmento").append($("<option>",{value:"0",text:"Seleccione SubGrupo"}));
     $.getJSON("asignacioncartera", {"accion" : "Subsegmentos","idsegmento":idsegmento}, function(result){
           $.each(result.tipo_subsegmento, function(key, val){             
           // $("#tgestion").append('<option id="' + val.idTipoGestion + '">' + val.nombreTipoGestion +'</option>');
@@ -1338,6 +1357,7 @@ var  idcliente=$('#cartera').val();
     document.getElementById("tsub_segmento").disabled=true;
    $("#tsub_segmento").append($("<option>",{value:"0",text:"Seleccione el Subsegmento"}));
 } 
+
 /*Fin cambio Jimmy Guaranda*/
  function verificaFecha3(nameInput){
     var fecha = $("#"+nameInput).val();       
@@ -1469,10 +1489,25 @@ console.log("Ingreso aqui>>>>");
     
 }
 
+function consultaEstatus(){
+    console.log("ok");
+document.getElementById("testatus_cre").innerHTML="";
+
+//  $("#cartera").append($("<option>",{value:"0",text:"Seleccione el cliente"}));
+     $.getJSON("consultacartera", {"accion" : "AllEstatus"}, function(result){
+          $.each(result.listaEstatus, function(key, val){   
+           $("#testatus_cre").append($("<option>",{value:val.id_estatus,text:val.descripcion}));
+          // var valor_select = val.descripcion;
+          // alert(valor_select);
+       
+          });
+    });  
+    
+}
 
 function ConsultaTipoResultado(){
   var IdTipoGestion=$("#tgestion").val();
-  var idcliente="";
+  var idcliente=$("#cartera").val();;
    // if(IdTipoGestion===0){
    
      document.getElementById("tresultado_gestion").disabled=true;
@@ -1497,6 +1532,13 @@ function ConsultaTipoResultado(){
 }
 
 function hidden_cartera_cliente(valor){
+   var deudor=$("#deudor").val();
+   
+ alert("okokokokok");
+    if(deudor==="NOMBRE COMPLETO DEL DEUDOR"){
+        alert("debe seleccionar un cliente");
+       return;
+   }
    
    if(valor==="true"){
        document.getElementById("cliente_cartera").style.display = 'none';
@@ -1521,7 +1563,7 @@ function datatableok(){
         
 function consulta_sec(sqlQuery,cartera,ordenQuery){
     var accion="consulta_secuencia";
-     console.log('consulta_sec>>> '+sqlQuery);
+     console.log('consulta_sec in >>> '+sqlQuery);
      
      
      var parametros = {
@@ -1544,7 +1586,7 @@ function consulta_sec(sqlQuery,cartera,ordenQuery){
     });
     
     
-    
+    console.log('consulta_sec out>>> '+sqlQuery); 
 }
 
 
@@ -1556,10 +1598,42 @@ function Totales_Suman(lv_query_sum, cartera){
         // console.log('data: '+result.data.total_vencidos);
           $.each(result.data, function(key, val){  
               console.log('data: '+val.total_vencidos);
-               document.getElementById("ttvencidos").innerHTML=val.total_vencidos;
-               document.getElementById("ttpagos").innerHTML=val.pagos;
-               document.getElementById("ttsaldos").innerHTML=val.saldo;
-               document.getElementById("cant_clientes_asignados").innerHTML=val.total_clientes;
+                         //formatearNumero(nStr)
+          var ttvencidos=0;
+          var ttpagos=0;
+          var ttsaldos=0;
+          var cant_clientes_asignados=0;
+                 if(val.total_vencidos == "" || val.total_vencidos == null){
+                     ttvencidos=0.00;
+                 }else{
+                     ttvencidos=  formatearNumero(val.total_vencidos)
+                 }
+                 /*************************/
+                 if(val.pagos == "" || val.pagos == null){
+                     ttpagos=0.00;
+                 }else{
+                     ttpagos=  formatearNumero(val.pagos)
+                 }
+                  /*************************/
+                 if(val.saldo == "" || val.saldo == null){
+                     ttsaldos=0.00;
+                 }else{
+                     ttsaldos=  formatearNumero(val.saldo)
+                 }
+                  /*************************/
+                 if(val.total_clientes == "" || val.total_clientes == null){
+                     cant_clientes_asignados=0.00;
+                 }else{
+                     cant_clientes_asignados=  formatearNumero(val.total_clientes)
+                 }
+                 
+                 console.log("ttvencidos: "+ttvencidos);
+            // document.getElementById("labelTotalDeuda").innerHTML = val.TotalDeuda; 
+            //document.getElementById("ttvencidos").innerHTML=val.total_vencidos;
+               document.getElementById("ttvencidos").innerHTML=ttvencidos;
+               document.getElementById("ttpagos").innerHTML=ttpagos;
+               document.getElementById("ttsaldos").innerHTML=ttsaldos;
+               document.getElementById("cant_clientes_asignados").innerHTML=cant_clientes_asignados;
           // $("#tresultado_gestion").append($("<option>",{value:val.idTipoResultado,text:val.nombreTipoResultado}));
           });
     });
@@ -1573,9 +1647,15 @@ function BuscarCliente(){
     console.log("BuscarCliente...");
     var idcartera=$("#idcartera").val();
     var identificacion=$("#identificacion2").val();
-    var nombre_deudor=$("#nombre_deudor").val();
+    var str = $("#nombre_deudor").val();
+    var nombre_deudor = str.toUpperCase();
+   // var nombre_deudor=
     var accion = "nuevaConsulta";
+    var id_empleado=$("#id_empleado").val();
+      var id_RolEmpleado=$("#id_RolEmpleado").val();
     
+   // alert("id_empleado"+id_empleado+"Rol"+id_RolEmpleado);
+   
     var lv_select=" select";
     var lv_datos=" '<a href=\"#\" onclick=\"GestionCliente('||s.id_cliente||','||s.id_datos_deudor||');\" >'||s.nombres_completo||'</a>' nombres_completo2,s.*  ";
     var lv_from=" from ";
@@ -1583,7 +1663,13 @@ function BuscarCliente(){
     var lv_query=" vw_consulta_cartera s  ";
     var order_by="";
      var sqlQuery="";
-    
+     var and_idEmpleado="";
+     
+      
+     if (id_RolEmpleado.indexOf("OPERADOR") > -1){
+         //alert("es Operador");
+         and_idEmpleado=" and s.id_empleado="+id_empleado;
+    }
     document.getElementById("mensaje_error").innerHTML="";
     if(idcartera==="0"){       
         document.getElementById("mensaje_error").innerHTML="Debe escoger el CEDENTE";
@@ -1614,7 +1700,7 @@ function BuscarCliente(){
     
     //   $('#id_loader').css("display", "block");
        //arma el query para la consula
-    sqlQuery=sqlQuery+order_by;
+    sqlQuery=sqlQuery+and_idEmpleado+order_by;
     console.log("Nueva Consulta>>"+sqlQuery);
     document.getElementById("input_query").value = "";
     document.getElementById("input_query").value = sqlQuery;
@@ -1759,8 +1845,8 @@ function consulta_cartera_empleados(){
             "columns": [
                 { "data": "empleado"},
                 { "data": "razon_social" },
-                { "data": "asignados" },
-                { "data": "valor_recuperado" }
+                { "data": "asignados",class:'text-right' },
+                { "data": "valor_recuperado",class:'text-right' }
             ],
             paging: false,
                   "language": {
@@ -1792,7 +1878,7 @@ function consulta_cartera_empleados(){
 function consulta_cedentes_subcartera(){
  var accion = "consulta_subcartera_cendente";
  document.getElementById("cedente_subcartera").innerHTML = "";
-    var htmlTable="<table id='subcaretras' class='table table-striped table-bordered dt-responsive nowrap table-hover'><thead><tr bgcolor='#FEC187'><th>Cendente</th><th>Sub Carteras</th><th>Total Clientes</th></tr></thead><tbody></tbody></table>";
+    var htmlTable="<table id='subcaretras' class='table table-striped table-bordered dt-responsive nowrap table-hover'><thead><tr bgcolor='#FEC187'><th>Cendente</th><th>Sub Carteras</th><th>Total Clientes</th><th>Monto Asignado</th></tr></thead><tbody></tbody></table>";
     document.getElementById("cedente_subcartera").innerHTML = htmlTable;
     
     $('#subcaretras').DataTable( {
@@ -1804,7 +1890,9 @@ function consulta_cedentes_subcartera(){
             "columns": [
                 { "data": "cliente"},
                 { "data": "sub_cartera" },
-                { "data": "cant_clientes" }
+                { "data": "cant_clientes",class:'text-right' },
+                { "data": "monto_asignado",class:'text-right' },
+                
             ],
             paging: false,
                   "language": {
@@ -1832,3 +1920,6 @@ function consulta_cedentes_subcartera(){
     } );
        
 }
+
+
+function formatearNumero(nStr) { nStr += ''; x = nStr.split(','); x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : ''; var rgx = /(\d+)(\d{3})/; while (rgx.test(x1)) { x1 = x1.replace(rgx, '$1' + ',' + '$2'); } return x1 + x2; }

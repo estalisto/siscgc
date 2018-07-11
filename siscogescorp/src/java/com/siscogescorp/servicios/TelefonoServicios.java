@@ -69,7 +69,20 @@ public class TelefonoServicios {
         return key; // return ((BigInteger) query.uniqueResult()).longValue();
     }
         
-         public String getTelefonoReferencia2(int idReferncia,int idTipoPers )throws SQLException{
+        public void updateTelefono(int idtelefono) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        LcTelefonos agen = (LcTelefonos) session.get(LcTelefonos.class, idtelefono);
+        agen.setEstado("I");
+        session.update(agen);
+        tx.commit();
+        session.close();
+    } 
+        
+        
+        
+        public String getTelefonoReferencia2(int idReferncia,int idTipoPers )throws SQLException{
     
             Conexion conexion=new Conexion();
             PreparedStatement pst;

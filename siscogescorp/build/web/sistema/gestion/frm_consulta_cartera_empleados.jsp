@@ -73,15 +73,15 @@ table tr {
                     <div class="btn-group btn-breadcrumb">
                         <a href="home" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
                         <a href="#" class=" btn btn-default" onclick="compropago();">COMPROMISOS DE PAGO</a>
-                        <a href="#" class="active btn btn-default"onclick="hidden_cartera_cliente('false');">CONSULTA CARTERA</a>
-                        <a href="#" class="btn btn-default" onclick="hidden_cartera_cliente('true');">GESTIÓN CLIENTE</a>
-                        <a href="#" data-toggle="modal" class="btn btn-default" data-target="#myModalBusqueda" id="busqueda_deudor">BUSCAR CLIENTE</a>
+                        <a href="#" class="active btn btn-default"onclick="consulcarteras(this)">CONSULTA CARTERA</a>
+                        
+                        
                     </div>                    
     </ol>
     
     <div class="row">
         <div class="col-lg-12">
-            <div class=" box box-danger">
+            <div class=" box box-warning">
                 <center><h3>Datos Cedentes</h3></center>
                 <hr> 
                 <div class="row">

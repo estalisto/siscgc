@@ -8,7 +8,7 @@ package com.siscogescorp.controller;
 import com.siscogescorp.modelo.LcEmpresa;
 import com.siscogescorp.servicios.EmpresaServicios;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

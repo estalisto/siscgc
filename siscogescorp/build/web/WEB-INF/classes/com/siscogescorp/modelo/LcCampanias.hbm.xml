@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcCampanias" optimistic-lock="version" schema="public" table="lc_campanias">
-    <id name="idCampania" type="int">
-      <column name="id_campania"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="descripcionCarga" type="string">
-      <column length="500" name="descripcion_carga"/>
-    </property>
-    <property name="fechaTransaccion" type="timestamp">
-      <column length="29" name="fecha_transaccion"/>
-    </property>
-    <property name="fechaInicio" type="timestamp">
-      <column length="29" name="fecha_inicio"/>
-    </property>
-    <property name="fechaFin" type="timestamp">
-      <column length="29" name="fecha_fin"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <property name="numGestiones" type="java.lang.Integer">
-      <column name="num_gestiones"/>
-    </property>
-    <property name="numDeudores" type="java.lang.Integer">
-      <column name="num_deudores"/>
-    </property>
-    <property name="idEmpresa" type="java.lang.Integer">
-      <column name="id_empresa"/>
-    </property>
-    <property name="idAgencia" type="java.lang.Integer">
-      <column name="id_agencia"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcCampanias" table="lc_campanias" schema="public" optimistic-lock="version">
+        <id name="idCampania" type="int">
+            <column name="id_campania" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcionCarga" type="string">
+            <column name="descripcion_carga" length="500" />
+        </property>
+        <property name="fechaTransaccion" type="timestamp">
+            <column name="fecha_transaccion" length="29" />
+        </property>
+        <property name="fechaInicio" type="timestamp">
+            <column name="fecha_inicio" length="29" />
+        </property>
+        <property name="fechaFin" type="timestamp">
+            <column name="fecha_fin" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <property name="numGestiones" type="java.lang.Integer">
+            <column name="num_gestiones" />
+        </property>
+        <property name="numDeudores" type="java.lang.Integer">
+            <column name="num_deudores" />
+        </property>
+        <property name="idEmpresa" type="java.lang.Integer">
+            <column name="id_empresa" />
+        </property>
+        <property name="idAgencia" type="java.lang.Integer">
+            <column name="id_agencia" />
+        </property>
+    </class>
 </hibernate-mapping>

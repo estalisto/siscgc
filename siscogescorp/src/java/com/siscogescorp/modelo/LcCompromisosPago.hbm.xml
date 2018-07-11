@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcCompromisosPago" optimistic-lock="version" schema="public" table="lc_compromisos_pago">
-    <id name="idCompromiso" type="int">
-      <column name="id_compromiso"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select" name="lcDatosDeudores">
-      <column name="id_deudor"/>
-    </many-to-one>
-    <property name="idCliente" type="java.lang.Integer">
-      <column name="id_cliente"/>
-    </property>
-    <property name="fechaCompromiso" type="timestamp">
-      <column length="29" name="fecha_compromiso"/>
-    </property>
-    <property name="valorCompromiso" type="big_decimal">
-      <column name="valor_compromiso" precision="10"/>
-    </property>
-    <property name="revisado" type="string">
-      <column length="1" name="revisado"/>
-    </property>
-    <property name="fechaRegistro" type="timestamp">
-      <column length="29" name="fecha_registro"/>
-    </property>
-    <property name="fechaActualizado" type="timestamp">
-      <column length="29" name="fecha_actualizado"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-  </class>
+    <class name="com.siscogescorp.modelo.LcCompromisosPago" table="lc_compromisos_pago" schema="public" optimistic-lock="version">
+        <id name="idCompromiso" type="int">
+            <column name="id_compromiso" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcDatosDeudores" class="com.siscogescorp.modelo.LcDatosDeudores" fetch="select">
+            <column name="id_deudor" />
+        </many-to-one>
+        <property name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+        </property>
+        <property name="fechaCompromiso" type="timestamp">
+            <column name="fecha_compromiso" length="29" />
+        </property>
+        <property name="valorCompromiso" type="big_decimal">
+            <column name="valor_compromiso" precision="10" />
+        </property>
+        <property name="revisado" type="string">
+            <column name="revisado" length="1" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="29" />
+        </property>
+        <property name="fechaActualizado" type="timestamp">
+            <column name="fecha_actualizado" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

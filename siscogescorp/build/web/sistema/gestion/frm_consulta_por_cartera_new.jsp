@@ -74,8 +74,8 @@ table tr {
                     <div class="btn-group btn-breadcrumb">
                         <a href="home" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
                         <a href="#" class=" btn btn-default" onclick="compropago();">COMPROMISOS DE PAGO</a>
-                        <a href="#" class="active btn btn-default"onclick="hidden_cartera_cliente('false');">CARTERA ASIGNADA</a>
-                        <a href="#" class="btn btn-default" onclick="hidden_cartera_cliente('true');">GESTIÓN DEUDORES</a>
+                        <a href="#" class="active btn btn-default"onclick="hidden_cartera_cliente('false','1');">CARTERA ASIGNADA</a>
+                        <a href="#" class="btn btn-default" onclick="hidden_cartera_cliente('true','');">GESTIÓN DEUDORES</a>
                         <% 
                      try{
                             String cadena=param.getValorParametro("LB_VALIDA_BUSQUEDA_CLIENTE");
@@ -199,7 +199,7 @@ table tr {
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon" >Cedente: </span>
                             <select class="form-control " name="cartera" required="required" id="cartera" onchange="getipoCartera();getTiposGestiones();"  >
-                                 <option value="0">Selecciones Cartera</option>
+                                 <option value="0">1Selecciones Cartera</option>
                               <c:forEach items="${carteras}" var="carter">
                                   <option value="<c:out value="${carter.getIdCliente()}" />"><c:out value="${carter.getRazonSocial()}" /> </option>                         
                               </c:forEach> 
@@ -218,6 +218,12 @@ table tr {
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon" >Resultado: </span>
                             <select class="form-control  input-sm " name="tresultado_gestion" id="tresultado_gestion" ></select>
+                        </div>                        
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon" >Estado: </span>
+                            <select class="form-control  input-sm " name="testatus_cre" id="testatus_cre" ></select>
                         </div>                        
                     </div>
                     <div class="col-lg-2">
@@ -308,12 +314,12 @@ table tr {
                         <select class="form-control  input-sm " name="tsub_cartera" id="tsub_cartera" onchange="getipoSegmento();" disabled="true"></select>                        
                     </div>
                     <div class="col-lg-2">
-                        <dt>Campaña: </dt>
+                        <dt>Grupo: </dt>
                         <select class="form-control  input-sm " name="tsegmento" id="tsegmento" onchange="getiposubSegmento();" disabled="true"></select>
 
                     </div>
                     <div class="col-lg-2">
-                        <dt>Sub-Campaña: </dt>
+                        <dt>Sub-Grupo: </dt>
                         <select class="form-control  input-sm " name="tsub_segmento" id="tsub_segmento" disabled="true"></select>
                                                                 
                     </div>
@@ -394,7 +400,8 @@ table tr {
                     <div class="pannel pannel-body" >
 
 
-                        <div id="tabla_div" style="height:500px;overflow-x:auto;overflow-y:auto;" >
+                        <!--div id="tabla_div" style="height:500px;overflow-x:auto;overflow-y:auto;" -->
+                         <div id="tabla_div" >
 
 
                           <table id="consul_cartera" class="table table-striped table-bordered dt-responsive nowrap table-hover" cellspacing="0" width="100%">
@@ -603,9 +610,10 @@ table tr {
                            
                             
                         </div>
-                        <div class="col-lg-2">
-                            <h4> <span class="small" style="color: #F66C27">CEDENTE:</span> <strong><label class="lead text-left text-blue"  id="cliente">RAZON SOCIAL DEL CEDENTE  </label></strong></h4> 
+                        <div class="col-lg-3">
                             
+                            <h3> <span class="small" style="color: #F66C27">CEDENTE:</span> <strong><label  class="text-left text-blue" id="cliente" >RAZON SOCIAL DEL CEDENTE  </label></strong>
+                            <br><strong><label class="lead text-left text-blue"  id="grupo_sub_grupo">Grupo - Sub Grupo</label></strong></h3> 
                             
                         </div>
                         <div class="col-lg-1 text-right">
@@ -615,14 +623,19 @@ table tr {
                             <ol class="Breadcrumb default">
                                 <div class="btn-group btn-breadcrumb">
                                     <!-- style='color:#F98021;' -->
-                                    <a style='background-color:#F98021;' href="#referencia" onclick="listo();" id="listoModal" data-toggle="modal" class="active btn btn-warning btn-lg" >Referencia</a>
-                                    <a style='background-color:#F98021;' href="#det_articulo" onclick="ComprasJson();" data-toggle="modal" class="active btn btn-warning btn-lg " >Detalles Artículo</a>
-                                    <a style='background-color:#F98021;' href="#det_cuotas"  data-toggle="modal" class="active btn btn-warning btn-lg" >Detalles Cuotas</a>
-                                    <a style='background-color:#F98021;' href="#historial_pagos"  data-toggle="modal" onclick="consulta_historial();" class="active btn btn-warning btn-lg " >Historial Pagos</a>
+                                    <a style='background-color:#F98021;' href="#referencia" onclick="listo();" id="listoModal" data-toggle="modal" class="active btn btn-warning btn" >Referencia</a>
+                                    <a style='background-color:#F98021;' href="#det_articulo" onclick="ComprasJson();" data-toggle="modal" class="active btn btn-warning btn" >Detalles Artículo</a>
+                                    <a style='background-color:#F98021;' href="#det_cuotas"  data-toggle="modal" class="active btn btn-warning btn" >Detalles Cuotas</a>
+                                    <a style='background-color:#F98021;' href="#historial_pagos"  data-toggle="modal" onclick="consulta_historial();" class="active btn btn-warning btn" >Historial Pagos</a>
                                     
                                 </div>                    
                             </ol> 
-                                <ol>
+                                    <ol>
+                                        <div class="col-lg-3">
+                                            <span class="small" style="color: #F66C27">ASIGNADO:</span> <strong><label class="lead text-left text-blue"  id="nom_empleado">AMBAR </label></strong>
+                                        </div>
+                                    
+                                    
                                     <div class="btn-group btn-breadcrumb">
                                         <a style='background-color:#F98021;' id="anterior"  onclick="Antdeudor2()" class="btn btn-success btn-lg"><i class="fa fa-arrow-circle-left text-black"></i>  </a>
                                          <a style='background-color:#F98021;' id="siguiente"  onclick="Sgtedeudor2()" class="btn btn-success btn-lg ">  <i class="fa fa-arrow-circle-right text-black"></i> </a>                        
@@ -708,6 +721,17 @@ table tr {
                                             </div>
                                         </div>
                                         <span id="fechaCompro" ></span> 
+                                        <!--  -->
+                                        <dt>Gestión: </dt>
+                                            <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultado()"></select> 		         
+                                        <dt>Respuesta: </dt>
+                                        <select class="input-sm form-control" name="resultado" required="required" id="resultado"></select>                                 
+                                        <div class="col-xs-3 hidden">
+                                                <div class="form-group">
+                                                    <label>Tipo Resultado escogido</label>
+                                                    <input type="text" class="form-control" id="tiporesultado" name="tiporesultado" value="" required="required">
+                                                </div> 
+                                         </div>
 
 
                                     </div>
@@ -722,17 +746,15 @@ table tr {
                                             </div>                            
                                         </div>
                                         <textarea maxlength="400" id="txtnota" class="form-control input-sm " rows="4" onkeyup="ValidarNota2()"  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FBE3BF;  font-size:14px; font-type:Arial" value="0"></textarea>
-
-                                        <dt>Gestión: </dt>
-                                            <select class="input-sm form-control" name="gestion" id="gestion" required="required" onchange="obtenerResultado()"></select> 		         
-                                        <dt>Respuesta: </dt>
-                                        <select class="input-sm form-control" name="resultado" required="required" id="resultado"></select>                                 
-                                        <div class="col-xs-3 hidden">
-                                                <div class="form-group">
-                                                    <label>Tipo Resultado escogido</label>
-                                                    <input type="text" class="form-control" id="tiporesultado" name="tiporesultado" value="" required="required">
-                                                </div> 
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <dt>Notas Admin:</dt>                                
                                             </div>
+                                                                       
+                                        </div>
+                                        <textarea maxlength="400" id="txtnota_admin" class="form-control input-sm " rows="3" onkeyup="ValidarNota2()" disabled  placeholder="MENSAJE" style="overflow-y:scroll; background-color:#FBE3BF;  font-size:14px; font-type:Arial" value="0"></textarea>
+
+                                        
                                     </div>
                                 
                             </div>
@@ -747,7 +769,7 @@ table tr {
                             </div>
                             <div class="row"> 
                                     <div class="col-sm-10">
-                                          <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="4" placeholder="Historia" style="overflow-y:scroll; background-color:#FBE3BF; font-size:18px; font-type:Arial" ></textarea> 
+                                          <textarea maxlength="500" class="form-control input-sm" id="descripcion" name="descripcion" rows="3" placeholder="Historia" style="overflow-y:scroll; background-color:#FBE3BF; font-size:18px; font-type:Arial" ></textarea> 
                                     </div>
                                     <div class="col-sm-2">
                                         <br><a   onclick="GuardarTransaccnormal()" class="btn btn-info btn-lg"><i class="fa fa-edit text-black"></i> GUARDAR</a>
@@ -1146,7 +1168,8 @@ $('#nombre_ref').validCampoFranz('abcdefghijklmnñopqrstuvwxyzáéíóúüABCDEF
 $('#nombre_deudor').validCampoFranz('abcdefghijklmnñopqrstuvwxyzáéíóúüABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÜ ');
 consultaMisClientes();
 var lv_query_cant_clientes="select count(*) from  vw_consulta_cartera s  where s.id_empleado=IDEmpleadoConsulta and s.estado != 'E'";
-var lv_query_sum="select sum(s.total_vencidos) as total_vencidos, sum(pagos) as pagos, (sum(s.total_vencidos) -  sum(pagos)) as saldo, ("+lv_query_cant_clientes+") as total_clientes  from  vw_consulta_cartera s  where s.id_empleado=IDEmpleadoConsulta and s.estado != 'E'";
+
+var lv_query_sum="select COALESCE(sum(s.total_vencidos), 0::numeric) as total_vencidos,  COALESCE(sum(pagos), 0::numeric) as pagos, COALESCE(sum(s.total_vencidos) -  COALESCE(sum(pagos), 0::numeric), 0::numeric)  as saldo, ("+lv_query_cant_clientes+") as total_clientes  from  vw_consulta_cartera s  where s.id_empleado=IDEmpleadoConsulta and s.estado != 'E'";
 
 Totales_Suman(lv_query_sum, 0);
 getTiposGestiones();
@@ -1184,8 +1207,10 @@ getTiposGestiones();
         }); 
 </script>
 <script>
-    
-            ConsultasMisCarteras();
+    /** Llena el Combo para buscar Cliente **/
+    LlenarComboBuscarCliente();
+            //ConsultasMisCarteras();
+            consultaEstatus();
              //mostrar_busqueda_deudor();
 
 //BuscarCliente idcartera identificacion  nombre_deudor

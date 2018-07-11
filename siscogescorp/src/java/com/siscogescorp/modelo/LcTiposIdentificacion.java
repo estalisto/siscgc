@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,8 +15,8 @@ public class LcTiposIdentificacion  implements java.io.Serializable {
      private String tipoIdentificacion;
      private String descripcion;
      private String estado;
-     private Set lcEmpresas = new HashSet(0);
      private Set lcEmpleadoses = new HashSet(0);
+     private Set lcEmpresas = new HashSet(0);
      private Set lcClienteses = new HashSet(0);
 
     public LcTiposIdentificacion() {
@@ -26,13 +26,13 @@ public class LcTiposIdentificacion  implements java.io.Serializable {
     public LcTiposIdentificacion(int idTipoIdentificacion) {
         this.idTipoIdentificacion = idTipoIdentificacion;
     }
-    public LcTiposIdentificacion(int idTipoIdentificacion, String tipoIdentificacion, String descripcion, String estado, Set lcEmpresas, Set lcEmpleadoses, Set lcClienteses) {
+    public LcTiposIdentificacion(int idTipoIdentificacion, String tipoIdentificacion, String descripcion, String estado, Set lcEmpleadoses, Set lcEmpresas, Set lcClienteses) {
        this.idTipoIdentificacion = idTipoIdentificacion;
        this.tipoIdentificacion = tipoIdentificacion;
        this.descripcion = descripcion;
        this.estado = estado;
-       this.lcEmpresas = lcEmpresas;
        this.lcEmpleadoses = lcEmpleadoses;
+       this.lcEmpresas = lcEmpresas;
        this.lcClienteses = lcClienteses;
     }
    
@@ -64,19 +64,19 @@ public class LcTiposIdentificacion  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public Set getLcEmpresas() {
-        return this.lcEmpresas;
-    }
-    
-    public void setLcEmpresas(Set lcEmpresas) {
-        this.lcEmpresas = lcEmpresas;
-    }
     public Set getLcEmpleadoses() {
         return this.lcEmpleadoses;
     }
     
     public void setLcEmpleadoses(Set lcEmpleadoses) {
         this.lcEmpleadoses = lcEmpleadoses;
+    }
+    public Set getLcEmpresas() {
+        return this.lcEmpresas;
+    }
+    
+    public void setLcEmpresas(Set lcEmpresas) {
+        this.lcEmpresas = lcEmpresas;
     }
     public Set getLcClienteses() {
         return this.lcClienteses;

@@ -1,149 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcEmpleados" optimistic-lock="version" schema="public" table="lc_empleados">
-    <comment>Registro los empleados</comment>
-    <id name="idEmpleado" type="int">
-      <column name="id_empleado"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.siscogescorp.modelo.LcAgencia" fetch="select" name="lcAgencia">
-      <column name="id_agencia"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcCargos" fetch="select" name="lcCargos">
-      <column name="id_cargo"/>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEmpresa" fetch="select" name="lcEmpresa">
-      <column name="id_empresa" not-null="true">
-        <comment>Identificador único de la empresa</comment>
-      </column>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcEstadoCivil" fetch="select" name="lcEstadoCivil">
-      <column name="estado_civil">
-        <comment>Estado Civila</comment>
-      </column>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcGenero" fetch="select" name="lcGenero">
-      <column name="genero">
-        <comment>Masculino (M), Fenemino F</comment>
-      </column>
-    </many-to-one>
-    <many-to-one class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select" name="lcTiposIdentificacion">
-      <column name="tipo_identificacion">
-        <comment>Tipo de Identificación</comment>
-      </column>
-    </many-to-one>
-    <property name="identificacion" type="string">
-      <column length="13" name="identificacion">
-        <comment>Identificación</comment>
-      </column>
-    </property>
-    <property name="nombres" type="string">
-      <column length="100" name="nombres">
-        <comment>Nombres del empleado</comment>
-      </column>
-    </property>
-    <property name="apellidos" type="string">
-      <column length="100" name="apellidos">
-        <comment>Apellidos del empleado</comment>
-      </column>
-    </property>
-    <property name="lugarNacimiento" type="string">
-      <column length="100" name="lugar_nacimiento">
-        <comment>Lugar de nacimiento</comment>
-      </column>
-    </property>
-    <property name="fechaNacimiento" type="date">
-      <column length="13" name="fecha_nacimiento">
-        <comment>Fecha de nacimiento</comment>
-      </column>
-    </property>
-    <property name="email" type="string">
-      <column length="200" name="email">
-        <comment>Correo</comment>
-      </column>
-    </property>
-    <property name="telefonos" type="string">
-      <column length="20" name="telefonos">
-        <comment>Telefonos</comment>
-      </column>
-    </property>
-    <property name="celular" type="string">
-      <column length="11" name="celular">
-        <comment>Celular</comment>
-      </column>
-    </property>
-    <property name="direccionDomicilio" type="string">
-      <column length="200" name="direccion_domicilio">
-        <comment>Dirección de Domicilio</comment>
-      </column>
-    </property>
-    <property name="profesion" type="string">
-      <column length="200" name="profesion">
-        <comment>Profesion del empleado</comment>
-      </column>
-    </property>
-    <property name="idJefeInmediato" type="java.lang.Integer">
-      <column name="id_jefe_inmediato">
-        <comment>Id empleado</comment>
-      </column>
-    </property>
-    <property name="observacion" type="string">
-      <column length="1000" name="observacion">
-        <comment>Observación del usuario</comment>
-      </column>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion">
-        <comment>Fecha de creación del registro</comment>
-      </column>
-    </property>
-    <property name="fechaActualizacion" type="timestamp">
-      <column length="29" name="fecha_actualizacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado">
-        <comment>"A" Activo, "I" Inactivo</comment>
-      </column>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcUsuarioses" table="lc_usuarios">
-      <key>
-        <column name="id_empleado">
-          <comment>Id de la Persona</comment>
-        </column>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcUsuarios"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcTransaccioneses" table="lc_transacciones">
-      <key>
-        <column name="id_empleado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcTransacciones"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcDetCampaniases" table="lc_det_campanias">
-      <key>
-        <column name="id_empleado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcDetCampanias"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcAsignaEmpleadosTmps" table="lc_asigna_empleados_tmp">
-      <key>
-        <column name="id_empleado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcAsignaEmpleadosTmp"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcRecordatorioses" table="lc_recordatorios">
-      <key>
-        <column name="id_empleado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcRecordatorios"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="lcGestioneses" table="lc_gestiones">
-      <key>
-        <column name="id_empleado"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcGestiones"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcEmpleados" table="lc_empleados" schema="public" optimistic-lock="version">
+        <comment>Registro los empleados</comment>
+        <id name="idEmpleado" type="int">
+            <column name="id_empleado" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="lcAgencia" class="com.siscogescorp.modelo.LcAgencia" fetch="select">
+            <column name="id_agencia" />
+        </many-to-one>
+        <many-to-one name="lcCargos" class="com.siscogescorp.modelo.LcCargos" fetch="select">
+            <column name="id_cargo" />
+        </many-to-one>
+        <many-to-one name="lcEmpresa" class="com.siscogescorp.modelo.LcEmpresa" fetch="select">
+            <column name="id_empresa" not-null="true">
+                <comment>Identificador &#250;nico de la empresa</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="lcEstadoCivil" class="com.siscogescorp.modelo.LcEstadoCivil" fetch="select">
+            <column name="estado_civil">
+                <comment>Estado Civila</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="lcGenero" class="com.siscogescorp.modelo.LcGenero" fetch="select">
+            <column name="genero">
+                <comment>Masculino (M), Fenemino F</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="lcTiposIdentificacion" class="com.siscogescorp.modelo.LcTiposIdentificacion" fetch="select">
+            <column name="tipo_identificacion">
+                <comment>Tipo de Identificaci&#243;n</comment>
+            </column>
+        </many-to-one>
+        <property name="identificacion" type="string">
+            <column name="identificacion" length="13">
+                <comment>Identificaci&#243;n</comment>
+            </column>
+        </property>
+        <property name="nombres" type="string">
+            <column name="nombres" length="100">
+                <comment>Nombres del empleado</comment>
+            </column>
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="100">
+                <comment>Apellidos del empleado</comment>
+            </column>
+        </property>
+        <property name="lugarNacimiento" type="string">
+            <column name="lugar_nacimiento" length="100">
+                <comment>Lugar de nacimiento</comment>
+            </column>
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="13">
+                <comment>Fecha de nacimiento</comment>
+            </column>
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="200">
+                <comment>Correo</comment>
+            </column>
+        </property>
+        <property name="telefonos" type="string">
+            <column name="telefonos" length="20">
+                <comment>Telefonos</comment>
+            </column>
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="11">
+                <comment>Celular</comment>
+            </column>
+        </property>
+        <property name="direccionDomicilio" type="string">
+            <column name="direccion_domicilio" length="200">
+                <comment>Direcci&#243;n de Domicilio</comment>
+            </column>
+        </property>
+        <property name="profesion" type="string">
+            <column name="profesion" length="200">
+                <comment>Profesion del empleado</comment>
+            </column>
+        </property>
+        <property name="idJefeInmediato" type="java.lang.Integer">
+            <column name="id_jefe_inmediato">
+                <comment>Id empleado</comment>
+            </column>
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" length="1000">
+                <comment>Observaci&#243;n del usuario</comment>
+            </column>
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29">
+                <comment>Fecha de creaci&#243;n del registro</comment>
+            </column>
+        </property>
+        <property name="fechaActualizacion" type="timestamp">
+            <column name="fecha_actualizacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1">
+                <comment>"A" Activo, "I" Inactivo</comment>
+            </column>
+        </property>
+        <set name="lcTransaccioneses" table="lc_transacciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcTransacciones" />
+        </set>
+        <set name="lcGestioneses" table="lc_gestiones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcGestiones" />
+        </set>
+        <set name="lcUsuarioses" table="lc_usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado">
+                    <comment>Id de la Persona</comment>
+                </column>
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcUsuarios" />
+        </set>
+        <set name="lcAsignaEmpleadosTmps" table="lc_asigna_empleados_tmp" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcAsignaEmpleadosTmp" />
+        </set>
+        <set name="lcDetCampaniases" table="lc_det_campanias" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcDetCampanias" />
+        </set>
+        <set name="lcRecordatorioses" table="lc_recordatorios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcRecordatorios" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.siscogescorp.modelo.MisNombres" table="mis_nombres" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.siscogescorp.modelo.MisNombresId">
+            <key-property name="identificacion" type="string">
+                <column name="identificacion" length="13" />
+            </key-property>
+            <key-property name="nombresCompleto" type="string">
+                <column name="nombres_completo" length="120" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

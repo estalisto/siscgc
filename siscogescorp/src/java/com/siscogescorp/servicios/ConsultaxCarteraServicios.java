@@ -38,6 +38,8 @@ import org.hibernate.Transaction;
 
 import com.siscogescorp.modelo.LcClienteResultado;
 import com.siscogescorp.modelo.LcRecaudaciones;
+import com.siscogescorp.modelo.LcSegmento;
+import com.siscogescorp.modelo.LcUsuarios;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,11 +104,11 @@ public class ConsultaxCarteraServicios {
             Session session;
             session = sesion.openSession();
             Transaction tx= session.beginTransaction();
-            Query q = session.createQuery("select DISTINCT E.lcClientes.idCliente  from LcTransacciones  E WHERE E.idEmpresa= :idEmpresa and E.idAgencia= :idAgencia and E.lcEmpleados.idEmpleado= :idEmpleado and E.estado= :estado");
+            Query q = session.createQuery("select DISTINCT E.lcClientes.idCliente  from LcTransacciones  E WHERE E.idEmpresa= :idEmpresa and E.idAgencia= :idAgencia and E.lcEmpleados.idEmpleado= :idEmpleado and E.estado in ('A','P','I','C')");
             q.setParameter("idEmpresa",empresa);
             q.setParameter("idAgencia",agencia);
             q.setParameter("idEmpleado",empleado);
-            q.setParameter("estado","A");
+           // q.setParameter("estado","A");
              //List listDatos = q.list();
             List listResult = q.list();
             Integer number;
@@ -131,6 +133,56 @@ public class ConsultaxCarteraServicios {
             PreparedStatement pst;
             ResultSet rs;
             pst = conexion.getconexion().prepareStatement("select fnc_consulta_clientes("+empresa+","+agencia+","+empleado+");");
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString(1);
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;
+        }
+        
+        
+        public String getTiposEstatus(int empresa)
+        {
+            
+            String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement("select fnc_estatus_clientes("+empresa+");");
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString(1);
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;
+        }
+         public String getCountCompromisos(int empresa, int agencia, int empleado,String nombre_rol)
+        {
+            
+            String valor = "";
+            String sql1="select fnc_consulta_all_compromisos_mensuales("+empresa+","+agencia+","+empleado+",'"+nombre_rol+"');";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(sql1);
+            //select fnc_consulta_all_compromisos_mensuales(1,1,96,'GENRENTE');
             rs = pst.executeQuery();
             while(rs.next())    //Mientras haya una sig. tupla
             {
@@ -194,7 +246,83 @@ public class ConsultaxCarteraServicios {
             return valor;
         }
         
-     
+        public String getIdClienteAllxEmpleado(int empresa, int agencia, int idEmpleado)
+        {
+            
+            String valor = "";
+            String sql="select fnc_consulta_all_clientes("+empresa+","+agencia+");";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(sql); 
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString(1);
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;
+        }
+        
+        public String getSubCarterasClientesAll(int empresa, String mi_rol)
+        {
+            
+            String valor = "";
+            String sql1="select fnc_consulta_mis_sub_carteras("+empresa+");";
+            
+
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(sql1); 
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString(1);
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;
+        }
+     public String getMisCompromisosAll(int empresa, int agenda, int id_empleado, String mi_rol)
+        {
+            
+            String valor = "";
+            String sql1="select fnc_consulta_all_compromisos_mensuales("+empresa+","+agenda+","+id_empleado+",'"+mi_rol+"');";
+            
+
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(sql1); 
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString(1);
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor;
+        }
          
 public List<LcDatosDeudores> getLcDatosposicion(int empresa, int agencia,int posicion, int IDEmpleado){
          
@@ -1769,7 +1897,7 @@ String color;
         Session session;
         session = sesion.openSession();
         Transaction tx= session.beginTransaction();
-        Query q = session.createQuery("from LcTransacciones  E WHERE E.lcClientes.idCliente= :idCliente and E.lcDatosDeudores.idDatosDeudor=:idDeudor");
+        Query q = session.createQuery("from LcTransacciones  E WHERE E.lcClientes.idCliente= :idCliente and E.lcDatosDeudores.idDatosDeudor=:idDeudor and E.estado in ('A','I','P','C')");
         q.setParameter("idCliente",idCliente);
         q.setParameter("idDeudor",idDeudor);
         List<LcTransacciones> lista=q.list();
@@ -1786,6 +1914,20 @@ String color;
              json.put("TotalDeuda",datos.getMontoAsignado());
              json.put("TotalVencido",datos.getTotalVencidos());
              json.put("Pago",getUltimoPago(idCliente, idDeudor));
+             json.put("NombreEmpleado", getNombreUsuario(datos.getLcEmpleados().getIdEmpleado()));
+             //nom_empleado
+             //getNombreGrupo
+             int idSegmento=0;
+             try{
+                if(!datos.getIdSegmento().equals("")){
+                    idSegmento=datos.getIdSegmento();
+                }
+             }catch (Exception e){
+                idSegmento=0;
+             }
+             
+            
+             json.put("Grupo",getNombreGrupo(idSegmento));
             
                 valorPagado=rs.getValorRecaudado(datos.getIdEmpresa(),idCliente, idDeudor);
             } catch (SQLException ex) {
@@ -1797,7 +1939,76 @@ String color;
              json.put("Saldo",tsaldo);
              json.put("Notas",getLcNotas2(idCliente,idDeudor));
              json.put("NotasAdm",getLcNotasAdm(idCliente,idDeudor));
-             json.put("IDNotas",getLcNotasID(idCliente,idDeudor));             
+             json.put("IDNotas",getLcNotasID(idCliente,idDeudor));     
+             json.put("DiasMora",datos.getDiasMora());
+             json.put("IDCiudad",datos.getLcDatosDeudores().getLcCiudad().getIdCiudad());
+             mi_parroquia=datos.getLcDatosDeudores().getIdParroquia();
+                     
+             json.put("Ciudad",datos.getLcDatosDeudores().getLcCiudad().getCiudad()+""+getMiParroquia(mi_parroquia)); 
+             json.put("IDTransaccion",datos.getIdTransaccion()); 
+            
+             
+             itemSelectedJson.add(json);
+            
+        }
+        tx.commit();
+        session.close();
+        return  itemSelectedJson.toString();
+    }
+    public String getGestionClienteTRX(int idTransaccion){
+        RecaudacionServicios rs = new RecaudacionServicios();
+        int mi_parroquia=0;
+        JSONObject json = new JSONObject();
+        JSONArray itemSelectedJson = new JSONArray();   
+        BigDecimal tsaldo=BigDecimal.ZERO;
+        BigDecimal valorPagado =BigDecimal.ZERO;
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Transaction tx= session.beginTransaction();
+        Query q = session.createQuery("from LcTransacciones  E WHERE E.idTransaccion= :idTransaccion and E.estado in ('A','I','P','C')");
+        q.setParameter("idTransaccion",idTransaccion);
+        //q.setParameter("idDeudor",idDeudor);
+        List<LcTransacciones> lista=q.list();
+         for(LcTransacciones datos:lista )
+        {
+            try {
+             json = new JSONObject();
+             json.put("IdDeudor",datos.getLcDatosDeudores().getIdDatosDeudor());
+             json.put("Identificacion",datos.getLcDatosDeudores().getIdentificacion());
+             json.put("NombresCompletos",datos.getLcDatosDeudores().getNombresCompleto());
+             json.put("IdCliente",datos.getLcClientes().getIdCliente());
+             json.put("RazonSocialCliente",datos.getLcClientes().getRazonSocial());
+             json.put("NumCuenta",datos.getNumCuenta());
+             json.put("TotalDeuda",datos.getMontoAsignado());
+             json.put("TotalVencido",datos.getTotalVencidos());
+             json.put("Pago",getUltimoPago(datos.getLcClientes().getIdCliente(), datos.getLcDatosDeudores().getIdDatosDeudor()));
+             json.put("NombreEmpleado", getNombreUsuario(datos.getLcEmpleados().getIdEmpleado()));
+             //nom_empleado
+             //getNombreGrupo
+             int idSegmento=0;
+             try{
+                if(!datos.getIdSegmento().equals("")){
+                    idSegmento=datos.getIdSegmento();
+                }
+             }catch (Exception e){
+                idSegmento=0;
+             }
+             
+            
+             json.put("Grupo",getNombreGrupo(idSegmento));
+            
+                valorPagado=rs.getValorRecaudado(datos.getIdEmpresa(),datos.getLcClientes().getIdCliente(), datos.getLcDatosDeudores().getIdDatosDeudor());
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultaxCarteraServicios.class.getName()).log(Level.SEVERE, null, ex);
+               
+            }
+            
+             tsaldo=datos.getMontoAsignado().subtract(getUltimoPago(datos.getLcClientes().getIdCliente(), datos.getLcDatosDeudores().getIdDatosDeudor()));
+             json.put("Saldo",tsaldo);
+             json.put("Notas",getLcNotas2(datos.getLcClientes().getIdCliente(), datos.getLcDatosDeudores().getIdDatosDeudor()));
+             json.put("NotasAdm",getLcNotasAdm(datos.getLcClientes().getIdCliente(), datos.getLcDatosDeudores().getIdDatosDeudor()));
+             json.put("IDNotas",getLcNotasID(datos.getLcClientes().getIdCliente(), datos.getLcDatosDeudores().getIdDatosDeudor()));     
              json.put("DiasMora",datos.getDiasMora());
              json.put("IDCiudad",datos.getLcDatosDeudores().getLcCiudad().getIdCiudad());
              mi_parroquia=datos.getLcDatosDeudores().getIdParroquia();
@@ -1814,6 +2025,53 @@ String color;
         return  itemSelectedJson.toString();
     }
     
+    public String getNombreUsuario(int IdEmpleado) {
+        
+        String  NombreEmpleado="";
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Transaction tx = session.beginTransaction();
+        // hacemos la transaccion
+        ArrayList<LcUsuarios> arreglo = new ArrayList<LcUsuarios>();
+        Query q = session.createQuery("from LcUsuarios E WHERE E.lcEmpleados.idEmpleado= :idEmpleado");
+        q.setParameter("idEmpleado", IdEmpleado);
+        //q.setParameter("estado", "A");
+        List<LcUsuarios> lista = q.list();
+        for (LcUsuarios datos : lista) {
+            
+            NombreEmpleado=datos.getUsuario();
+          
+           
+          }
+    tx.commit();
+    session.close();
+    
+        return NombreEmpleado;
+    }
+    
+    public String  getNombreGrupo(int id){
+        String valor="";
+         
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Transaction tx= session.beginTransaction();
+        Query q = session.createQuery("from LcSegmento  E WHERE E.idSegmento= :idSegmento");
+        q.setParameter("idSegmento",id);
+        List<LcSegmento> lista=q.list();
+
+         for(LcSegmento data:lista )
+        {
+            // System.out.println("ok: "+mrol.getIdTelefono()+", "+mrol.getTelefono());
+            // System.out.println("ok: "+mrol.getIdTelefono()+", "+mrol.getLcTiposTelefono().getNombreTipoTlf());
+            valor=data.getNombreSegmento().toString();
+             
+        }
+        tx.commit();
+        session.close();
+        return  valor;
+    }
     public String getLcDireccionJSON(String ide){
         JSONObject json = new JSONObject();
         JSONArray itemSelectedJson = new JSONArray(); 
@@ -1822,7 +2080,7 @@ String color;
         Session session;
         session = sesion.openSession();
         Transaction tx= session.beginTransaction();
-        Query q = session.createQuery("from LcDireccion  E WHERE E.identificacionDeudor= :identificacionDeudor");      
+        Query q = session.createQuery("from LcDireccion  E WHERE E.identificacionDeudor= :identificacionDeudor and E.estado='A'");      
         q.setParameter("identificacionDeudor",ide);
         List<LcDireccion> lista=q.list();
        
@@ -1831,6 +2089,7 @@ String color;
              json = new JSONObject();
              json.put("TipoDireccion",mrol.getLcTiposDireccion().getNombreTipoDireccion());
              json.put("Direccion",mrol.getDireccionCompleta());
+             json.put("acciones","<a  href='#' class='text-red' onclick='inactivarDireccion("+mrol.getIdDireccion()+");'  ><span class='glyphicon glyphicon-trash  aria-hidden='true'></span></a>");
              itemSelectedJson.add(json);
            // tablaDireccion+="<tr bgcolor='#E0ECF8' width='100%'><td class='col-sm-2'>"+mrol.getLcTiposDireccion().getNombreTipoDireccion()+"</td><td class='col-sm-6'>"+mrol.getDireccionCompleta()+"</td></tr>";
              
@@ -1847,7 +2106,7 @@ String color;
         Session session;
         session = sesion.openSession();
         Transaction tx= session.beginTransaction();
-        Query q = session.createQuery("from LcTelefonos  E WHERE E.identificacionDeudor= :identificacionDeudor");
+        Query q = session.createQuery("from LcTelefonos  E WHERE E.identificacionDeudor= :identificacionDeudor and E.estado= 'A'");
         q.setParameter("identificacionDeudor",ide);
         List<LcTelefonos> lista=q.list();
 
@@ -1858,7 +2117,7 @@ String color;
              json = new JSONObject();
              json.put("TipoTelefono",mrol.getLcTiposTelefono().getNombreTipoTlf());
              json.put("Telefono",mrol.getTelefono());
-             json.put("Llamar","<a  href='#' style='color:#F98021;' ><span class='glyphicon glyphicon-earphone  aria-hidden='true'></span></a>");
+             json.put("Llamar","<a  href='#' class='text-red' onclick='inactivaTelefono("+mrol.getIdTelefono()+","+mrol.getTelefono()+");'  ><span class='glyphicon glyphicon-trash  aria-hidden='true'></span></a>");
              itemSelectedJson.add(json);
              
         }
@@ -1900,7 +2159,7 @@ String color;
 
          return  itemSelectedJson.toString();
     }
-    public String getNombreUsuario(int id_empleado){
+    public String getNombreUsuario2(int id_empleado){
     
        SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session;
@@ -1958,13 +2217,36 @@ String color;
          for(LcNotas notas:lista )
         {
             
-           //  misnotas+= notas.getNotaAdministrador();
+             misnotas+= notas.getNotaAdmin();
         }
         tx.commit();
         session.close();
          return misnotas;
     }
       public int getLcNotasID(int idCliente,int idDeudor){
+        int id_notas = 0; 
+        SessionFactory sesion = HibernateUtil.getSessionFactory();
+        Session session;
+        session = sesion.openSession();
+        Transaction tx= session.beginTransaction();
+        ArrayList<LcNotas> arreglo = new ArrayList<LcNotas>();
+        Query q = session.createQuery("from LcNotas  E WHERE E.idCliente= :idCliente and E.idDeudor= :idDeudor and E.estado= :estado");
+        q.setParameter("idCliente",idCliente);
+        q.setParameter("idDeudor",idDeudor);
+        q.setParameter("estado","A");
+        List<LcNotas> lista=q.list();
+         for(LcNotas notas:lista )
+        {
+            /* System.out.println("ok: "+mrol.getIdNota());
+             System.out.println("ok: "+mrol.getIdNota()+", "+mrol.getIdDeudor());
+             System.out.println("ok: "+mrol.getIdNota()+", "+mrol.getIdCliente());*/
+             id_notas= notas.getIdNota();
+        }
+        tx.commit();
+        session.close();
+         return id_notas;
+    }
+      public int getLcNotasIDAdmin(int idCliente,int idDeudor){
         int id_notas = 0; 
         SessionFactory sesion = HibernateUtil.getSessionFactory();
         Session session;
@@ -2335,7 +2617,76 @@ String color;
              } 
             return valor; 
          }
-  public String fnc_registra_notificacion(int id_empresa,int id_agencia, int id_deudor, int id_cliente, int id_empleado, String fecha){
+         public String fnc_ConsultaCuadroCalidad2(int id_empresa,int id_agencia){
+             String valor = "";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement("select fnc_cuadro_calidad2("+id_empresa+","+id_agencia+");");
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_cuadro_calidad2");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor; 
+         }
+         public String fnc_ConsultaCuadroCalidad(int id_empresa,int id_agencia,String fecha_ini, String fecha_hasta){
+             String valor = "",sqlFuncion="select fnc_cuadro_calidad("+id_empresa+","+id_agencia+",'"+fecha_ini+"','"+fecha_hasta+"');";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(sqlFuncion);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_cuadro_calidad");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor; 
+         }
+         
+public String fnc_ConsultaCuadroCalidadEficiencia(int id_empresa,int id_agencia,int empleado_id, String fecha_ini, String fecha_hasta, int cartera, int sub_cartera){
+             String valor = "",sqlFuncion="select fnc_calidad_eficiencia("+id_empresa+","+id_agencia+","+empleado_id+",'"+fecha_ini+"','"+fecha_hasta+"',"+cartera+","+sub_cartera+");";
+                                            //      select fnc_calidad_eficiencia(1,1,96,'2018-04-11','2018-04-11',5,6)                                      //
+
+             try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement(sqlFuncion);
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("fnc_calidad_eficiencia");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return valor; 
+         }
+
+         
+         
+         public String fnc_registra_notificacion(int id_empresa,int id_agencia, int id_deudor, int id_cliente, int id_empleado, String fecha){
              String valor = "";
          try{      
             Conexion conexion=new Conexion();
@@ -2356,5 +2707,27 @@ String color;
              } 
             return valor; 
          }
+        public int getEmpleadoCartera( int id_empleado)
+        {
+         String valor = "0";
+         try{      
+            Conexion conexion=new Conexion();
+            PreparedStatement pst;
+            ResultSet rs;
+            pst = conexion.getconexion().prepareStatement("select distinct(id_cartera) cartera from lc_transacciones where id_empleado="+id_empleado+" and estado!='E';");
+            rs = pst.executeQuery();
+            while(rs.next())    //Mientras haya una sig. tupla
+            {
+                valor=rs.getString("cartera");
+            }
+            rs.close();
+            pst.close();
+            conexion.cierraConexion();
+            
+            }catch (SQLException ex) {
+                System.err.println( ex.getMessage() );
+             } 
+            return Integer.parseInt(valor); 
+        }
     
 }

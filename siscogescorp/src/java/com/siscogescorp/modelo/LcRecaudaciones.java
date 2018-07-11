@@ -1,5 +1,5 @@
 package com.siscogescorp.modelo;
-// Generated 14-ene-2018 19:02:18 by Hibernate Tools 4.3.1
+// Generated 24/05/2018 12:17:21 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,6 +25,7 @@ public class LcRecaudaciones  implements java.io.Serializable {
      private String estado;
      private String descripcionCarga;
      private String origen;
+     private Integer idTransaccion;
      private Set lcFormapagoRecaudacions = new HashSet(0);
      private Set lcDetRecaudacioneses = new HashSet(0);
 
@@ -35,7 +36,7 @@ public class LcRecaudaciones  implements java.io.Serializable {
     public LcRecaudaciones(int idRecaudacion) {
         this.idRecaudacion = idRecaudacion;
     }
-    public LcRecaudaciones(int idRecaudacion, LcDatosDeudores lcDatosDeudores, Integer idEmpresa, Integer idAgencia, Integer idCliente, Integer idEmpleado, BigDecimal valorRecaudado, Date fechaRegistro, Date fechaActualizado, String estado, String descripcionCarga, String origen, Set lcFormapagoRecaudacions, Set lcDetRecaudacioneses) {
+    public LcRecaudaciones(int idRecaudacion, LcDatosDeudores lcDatosDeudores, Integer idEmpresa, Integer idAgencia, Integer idCliente, Integer idEmpleado, BigDecimal valorRecaudado, Date fechaRegistro, Date fechaActualizado, String estado, String descripcionCarga, String origen, Integer idTransaccion, Set lcFormapagoRecaudacions, Set lcDetRecaudacioneses) {
        this.idRecaudacion = idRecaudacion;
        this.lcDatosDeudores = lcDatosDeudores;
        this.idEmpresa = idEmpresa;
@@ -48,6 +49,7 @@ public class LcRecaudaciones  implements java.io.Serializable {
        this.estado = estado;
        this.descripcionCarga = descripcionCarga;
        this.origen = origen;
+       this.idTransaccion = idTransaccion;
        this.lcFormapagoRecaudacions = lcFormapagoRecaudacions;
        this.lcDetRecaudacioneses = lcDetRecaudacioneses;
     }
@@ -135,6 +137,13 @@ public class LcRecaudaciones  implements java.io.Serializable {
     
     public void setOrigen(String origen) {
         this.origen = origen;
+    }
+    public Integer getIdTransaccion() {
+        return this.idTransaccion;
+    }
+    
+    public void setIdTransaccion(Integer idTransaccion) {
+        this.idTransaccion = idTransaccion;
     }
     public Set getLcFormapagoRecaudacions() {
         return this.lcFormapagoRecaudacions;

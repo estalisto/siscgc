@@ -1,29 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-ene-2018 19:02:21 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/05/2018 12:17:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.siscogescorp.modelo.LcTipoReferencia" optimistic-lock="version" schema="public" table="lc_tipo_referencia">
-    <id name="idTipoRef" type="int">
-      <column name="id_tipo_ref"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="nombreTipo" type="string">
-      <column length="100" name="nombre_tipo"/>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="100" name="descripcion"/>
-    </property>
-    <property name="fechaCreacion" type="timestamp">
-      <column length="29" name="fecha_creacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="1" name="estado"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="lcReferenciases" table="lc_referencias">
-      <key>
-        <column name="tipo_referencia"/>
-      </key>
-      <one-to-many class="com.siscogescorp.modelo.LcReferencias"/>
-    </set>
-  </class>
+    <class name="com.siscogescorp.modelo.LcTipoReferencia" table="lc_tipo_referencia" schema="public" optimistic-lock="version">
+        <id name="idTipoRef" type="int">
+            <column name="id_tipo_ref" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreTipo" type="string">
+            <column name="nombre_tipo" length="100" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="fecha_creacion" length="29" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="1" />
+        </property>
+        <set name="lcReferenciases" table="lc_referencias" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_referencia" />
+            </key>
+            <one-to-many class="com.siscogescorp.modelo.LcReferencias" />
+        </set>
+    </class>
 </hibernate-mapping>
